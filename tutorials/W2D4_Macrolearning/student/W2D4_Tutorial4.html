@@ -1,0 +1,2232 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>Tutorial 4: Biological meta reinforcement learning — Insert your title here. e.g. Neuromatch Academy: Computational Neuroscience</title>
+<script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+<!-- Loaded before other Sphinx assets -->
+<link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet"/>
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet"/>
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet"/>
+<link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" rel="stylesheet" type="text/css">
+<link href="../../../_static/togglebutton.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/copybutton.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/sphinx-thebe.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/custom.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" rel="stylesheet" type="text/css"/>
+<!-- Pre-loaded scripts that we'll load fully later -->
+<link as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94" rel="preload"/>
+<link as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94" rel="preload"/>
+<script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+<script src="../../../_static/jquery.js"></script>
+<script src="../../../_static/underscore.js"></script>
+<script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+<script src="../../../_static/doctools.js"></script>
+<script src="../../../_static/clipboard.min.js"></script>
+<script src="../../../_static/copybutton.js"></script>
+<script src="../../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+<script>let toggleHintShow = 'Click to show';</script>
+<script>let toggleHintHide = 'Click to hide';</script>
+<script>let toggleOpenOnPrint = 'true';</script>
+<script src="../../../_static/togglebutton.js"></script>
+<script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+<script src="../../../_static/design-tabs.js"></script>
+<script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+<script async="async" src="../../../_static/sphinx-thebe.js"></script>
+<script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="application/vnd.jupyter.widget-state+json">{"state": {"d5a3fb411b7a452eb79f4a95f3aa02c7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c79df24a145b46419715f86cdf68ee3c": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_d5a3fb411b7a452eb79f4a95f3aa02c7", "msg_id": "", "outputs": [{"output_type": "stream", "name": "stdout", "text": "If you want to download the slides: https://osf.io/download//\n"}, {"output_type": "display_data", "metadata": {}, "data": {"text/plain": "<IPython.lib.display.IFrame at 0x7f1e88e376d0>", "text/html": "\n        <iframe\n            width=\"730\"\n            height=\"410\"\n            src=\"https://mfr.ca-1.osf.io/render?url=https://osf.io//?direct%26mode=render%26action=download%26mode=render\"\n            frameborder=\"0\"\n            allowfullscreen\n            \n        ></iframe>\n        "}}], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+<script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+<script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+<script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/W2D4_Macrolearning/student/W2D4_Tutorial4';</script>
+<link href="../../../_static/nma-logo-square-4xp.png" rel="shortcut icon">
+<link href="../../../genindex.html" rel="index" title="Index">
+<link href="../../../search.html" rel="search" title="Search"/>
+<link href="W2D4_Tutorial5.html" rel="next" title="Tutorial 5: Replay"/>
+<link href="W2D4_Tutorial3.html" rel="prev" title="Tutorial 3: Meta-learning"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+</link></link></link></link></link></link></link></link></link></head>
+<body data-default-mode="" data-offset="180" data-spy="scroll" data-target="#bd-toc-nav">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<input class="sidebar-toggle" id="__primary" name="__primary" type="checkbox"/>
+<label class="overlay overlay-primary" for="__primary"></label>
+<input class="sidebar-toggle" id="__secondary" name="__secondary" type="checkbox"/>
+<label class="overlay overlay-secondary" for="__secondary"></label>
+<div class="search-button__wrapper">
+<div class="search-button__overlay"></div>
+<div class="search-button__search-container">
+<form action="../../../search.html" class="bd-search d-flex align-items-center" method="get">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input aria-label="Search this book..." autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." spellcheck="false" type="search"/>
+<span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+</div>
+</div>
+<nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+<label class="sidebar-toggle primary-toggle" for="__primary">
+<span class="fa-solid fa-bars"></span>
+</label>
+<div id="navbar-start">
+<a class="navbar-brand logo" href="../../intro.html">
+<img alt="Logo image" class="logo__image only-light" src="../../../_static/nma-logo-square-4xp.png"/>
+<img alt="Logo image" class="logo__image only-dark" src="../../../_static/nma-logo-square-4xp.png"/>
+</a>
+</div>
+<div class="col-lg-9 navbar-header-items">
+<div class="mr-auto" id="navbar-center">
+<div class="navbar-center-item">
+<nav class="navbar-nav">
+<p aria-label="Site Navigation" aria-level="1" class="sidebar-header-items__title" role="heading">
+        Site Navigation
+    </p>
+<ul class="navbar-nav" id="navbar-main-elements">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../Schedule/schedule_intro.html">
+                        Schedule
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../TechnicalHelp/tech_intro.html">
+                        Technical Help
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../TechnicalHelp/Links_Policy.html">
+                        Quick links and policies
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../prereqs/ComputationalNeuroscience.html">
+                        Prerequisites and preparatory materials for NMA Computational Neuroscience
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D0_NeuroVideoSeries/chapter_title.html">
+                        Neuro Video Series (W0D0)
+                      </a>
+</li>
+<div class="nav-item dropdown">
+<button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle nav-item" data-toggle="dropdown" type="button">
+                    More
+                </button>
+<div class="dropdown-menu">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D1_PythonWorkshop1/chapter_title.html">
+                        Python Workshop 1 (W0D1)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D2_PythonWorkshop2/chapter_title.html">
+                        Python Workshop 2 (W0D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D3_LinearAlgebra/chapter_title.html">
+                        Linear Algebra (W0D3)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D4_Calculus/chapter_title.html">
+                        Calculus (W0D4)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D5_Statistics/chapter_title.html">
+                        Statistics (W0D5)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W1D1_Generalization/chapter_title.html">
+                        Generalization (W1D1)
+                      </a>
+</li>
+<li class="nav-item current active">
+<a class="nav-link nav-internal" href="../chapter_title.html">
+                        Macrolearning (W2D4)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D5_Mysteries/chapter_title.html">
+                        Mysteries (W2D5)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/README.html">
+                        Introduction
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/keynote.html">
+                        Project Day keynote (W2D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/project_guidance.html">
+                        Daily guide for projects
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/datasets_overview.html">
+                        Project materials
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/continuing_your_project_after_the_course.html">
+                        Continuing your project after the course
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/past_projects_overview.html">
+                        Past projects
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/README.html">
+                        Introduction
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/impact_talks.html">
+                        Impact Talks
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/career_features.html">
+                        Career Features
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/career_panels.html">
+                        Career Panels
+                      </a>
+</li>
+</div>
+</div>
+</ul>
+</nav>
+</div>
+</div>
+<div id="navbar-end">
+<div class="navbar-end-item navbar-persistent--container">
+<button aria-label="Search" class="btn btn-sm navbar-btn search-button search-button__button" data-toggle="tooltip" title="Search">
+<i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+<div class="navbar-end-item">
+<button aria-label="light/dark" class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" data-toggle="tooltip" title="light/dark">
+<span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+<span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+<span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+</div>
+<div class="navbar-end-item">
+<ul aria-label="Icon Links" class="navbar-nav" id="navbar-icon-links">
+</ul>
+</div>
+</div>
+</div>
+<div class="navbar-persistent--mobile">
+<button aria-label="Search" class="btn btn-sm navbar-btn search-button search-button__button" data-toggle="tooltip" title="Search">
+<i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+<label class="sidebar-toggle secondary-toggle" for="__secondary">
+<span class="fa-solid fa-outdent"></span>
+</label>
+</div>
+</nav>
+<div class="bd-container">
+<div class="bd-container__inner bd-page-width">
+<div class="bd-sidebar-primary bd-sidebar">
+<div class="sidebar-header-items sidebar-primary__section">
+<div class="sidebar-header-items__center">
+<div class="navbar-center-item">
+<nav class="navbar-nav">
+<p aria-label="Site Navigation" aria-level="1" class="sidebar-header-items__title" role="heading">
+        Site Navigation
+    </p>
+<ul class="navbar-nav" id="navbar-main-elements">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../Schedule/schedule_intro.html">
+                        Schedule
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../TechnicalHelp/tech_intro.html">
+                        Technical Help
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../TechnicalHelp/Links_Policy.html">
+                        Quick links and policies
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../prereqs/ComputationalNeuroscience.html">
+                        Prerequisites and preparatory materials for NMA Computational Neuroscience
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D0_NeuroVideoSeries/chapter_title.html">
+                        Neuro Video Series (W0D0)
+                      </a>
+</li>
+<div class="nav-item dropdown">
+<button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle nav-item" data-toggle="dropdown" type="button">
+                    More
+                </button>
+<div class="dropdown-menu">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D1_PythonWorkshop1/chapter_title.html">
+                        Python Workshop 1 (W0D1)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D2_PythonWorkshop2/chapter_title.html">
+                        Python Workshop 2 (W0D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D3_LinearAlgebra/chapter_title.html">
+                        Linear Algebra (W0D3)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D4_Calculus/chapter_title.html">
+                        Calculus (W0D4)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D5_Statistics/chapter_title.html">
+                        Statistics (W0D5)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W1D1_Generalization/chapter_title.html">
+                        Generalization (W1D1)
+                      </a>
+</li>
+<li class="nav-item current active">
+<a class="nav-link nav-internal" href="../chapter_title.html">
+                        Macrolearning (W2D4)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D5_Mysteries/chapter_title.html">
+                        Mysteries (W2D5)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/README.html">
+                        Introduction
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/keynote.html">
+                        Project Day keynote (W2D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/project_guidance.html">
+                        Daily guide for projects
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/datasets_overview.html">
+                        Project materials
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/continuing_your_project_after_the_course.html">
+                        Continuing your project after the course
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/past_projects_overview.html">
+                        Past projects
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/README.html">
+                        Introduction
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/impact_talks.html">
+                        Impact Talks
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/career_features.html">
+                        Career Features
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/career_panels.html">
+                        Career Panels
+                      </a>
+</li>
+</div>
+</div>
+</ul>
+</nav>
+</div>
+</div>
+<div class="sidebar-header-items__end">
+<div class="navbar-end-item">
+<button aria-label="light/dark" class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" data-toggle="tooltip" title="light/dark">
+<span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+<span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+<span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+</div>
+<div class="navbar-end-item">
+<ul aria-label="Icon Links" class="navbar-nav" id="navbar-icon-links">
+</ul>
+</div>
+</div>
+</div>
+<div class="sidebar-start-items sidebar-primary__section">
+<div class="sidebar-start-items__item">
+<a class="navbar-brand logo" href="../../intro.html">
+<img alt="Logo image" class="logo__image only-light" src="../../../_static/nma-logo-square-4xp.png"/>
+<img alt="Logo image" class="logo__image only-dark" src="../../../_static/nma-logo-square-4xp.png"/>
+</a>
+</div>
+<div class="sidebar-start-items__item">
+<form action="../../../search.html" class="bd-search d-flex align-items-center" method="get">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input aria-label="Search this book..." autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." spellcheck="false" type="search"/>
+<span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+</div>
+<div class="sidebar-start-items__item"><nav aria-label="Main" class="bd-links" id="bd-docs-nav">
+<div class="bd-toc-item navbar-nav active">
+<ul class="nav bd-sidenav bd-sidenav__home-link">
+<li class="toctree-l1">
+<a class="reference internal" href="../../intro.html">
+                    Introduction
+                </a>
+</li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Schedule/schedule_intro.html">Schedule</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Schedule/daily_schedules.html">General schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Schedule/shared_calendars.html">Shared calendars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Schedule/timezone_widget.html">Timezone widget</a></li>
+</ul>
+</input></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../TechnicalHelp/tech_intro.html">Technical Help</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../TechnicalHelp/Jupyterbook.html">Using jupyterbook</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../TechnicalHelp/Tutorial_colab.html">Using Google Colab</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../TechnicalHelp/Tutorial_kaggle.html">Using Kaggle</a></li>
+</ul>
+</input></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TechnicalHelp/Discord.html">Using discord</a></li>
+</ul>
+</input></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../TechnicalHelp/Links_Policy.html">Quick links and policies</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../prereqs/ComputationalNeuroscience.html">Prerequisites and preparatory materials for NMA Computational Neuroscience</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pre-reqs Refresher</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/chapter_title.html">Neuro Video Series (W0D0)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial1.html">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial2.html">Human Psychophysics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial3.html">Behavioral Readout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial4.html">Live in Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial5.html">Brain Signals: Spiking Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial6.html">Brain Signals: LFP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial7.html">Brain Signals: EEG &amp; MEG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial8.html">Brain Signals: fMRI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial9.html">Brain Signals: Calcium Imaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial10.html">Stimulus Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial11.html">Neurotransmitters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial12.html">Neurons to Consciousness</a></li>
+</ul>
+</input></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D1_PythonWorkshop1/chapter_title.html">Python Workshop 1 (W0D1)</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D1_PythonWorkshop1/student/W0D1_Tutorial1.html">Tutorial: LIF Neuron Part I</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D2_PythonWorkshop2/chapter_title.html">Python Workshop 2 (W0D2)</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D2_PythonWorkshop2/student/W0D2_Tutorial1.html">Tutorial 1: LIF Neuron Part II</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D3_LinearAlgebra/chapter_title.html">Linear Algebra (W0D3)</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D3_LinearAlgebra/student/W0D3_Tutorial1.html">Tutorial 1: Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D3_LinearAlgebra/student/W0D3_Tutorial2.html">Tutorial 2: Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D3_LinearAlgebra/student/W0D3_Tutorial3.html">Bonus Tutorial: Discrete Dynamical Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D3_LinearAlgebra/student/W0D3_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D3_LinearAlgebra/student/W0D3_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D4_Calculus/chapter_title.html">Calculus (W0D4)</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D4_Calculus/student/W0D4_Tutorial1.html">Tutorial 1: Differentiation and Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D4_Calculus/student/W0D4_Tutorial2.html">Tutorial 2: Differential Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D4_Calculus/student/W0D4_Tutorial3.html">Tutorial 3: Numerical Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D4_Calculus/student/W0D4_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D5_Statistics/chapter_title.html">Statistics (W0D5)</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D5_Statistics/student/W0D5_Tutorial1.html">Tutorial 1: Probability Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D5_Statistics/student/W0D5_Tutorial2.html">Tutorial 2: Statistical Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D5_Statistics/student/W0D5_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D5_Statistics/student/W0D5_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W1D1_Generalization/chapter_title.html">Generalization (W1D1)</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_Intro.html">W1D1 Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_Tutorial1.html">Tutorial 1: Generalization in AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_Tutorial2.html">Tutorial 2: Generalization in Neuroscience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_Tutorial3.html">Tutorial 3: Generalization in Cognitive Science</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_Outro.html">W1D1 Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_DaySummary.html">W1D1 Day Summary</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../chapter_title.html">Macrolearning (W2D4)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="W2D4_Intro.html">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="W2D4_Tutorial1.html">Tutorial 1: The problem of changing data distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="W2D4_Tutorial2.html">Tutorial 2: Appealing remedies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="W2D4_Tutorial3.html">Tutorial 3: Meta-learning</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tutorial 4: Biological meta reinforcement learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="W2D4_Tutorial5.html">Tutorial 5: Replay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="W2D4_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../further_reading.html">Suggested further readings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="W2D4_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mysteries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W2D5_Mysteries/chapter_title.html">Mysteries (W2D5)</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D5_Mysteries/student/W2D5_Intro.html">W2D4 Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D5_Mysteries/student/W2D5_Tutorial1.html">W2D5Tutorial1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D5_Mysteries/student/W2D5_Outro.html">W2D4 Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D5_Mysteries/student/W2D5_DaySummary.html">W2D4 Day Summary</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Booklet</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/README.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/keynote.html">Project Day keynote (W2D2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/docs/project_guidance.html">Daily guide for projects</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../projects/docs/datasets_overview.html">Project materials</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../projects/project-notebooks/Example_project.html">Project Template</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/docs/continuing_your_project_after_the_course.html">Continuing your project after the course</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../projects/docs/past_projects_overview.html">Past projects</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../projects/past-projects/example_past_project.html">Example Past Project</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Professional Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/professional_development/README.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/professional_development/impact_talks.html">Impact Talks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/professional_development/career_features.html">Career Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/professional_development/career_panels.html">Career Panels</a></li>
+</ul>
+</div>
+</nav>
+</div>
+</div>
+<div class="sidebar-end-items sidebar-primary__section">
+<div class="sidebar-end-items__item">
+</div>
+</div>
+<div id="rtd-footer-container"></div>
+</div>
+<main class="bd-main" id="main-content">
+<div class="sbt-scroll-pixel-helper"></div>
+<div class="bd-content">
+<div class="bd-article-container">
+<div class="bd-header-article">
+<div class="col py-1 d-flex header-article-main">
+<div class="header-article__left">
+<label class="sidebar-toggle primary-toggle btn btn-sm" data-placement="right" data-toggle="tooltip" for="__primary" title="Toggle primary sidebar">
+<span class="fa-solid fa-bars"></span>
+</label>
+</div>
+<div class="header-article__right">
+<div class="dropdown dropdown-launch-buttons">
+<button aria-expanded="false" aria-label="Launch interactive content" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+<i class="fas fa-rocket"></i>
+</button>
+<ul class="dropdown-menu">
+</ul>
+</div>
+<button class="btn btn-sm" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode">
+<span class="btn__icon-container">
+<i class="fas fa-expand"></i>
+</span>
+</button>
+<div class="dropdown dropdown-repository-buttons">
+<button aria-expanded="false" aria-label="Source repositories" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+<i class="fab fa-github"></i>
+</button>
+<ul class="dropdown-menu">
+<li><a class="btn btn-sm dropdown-item" data-placement="left" data-toggle="tooltip" href="https://github.com/neuromatch/NeuroAI_Course" target="_blank" title="Source repository">
+<span class="btn__icon-container">
+<i class="fab fa-github"></i>
+</span>
+<span class="btn__text-container">repository</span>
+</a>
+
+<li><a class="btn btn-sm dropdown-item" data-placement="left" data-toggle="tooltip" href="https://github.com/neuromatch/NeuroAI_Course/issues/new?title=Issue%20on%20page%20%2Ftutorials/W2D4_Macrolearning/student/W2D4_Tutorial4.html&amp;body=Your%20issue%20content%20here." target="_blank" title="Open an issue">
+<span class="btn__icon-container">
+<i class="fas fa-lightbulb"></i>
+</span>
+<span class="btn__text-container">open issue</span>
+</a>
+
+</li></li></ul>
+</div>
+<div class="dropdown dropdown-download-buttons">
+<button aria-expanded="false" aria-label="Download this page" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+<i class="fas fa-download"></i>
+</button>
+<ul class="dropdown-menu">
+<li><a class="btn btn-sm dropdown-item" data-placement="left" data-toggle="tooltip" href="../../../_sources/tutorials/W2D4_Macrolearning/student/W2D4_Tutorial4.ipynb" target="_blank" title="Download source file">
+<span class="btn__icon-container">
+<i class="fas fa-file"></i>
+</span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+
+<li>
+<button class="btn btn-sm dropdown-item" data-placement="left" data-toggle="tooltip" onclick="printPdf(this)" title="Print to PDF">
+<span class="btn__icon-container">
+<i class="fas fa-file-pdf"></i>
+</span>
+<span class="btn__text-container">.pdf</span>
+</button>
+
+</li></li></ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" data-placement="left" data-toggle="tooltip" for="__secondary" title="Toggle secondary sidebar">
+<span class="fa-solid fa-list"></span>
+</label>
+</div>
+</div>
+</div>
+<div class="onlyprint" id="jb-print-docs-body">
+<h1>Tutorial 4: Biological meta reinforcement learning</h1>
+<!-- Table of contents -->
+<div id="print-main-content">
+<div id="jb-print-toc">
+<div>
+<h2> Contents </h2>
+</div>
+<nav aria-label="Page">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#">
+   Tutorial 4: Biological meta reinforcement learning
+  </a>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tutorial-objectives">
+   Tutorial Objectives
+  </a>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#install-and-import-feedback-gadget">
+     Install and import feedback gadget
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#figure-settings">
+     Figure settings
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#plotting-functions">
+     Plotting functions
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#helper-functions">
+     Helper functions
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#data-retrieval">
+     Data retrieval
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#set-device-gpu-or-cpu">
+     Set device (GPU or CPU).
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#set-random-seed">
+     Set random seed
+    </a>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#section-1-harlow-experiment">
+   Section 1: Harlow Experiment
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#video-1-video-1-name">
+     Video 1: Video 1 Name
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#submit-your-feedback">
+     Submit your feedback
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#coding-exercise-1-meta-environment">
+     Coding Exercise 1: Meta-Environment
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id1">
+       Submit your feedback
+      </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#section-2-advantage-actor-critic-a2c-agent">
+   Section 2: Advantage Actor Critic (A2C) Agent
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id2">
+     Submit your feedback
+    </a>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#section-3-baldwin-effect">
+   Section 3: Baldwin Effect
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#video-2-video-2-name">
+     Video 2: Video 2 Name
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id3">
+     Submit your feedback
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#coding-exercise-2-agent-s-rate-to-learn">
+     Coding Exercise 2: Agent’s Rate to Learn
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id4">
+       Submit your feedback
+      </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#section-4-evolutionary-framework">
+   Section 4: Evolutionary Framework
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#video-3-video-3-name">
+     Video 3: Video 3 Name
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id5">
+     Submit your feedback
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#coding-exercise-3-genetic-algorithm">
+     Coding Exercise 3: Genetic Algorithm
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id6">
+       Submit your feedback
+      </a>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#think-1-evolutionary-theories-in-code">
+     Think 1: Evolutionary Theories in Code
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id7">
+       Submit your feedback
+      </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#section-5-newbie-experienced-agents">
+   Section 5: Newbie &amp; Experienced Agents
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id8">
+     Submit your feedback
+    </a>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<article class="bd-article" role="main">
+<p><a href="https://colab.research.google.com/github/neuromatch/course-content-template/blob/main/tutorials/W1D2_Template/student/W1D2_Tutorial1.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a>   <a href="https://kaggle.com/kernels/welcome?src=https://raw.githubusercontent.com/neuromatch/course-content-template/main/tutorials/W1D2_Template/student/W1D2_Tutorial1.ipynb" target="_blank"><img alt="Open in Kaggle" src="https://kaggle.com/static/images/open-in-kaggle.svg"/></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-4-biological-meta-reinforcement-learning">
+<h1>Tutorial 4: Biological meta reinforcement learning<a class="headerlink" href="#tutorial-4-biological-meta-reinforcement-learning" title="Permalink to this heading">#</a></h1>
+<p><strong>Week 2, Day 4: Macro-Learning</strong></p>
+<p><strong>By Neuromatch Academy</strong></p>
+<p><strong>Content creators:</strong> Hlib Solodzhuk, Ximeng Mao, Grace Lindsay</p>
+<p><strong>Content reviewers:</strong> Names &amp; Surnames</p>
+<p><strong>Production editors:</strong> Names &amp; Surnames</p>
+<br/>
+<p>Acknowledgments: [ACKNOWLEDGMENT_INFORMATION]</p>
+</section>
+<hr class="docutils"/>
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-objectives">
+<h1>Tutorial Objectives<a class="headerlink" href="#tutorial-objectives" title="Permalink to this heading">#</a></h1>
+<p><em>Estimated timing of tutorial: 50 minutes</em></p>
+<p>In this tutorial, you will observe how meta reinforcement learning may be occurring in the brain.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "c79df24a145b46419715f86cdf68ee3c"}</script></div>
+</div>
+</section>
+<hr class="docutils"/>
+<section class="tex2jax_ignore mathjax_ignore" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h1>
+<section id="install-and-import-feedback-gadget">
+<h2>Install and import feedback gadget<a class="headerlink" href="#install-and-import-feedback-gadget" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install and import feedback gadget</span>
+
+<span class="c1"># !pip3 install vibecheck datatops --quiet</span>
+
+<span class="c1"># from vibecheck import DatatopsContentReviewContainer</span>
+<span class="c1"># def content_review(notebook_section: str):</span>
+<span class="c1">#     return DatatopsContentReviewContainer(</span>
+<span class="c1">#         "",  # No text prompt - leave this as is</span>
+<span class="c1">#         notebook_section,</span>
+<span class="c1">#         {</span>
+<span class="c1">#             "url": "https://pmyvdlilci.execute-api.us-east-1.amazonaws.com/klab",</span>
+<span class="c1">#             "name": "sciencematch_sm", # change the name of the course : neuromatch_dl, climatematch_ct, etc</span>
+<span class="c1">#             "user_key": "y1x3mpx5",</span>
+<span class="c1">#         },</span>
+<span class="c1">#     ).render()</span>
+
+<span class="c1"># feedback_prefix = "W2D4_T4"</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+
+<span class="c1">#working with data</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1">#plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1">#interactive display</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+
+<span class="c1">#modeling</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="figure-settings">
+<h2>Figure settings<a class="headerlink" href="#figure-settings" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Figure settings</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'matplotlib.font_manager'</span><span class="p">)</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = 'retina' # perfrom high definition rendering for images and plots
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/NeuromatchAcademy/course-content/main/nma.mplstyle"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="plotting-functions">
+<h2>Plotting functions<a class="headerlink" href="#plotting-functions" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Plotting functions</span>
+
+<span class="k">def</span> <span class="nf">plot_cumulative_rewards</span><span class="p">(</span><span class="n">rewards</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Plot the cumulative rewards over time.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    - rewards (list): list containing the cumulative rewards at each time step.</span>
+<span class="sd">    """</span>
+    <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">xkcd</span><span class="p">():</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rewards</span><span class="p">)),</span> <span class="n">rewards</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Time Step'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Cumulative Reward'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Cumulative Reward Over Time'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">plot_boxplot_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Plots a boxplot of the given scores.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    scores (list): list of scores.</span>
+<span class="sd">    """</span>
+    <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">xkcd</span><span class="p">():</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">''</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Score'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Distribution of Scores'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_two_boxplot_scores</span><span class="p">(</span><span class="n">newbie_scores</span><span class="p">,</span> <span class="n">experienced_scores</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Plots two boxplots of the given scores.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    scores (list): list of scores.</span>
+<span class="sd">    """</span>
+    <span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">xkcd</span><span class="p">():</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">([</span><span class="n">newbie_scores</span><span class="p">,</span> <span class="n">experienced_scores</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">'Newbie'</span><span class="p">,</span> <span class="s1">'Experienced'</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Agent'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Score'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Distribution of Scores'</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="helper-functions">
+<h2>Helper functions<a class="headerlink" href="#helper-functions" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Helper functions</span>
+
+<span class="k">def</span> <span class="nf">run_dummy_agent</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Implement dummy agent strategy: chooses the last rewarded action.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    - env (HarlowExperimentEnv): An environment.</span>
+<span class="sd">    """</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">cumulative_reward</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">rewards</span> <span class="o">=</span> <span class="p">[</span><span class="n">cumulative_reward</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_trials</span><span class="p">)):</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">reward</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">cumulative_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+        <span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cumulative_reward</span><span class="p">)</span>
+
+        <span class="c1">#dummy agent</span>
+        <span class="k">if</span> <span class="n">reward</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">action</span>
+    <span class="k">return</span> <span class="n">rewards</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="data-retrieval">
+<h2>Data retrieval<a class="headerlink" href="#data-retrieval" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Data retrieval</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="c1"># Variables for file and download URL</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s2">"Evolution.pt"</span> <span class="c1"># The name of the file to be downloaded</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"https://osf.io/wmvh4/download"</span> <span class="c1"># URL from where the file will be downloaded</span>
+<span class="n">expected_md5</span> <span class="o">=</span> <span class="s2">"d0a74898e56549f7c5206e4c8f373ced"</span> <span class="c1"># MD5 hash for verifying file integrity</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Attempt to download the file</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="c1"># Make a GET request to the specified URL</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span><span class="p">:</span>
+        <span class="c1"># Handle connection errors during the download</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"!!! Failed to download data !!!"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># No connection errors, proceed to check the response</span>
+        <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="n">requests</span><span class="o">.</span><span class="n">codes</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+            <span class="c1"># Check if the HTTP response status code indicates a successful download</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"!!! Failed to download data !!!"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span> <span class="o">!=</span> <span class="n">expected_md5</span><span class="p">:</span>
+            <span class="c1"># Verify the integrity of the downloaded file using MD5 checksum</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"!!! Data download appears corrupted !!!"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If download is successful and data is not corrupted, save the file</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
+                <span class="n">fid</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span> <span class="c1"># Write the downloaded content to a file</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="set-device-gpu-or-cpu">
+<h2>Set device (GPU or CPU).<a class="headerlink" href="#set-device-gpu-or-cpu" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Set device (GPU or CPU).</span>
+
+<span class="k">def</span> <span class="nf">set_device</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Determines and sets the computational device for PyTorch operations based on the availability of a CUDA-capable GPU.</span>
+
+<span class="sd">    Outputs:</span>
+<span class="sd">    - device (str): The device that PyTorch will use for computations ('cuda' or 'cpu'). This string can be directly used</span>
+<span class="sd">    in PyTorch operations to specify the device.</span>
+<span class="sd">    """</span>
+
+    <span class="n">device</span> <span class="o">=</span> <span class="s2">"cuda"</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">"cpu"</span>
+    <span class="k">if</span> <span class="n">device</span> <span class="o">!=</span> <span class="s2">"cuda"</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"GPU is not enabled in this notebook. </span><span class="se">\n</span><span class="s2">"</span>
+              <span class="s2">"If you want to enable it, in the menu under `Runtime` -&gt; </span><span class="se">\n</span><span class="s2">"</span>
+              <span class="s2">"`Hardware accelerator.` and select `GPU` from the dropdown menu"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"GPU is enabled in this notebook. </span><span class="se">\n</span><span class="s2">"</span>
+              <span class="s2">"If you want to disable it, in the menu under `Runtime` -&gt; </span><span class="se">\n</span><span class="s2">"</span>
+              <span class="s2">"`Hardware accelerator.` and select `None` from the dropdown menu"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">device</span>
+
+<span class="n">device</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU is not enabled in this notebook. 
+If you want to enable it, in the menu under `Runtime` -&gt; 
+`Hardware accelerator.` and select `GPU` from the dropdown menu
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="set-random-seed">
+<h2>Set random seed<a class="headerlink" href="#set-random-seed" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Set random seed</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="k">def</span> <span class="nf">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed_torch</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">seed</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">seed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">32</span><span class="p">)</span>
+  <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+  <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">seed_torch</span><span class="p">:</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed_all</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">benchmark</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">deterministic</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+<hr class="docutils"/>
+<section class="tex2jax_ignore mathjax_ignore" id="section-1-harlow-experiment">
+<h1>Section 1: Harlow Experiment<a class="headerlink" href="#section-1-harlow-experiment" title="Permalink to this heading">#</a></h1>
+<p>In this section we will introduce the meta reinforcement learning environment which replicates famous Harlow experiment and will observe its meta-nature.</p>
+<section id="video-1-video-1-name">
+<h2>Video 1: Video 1 Name<a class="headerlink" href="#video-1-video-1-name" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+</div>
+</section>
+<section id="submit-your-feedback">
+<h2>Submit your feedback<a class="headerlink" href="#submit-your-feedback" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Submit your feedback</span>
+<span class="c1"># content_review(f"{feedback_prefix}_harlow_experiment")</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="coding-exercise-1-meta-environment">
+<h2>Coding Exercise 1: Meta-Environment<a class="headerlink" href="#coding-exercise-1-meta-environment" title="Permalink to this heading">#</a></h2>
+<p>Any RL system consists of the agent who tries to succeed in the accomplishment of the task by receiving the outcome (reward) and the world state from the environment by executing action. Meta environment is the environment which changes itself with time, thus previously learnt hard strategies might not work for anymore. Still, as in the previous tutorial, these changes share similar features across the tasks. Harlow experiment illustrates that though there is no direct instruction on how to obtain the maximum possible reward and the environment’s state changes with each new pair of the objects, the agent is still able to capture meta-nature of the experiment - the reward is associated with the object, not its relative placement.</p>
+<p>In the coding exercies you should complete dynamics of the Harlow experiment environment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HarlowExperimentEnv</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reward</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">punishment</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Initialize Harlow Experiment environment."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reward</span> <span class="o">=</span> <span class="n">reward</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">punishment</span> <span class="o">=</span> <span class="n">punishment</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rewarded_digit</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">punished_digit</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">rewarded_digit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">punished_digit</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">update_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Update state by selecting rewarded hand for random."""</span>
+        <span class="c1">###################################################################</span>
+        <span class="c1">## Fill out the following then remove</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Student exercise: complete state update and choose appropriate feedback based on the condition."</span><span class="p">)</span>
+        <span class="c1">###################################################################</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">rewarded_digit</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">punished_digit</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Reset environment by updating new rewarded and punished digits as well as create current state of the world (tuple of observations)."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rewarded_digit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">punished_digit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_state</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+
+    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Evaluate agent's perfromance, return reward and next observation."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="n">action</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">rewarded_digit</span><span class="p">:</span>
+            <span class="n">feedback</span> <span class="o">=</span> <span class="o">...</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">feedback</span> <span class="o">=</span> <span class="o">...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_state</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">,</span> <span class="n">feedback</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a class="reference external" href="https://github.com/neuromatch/course-content-template/tree/main/tutorials/W2D4_Macrolearning/solutions/W2D4_Tutorial4_Solution_25499fd3.py"><em>Click for solution</em></a></p>
+<p>Observe how good is the dummy agent which chooses rewarded hand on the next trial (meaning it stays with the same hand if it received reward and changes its action if it was punished). Do you think this agent uses information about the current state? Which cumulative reward do you expect to observe?</p>
+<p>Make sure you execute this cell to observe the plot!</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Make sure you execute this cell to observe the plot!</span>
+
+<span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">num_trials</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">HarlowExperimentEnv</span><span class="p">()</span>
+<span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">rewards</span> <span class="o">=</span> <span class="n">run_dummy_agent</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+
+<span class="n">plot_cumulative_rewards</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+
+</div>
+<section id="id1">
+<h3>Submit your feedback<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Submit your feedback</span>
+<span class="c1"># content_review(f"{feedback_prefix}_meta_environment")</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils"/>
+<section class="tex2jax_ignore mathjax_ignore" id="section-2-advantage-actor-critic-a2c-agent">
+<h1>Section 2: Advantage Actor Critic (A2C) Agent<a class="headerlink" href="#section-2-advantage-actor-critic-a2c-agent" title="Permalink to this heading">#</a></h1>
+<p><em>Estimated timing to here from start of tutorial: 10 minutes</em></p>
+<p>After defining the environment and observing the behaviour of the agent implementing simple policy, it is the right time to remind ourselves about more sophisticated agent architecture which is capable of learning the environment’s dynamics - Advantage Actor Critic (A2C).</p>
+<p>The main idea behind A2C, as it name suggests, that it consists of two networks, named actor and critic. Actor network learns the policy (mapping states to actions), while the critic network learns the value function (estimating the expected future rewards from a given state). In the most cases, they share the same “body” and only the last linear projection to the output is the specific to each of the networks. “Advantage” term comes from the mechanics-trick, which is involved in training step: instead of raw rewards, in A2C we calculate advantage function which estimates how much better or worse an action is compared to the average action value for a given state.</p>
+<p>The architecture of the agent is the following: it receives previous state, previous reward &amp; chosen action as input, which is linearly projected to the <code class="docutils literal notranslate"><span class="pre">hidden_size</span></code> (it creates embedding); then, its core consists of <code class="docutils literal notranslate"><span class="pre">LSTM</span></code> cells, their number is exactly <code class="docutils literal notranslate"><span class="pre">hidden_size</span></code>. Right after RNN layer there are two distinct linear projections: one for the actor (output dimension coincides with the number of actions; for Harlow experiment it is 2) and the latter for critic (outputs one value).</p>
+<p>We don’t propose exercise to code for the agent, simply go through the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ActorCritic</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_inputs</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">num_actions</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Initialize Actor-Critic agent."""</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ActorCritic</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1">#num_actions is 2 because left/right hand</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_actions</span> <span class="o">=</span> <span class="n">num_actions</span>
+
+        <span class="c1">#num_inputs is 5 because one-hot encoding of action (2) + reward (1) + previous state (2)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_inputs</span> <span class="o">=</span> <span class="n">num_inputs</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+
+        <span class="c1">#hyperparameters involved in training (important to keep assigned to the agent)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.00075</span> <span class="c1">#learning rate for optimizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discount_factor</span> <span class="o">=</span> <span class="mf">0.91</span> <span class="c1">#gamma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_value_estimate_cost</span> <span class="o">=</span> <span class="mf">0.4</span> <span class="c1">#beta_v</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entropy_cost</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c1">#beta_e</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">emb</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">num_inputs</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">critic_linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">actor_linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_actions</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Implement forward pass through agent."""</span>
+        <span class="c1">#at first, input goes through embedding</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">emb</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+        <span class="c1">#then through RNNs (observe that we pass hidden states too!)</span>
+        <span class="n">state</span><span class="p">,</span> <span class="n">hidden_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">h</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">hidden_states</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1">#critic -&gt; value</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">critic_linear</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+
+        <span class="c1">#actor -&gt; policy</span>
+        <span class="n">policy_logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">actor_linear</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">value</span><span class="p">,</span> <span class="n">policy_logits</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_init_hidden_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span> <span class="o">=</span> <span class="n">device</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Initialize hidden state with 0."""</span>
+        <span class="c1">#initialize hidden state in RNNs</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the cell below we define the training procedure for the A2C agent as well as its evaluation afterwards. The function <code class="docutils literal notranslate"><span class="pre">train_evaluate_agent</span></code> performs <code class="docutils literal notranslate"><span class="pre">num_gradient_steps</span></code> gradient steps (by default - 25) and for each of the steps, the agent is exposed to the enviornment’s states sequence of length <code class="docutils literal notranslate"><span class="pre">num_trials</span></code>  (by default - 6, as in classical Harlow experiment). Each gradient step, it performs backpropagation of the loss for these 6 trials by calculating advantage and weighting actor and critic losses with entropy of the policy (for more information, please refer to <a class="reference external" href="https://www.biorxiv.org/content/10.1101/295964v1.full.pdf">this resource</a>, p.14). After the training is complete, the evaluation phase starts, gathering rewards for <code class="docutils literal notranslate"><span class="pre">num_evaluation_trials</span></code> trials (by default - 20). The evaluation is completed on the same task!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_evaluate_agent</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">,</span> <span class="n">num_gradient_steps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span> <span class="n">num_trials</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">num_evaluation_trials</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Training and evaluation for agent in Harlow experiment environment.</span>
+<span class="sd">    Evaluation goes only after all gradient steps.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    - env (HarlowExperimentEnv): environment.</span>
+<span class="sd">    - agent (ActorCritic): particular instance of Actor Critic agent to train.</span>
+<span class="sd">    - optimizer_func (torch.Optim): optimizer to use for training.</span>
+<span class="sd">    - num_gradient_steps (int, default = 25): number of gradient steps to perform.</span>
+<span class="sd">    - num_trials (int, default = 6): number of times the agent is exposed to the environment per gradient step to be trained .</span>
+<span class="sd">    - num_evaluation_trials (int, default = 20): number of times the agent is exposed to the environment to evaluate it (no training happend during this phase).</span>
+
+<span class="sd">    Outputs:</span>
+<span class="sd">    - score (int): cumulative reward over all trials of evaluation.</span>
+<span class="sd">    """</span>
+    <span class="c1">#training</span>
+
+    <span class="c1">#reset environment</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+    <span class="c1">#define optimizer</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer_func</span><span class="p">(</span><span class="n">agent</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">agent</span><span class="o">.</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-5</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_gradient_steps</span><span class="p">):</span>
+
+      <span class="c1">#for storing variables for training</span>
+      <span class="n">log_probs</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">rewards</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">entropy_term</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">0.</span><span class="p">)</span>
+
+      <span class="c1">#start conditions</span>
+      <span class="n">h</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">get_init_hidden_states</span><span class="p">()</span>
+      <span class="n">preceding_reward</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+      <span class="n">preceding_action</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+      <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_trials</span><span class="p">):</span>
+
+          <span class="c1">#state + reward + one-hot encoding of action</span>
+          <span class="n">full_state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">preceding_reward</span><span class="p">,</span> <span class="n">preceding_action</span><span class="p">),</span> <span class="n">dim</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+          <span class="n">value</span><span class="p">,</span> <span class="n">policy_logits</span><span class="p">,</span> <span class="n">step_hidden_states</span> <span class="o">=</span> <span class="n">agent</span><span class="p">(</span><span class="n">full_state</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+          <span class="n">h</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">step_hidden_states</span>
+          <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+          <span class="c1">#sample action from policy</span>
+          <span class="n">dist</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">policy_logits</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+          <span class="n">action</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+
+          <span class="c1">#perform action to get reward and new state</span>
+          <span class="n">new_state</span><span class="p">,</span> <span class="n">reward</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+          <span class="c1">#update preceding variables</span>
+          <span class="n">preceding_reward</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="n">reward</span><span class="p">])</span>
+          <span class="n">preceding_action</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">one_hot</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+          <span class="n">state</span> <span class="o">=</span> <span class="n">new_state</span>
+
+          <span class="c1">#for training</span>
+          <span class="n">log_prob</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">log_prob</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+          <span class="n">entropy</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">entropy</span><span class="p">()</span>
+          <span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>
+          <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+          <span class="n">log_probs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">log_prob</span><span class="p">)</span>
+          <span class="n">entropy_term</span> <span class="o">+=</span> <span class="n">entropy</span>
+
+      <span class="c1">#calculataing loss</span>
+      <span class="n">Qval</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">Qvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rewards</span><span class="p">))</span>
+      <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rewards</span><span class="p">))):</span>
+        <span class="n">Qval</span> <span class="o">=</span> <span class="n">rewards</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">agent</span><span class="o">.</span><span class="n">discount_factor</span> <span class="o">*</span> <span class="n">Qval</span>
+        <span class="n">Qvals</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">Qval</span>
+      <span class="n">values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+      <span class="n">log_probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">log_probs</span><span class="p">)</span>
+      <span class="n">advantage</span> <span class="o">=</span> <span class="n">Qvals</span> <span class="o">-</span> <span class="n">values</span>
+      <span class="n">actor_loss</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">log_probs</span> <span class="o">*</span> <span class="n">advantage</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+      <span class="n">critic_loss</span> <span class="o">=</span> <span class="n">advantage</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+      <span class="n">entropy_term</span> <span class="o">=</span> <span class="n">entropy_term</span> <span class="o">/</span> <span class="n">num_trials</span>
+
+      <span class="c1">#loss incorporates actor/critic terms + entropy</span>
+      <span class="n">loss</span> <span class="o">=</span> <span class="n">actor_loss</span> <span class="o">+</span> <span class="n">agent</span><span class="o">.</span><span class="n">state_value_estimate_cost</span> <span class="o">*</span> <span class="n">critic_loss</span> <span class="o">-</span> <span class="n">agent</span><span class="o">.</span><span class="n">entropy_cost</span> <span class="o">*</span> <span class="n">entropy_term</span>
+
+      <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+      <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+      <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+    <span class="c1">#evaluation (on the same task after all gradient steps!)</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">#start conditions</span>
+    <span class="n">h</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">get_init_hidden_states</span><span class="p">()</span>
+    <span class="n">preceding_reward</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">preceding_action</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_evaluation_trials</span><span class="p">):</span>
+
+      <span class="c1">#state + reward + one-hot encoding of action</span>
+      <span class="n">full_state</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">(),</span> <span class="n">preceding_reward</span><span class="p">,</span> <span class="n">preceding_action</span><span class="p">),</span> <span class="n">dim</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">value</span><span class="p">,</span> <span class="n">policy_logits</span><span class="p">,</span> <span class="n">step_hidden_states</span> <span class="o">=</span> <span class="n">agent</span><span class="p">(</span><span class="n">full_state</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+      <span class="n">h</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">step_hidden_states</span>
+      <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+      <span class="c1">#sample action from policy</span>
+      <span class="n">dist</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">logits</span><span class="o">=</span><span class="n">policy_logits</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+      <span class="n">action</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+
+      <span class="c1">#perform action to get reward and new state</span>
+      <span class="n">new_state</span><span class="p">,</span> <span class="n">reward</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+      <span class="c1">#update preceding variables</span>
+      <span class="n">preceding_reward</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="n">reward</span><span class="p">])</span>
+      <span class="n">preceding_action</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">one_hot</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+      <span class="n">state</span> <span class="o">=</span> <span class="n">new_state</span>
+
+      <span class="c1">#add reward to the score of agent</span>
+      <span class="n">score</span> <span class="o">+=</span> <span class="n">reward</span>
+
+    <span class="k">return</span> <span class="n">score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see what is the score for the default A2C agent in Harlow experiment (as the number of evaluation trials is 20, the maximum score to obtain is exactly 20).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1">#define environment</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">HarlowExperimentEnv</span><span class="p">()</span>
+
+<span class="c1">#define agent and optimizer</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">ActorCritic</span><span class="p">(</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">optimizer_func</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">RMSprop</span>
+
+<span class="c1">#calculate score</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">train_evaluate_agent</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Score is </span><span class="si">{</span><span class="n">score</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+</div>
+<section id="id2">
+<h2>Submit your feedback<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Submit your feedback</span>
+<span class="c1"># content_review(f"{feedback_prefix}_a2c_agent")</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+<hr class="docutils"/>
+<section class="tex2jax_ignore mathjax_ignore" id="section-3-baldwin-effect">
+<h1>Section 3: Baldwin Effect<a class="headerlink" href="#section-3-baldwin-effect" title="Permalink to this heading">#</a></h1>
+<p><em>Estimated timing to here from start of tutorial: 20 minutes</em></p>
+<p>This section discusses the Baldwin effect in evolutionary biology and proposes you to code for its implementation.</p>
+<section id="video-2-video-2-name">
+<h2>Video 2: Video 2 Name<a class="headerlink" href="#video-2-video-2-name" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+</div>
+</section>
+<section id="id3">
+<h2>Submit your feedback<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Submit your feedback</span>
+<span class="c1"># content_review(f"{feedback_prefix}_baldwin_effect")</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="coding-exercise-2-agent-s-rate-to-learn">
+<h2>Coding Exercise 2: Agent’s Rate to Learn<a class="headerlink" href="#coding-exercise-2-agent-s-rate-to-learn" title="Permalink to this heading">#</a></h2>
+<p>As it was introduced in the video, Baldwin effect argues that we don’t inherit specific features (weights) but rather ability to learn quickly to gain the needed features in the context of the tasks we face during our own lifetime. It means, that agent’s networks parameters stay the same after being exposed to the new task from the environment and we evaluate how quickly it is able to adapt itself (analogy to the inner loop - we don’t assign learnt weights to the network right away) to the specific parameters of the task (evaluating the generalization potential). Agent’s score is calculated via the following procedure:</p>
+<p>$</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+&amp; [1] \: \theta \: \text{- network parameters} \\
+&amp; [2] \: \text{Sample batch of tasks }\tau_i \sim p(\tau) \\
+&amp; [3] \: \text{for all }\tau_i \text{ do} \\
+&amp; [4] \: \quad\quad \theta_i \leftarrow \theta \\
+&amp; [5] \: \quad\quad \text{for} \: k \: \text{in range(number of gradient steps)}  \\
+&amp; [6] \: \quad\quad\quad\quad\text{Evaluate }\nabla_{\theta_i} \mathcal{L}_{\tau_i}(\theta_i) \\
+&amp; [7] \: \quad\quad\quad\quad\text{Compute adapted parameters with gradient descent:} \: \: \theta_i \leftarrow \theta_i - \alpha \nabla_{\theta_i} \mathcal{L}_{\tau_i}(\theta_i) \\
+&amp; [8] \: \quad\quad\text{end for} \\
+&amp; [9] \: \quad\quad\text{Calculate score of updated agent on this task }f_i = \text{score}(\tau_i(\theta_i)) \\
+&amp; [10] \: \text{end for} \\
+&amp; [11] \: \text{Score of the agent for all tasks is} \: F = \sum_{i} f_i \\
+\end{align*}\]</div>
+<p>$</p>
+<p>At first, we sample a bunch of tasks from the environment (different pair of objects; line[2]). The crucial concept involved in this algorithm is preserved in the line [4], where for each new task, we don’t start with updated parameters but the one we have before training and evaluating the agent - it is the essence of the Baldwin effect. Then, we perform training for the defined number of gradient steps and evaluate the agent’s performance on the same task (we have defined this function in the second section of the tutorial, it basically covers lines [5] - [9]). To evaluate agent’s ability to learn quickly, one task is not enough - it is exactly why we sampled a bunch of them and the general score for the agent is defined as sum of rewards for all tasks.</p>
+<p>In the coding exercise you are invited to complete the implementation the evaluation of randomly created agent on 10 tasks (thus, the maximum score which can obtained is 10 (number of tasks) x 20 (number of evaluation trials per task) = 200). In the next section of the tutorial, we will provide the framework in which we are going to learn “basic” or “starting” weights and which has underlying evolutionary idea!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_individual</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">,</span> <span class="n">num_tasks</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num_gradient_steps</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span> <span class="n">num_trials</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span> <span class="n">num_evaluation_trials</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Training and evaluation for agent in Harlow experiment environment for the bunch of tasks (thus measuring overall potential for agent's generalization across the tasks).</span>
+<span class="sd">    Evaluation goes only after all gradient steps.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    - env (HarlowExperimentEnv): environment.</span>
+<span class="sd">    - agent (ActorCritic): particular instance of Actor Critic agent to train.</span>
+<span class="sd">    - optimizer_func (torch.Optim): optimizer to use for training.</span>
+<span class="sd">    - num_tasks (int, default = 10): number of tasks to evaluate agent on.</span>
+<span class="sd">    - num_gradient_steps (int, default = 25): number of gradient steps to perform.</span>
+<span class="sd">    - num_trials (int, default = 6): number of times the agent is exposed to the environment per gradient step to be trained .</span>
+<span class="sd">    - num_evaluation_trials (int, default = 20): number of times the agent is exposed to the environment to evaluate it (no training happend during this phase).</span>
+
+<span class="sd">    Outputs:</span>
+<span class="sd">    - scores (list): list of scores obtained during evaluation on the specific tasks.</span>
+<span class="sd">    """</span>
+    <span class="c1">###################################################################</span>
+    <span class="c1">## Fill out the following then remove</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Student exercise: complete evaluation function with Baldwin effect in mind."</span><span class="p">)</span>
+    <span class="c1">###################################################################</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_tasks</span><span class="p">):</span> <span class="c1">#lines[2-3]; notice that environment resets inside `train_evaluate_agent`</span>
+      <span class="n">agent_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="c1">#line[4]; remember that we don't want to change agent's parameters!</span>
+      <span class="n">score</span> <span class="o">=</span> <span class="n">train_evaluate_agent</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">,</span> <span class="n">num_gradient_steps</span><span class="p">,</span> <span class="n">num_trials</span><span class="p">,</span> <span class="n">num_evaluation_trials</span><span class="p">)</span>
+      <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="n">scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a class="reference external" href="https://github.com/neuromatch/course-content-template/tree/main/tutorials/W2D4_Macrolearning/solutions/W2D4_Tutorial4_Solution_33ccd1d3.py"><em>Click for solution</em></a></p>
+<p>Observe the box-plot of the scores as well as their sum.</p>
+<p>Make sure you execute this cell to observe the plot!</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Make sure you execute this cell to observe the plot!</span>
+
+<span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1">#define environment</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">HarlowExperimentEnv</span><span class="p">()</span>
+
+<span class="c1">#define agent and optimizer</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">ActorCritic</span><span class="p">(</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">optimizer_func</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">RMSprop</span>
+
+<span class="c1">#calculate score</span>
+<span class="n">total_score</span><span class="p">,</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">evaluate_individual</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total score is </span><span class="si">{</span><span class="n">total_score</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+<span class="n">plot_boxplot_scores</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+
+</div>
+<section id="id4">
+<h3>Submit your feedback<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Submit your feedback</span>
+<span class="c1"># content_review(f"{feedback_prefix}_agents_rate_to_learn")</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils"/>
+<section class="tex2jax_ignore mathjax_ignore" id="section-4-evolutionary-framework">
+<h1>Section 4: Evolutionary Framework<a class="headerlink" href="#section-4-evolutionary-framework" title="Permalink to this heading">#</a></h1>
+<p><em>Estimated timing to here from start of tutorial: 30 minutes</em></p>
+<p>This section wraps up previous discussion in the unitary framework of genetic algorithms where we will observe how Baldwin effect shapes for individuals which learn more quickly!</p>
+<section id="video-3-video-3-name">
+<h2>Video 3: Video 3 Name<a class="headerlink" href="#video-3-video-3-name" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_remove-input docutils container">
+</div>
+</section>
+<section id="id5">
+<h2>Submit your feedback<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Submit your feedback</span>
+<span class="c1"># content_review(f"{feedback_prefix}_evolutionary_framework")</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="coding-exercise-3-genetic-algorithm">
+<h2>Coding Exercise 3: Genetic Algorithm<a class="headerlink" href="#coding-exercise-3-genetic-algorithm" title="Permalink to this heading">#</a></h2>
+<p>Genetic algorithms (GA) mimic some of the evolutionary processes while generating better and better (= more desired) individuals in the population. At first, we initialize population which consists of randomly defined agents (so we have list of <code class="docutils literal notranslate"><span class="pre">population_size</span></code> A2C agents which will in the very end evolve to the agents which quickly learn the new task from Harlow experiment environment). Each epoch (which is the classical term for machine learning) is defined as generation in GA as we generate new individuals in the population. For each epoch, we choose top-score individuals from the population (of size <code class="docutils literal notranslate"><span class="pre">tournament_size</span></code>; should be big enough to preserve diversity and not too big for selecting top-score ones; it is exactly where selection takes place! and it is the only such place in the whole algorithm) and then we select random batch of individuals from them of size <code class="docutils literal notranslate"><span class="pre">parents_num</span></code>. From those, we create offspring of size <code class="docutils literal notranslate"><span class="pre">new_generation_new_individuals</span></code> which will replace random individuals from the population (might even replace the best ones; it is because we want to preserve the diversity, if we are going to introduce selectivity here as well by replacing the worst-fit individuals, we will quickly converge to the situation where population consists of almost particularly the same individuals). We continue running generations until we are happy with the best-fit individual appearing in the population or until we are running out of time (reached maximum number of generations).</p>
+<p>The funniest part happens at the place where we create offsprings - to simluate evoluntionary processes, we randomly select two parents (two agents) and for each of the layers in their networks, we randomly select which one will go the child (simulating crossing over) and then we add Gaussian noise to each of the layers (simulating mutation). Moreover, GA propose unique feature which can’t be that easily introduced in classical gradient descent: we can evolve hyperparameters as well!</p>
+<p>The following cell consists of 3 functions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">create_initial_population</span></code>, which basically creates population and evaluates each individual to has its score;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">create_new_agent</span></code>, which performs crossing over and mutation on parents networks to create one offspring;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_population</span></code>, which deletes random individuals in the end of the generation and adds new ones (while also evaluating them during that).</p></li>
+</ul>
+<p>Your task is to complete missing parts in the code and run the total agorithm with Baldwin effect! The first cell defines noise constants to be used for each of the (hyper)parameters while mutating them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#for mutation of (hyper)parameters</span>
+<span class="n">parameters_noise</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">learning_rate_noise</span> <span class="o">=</span> <span class="mf">0.00005</span>
+<span class="n">discount_factor_noise</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">state_value_estimate_cost_noise</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">entropy_cost_noise</span> <span class="o">=</span> <span class="mf">0.001</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###################################################################</span>
+<span class="c1">## Fill out the following then remove</span>
+<span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Student exercise: complete genetic algorithm functions."</span><span class="p">)</span>
+<span class="c1">###################################################################</span>
+
+<span class="k">def</span> <span class="nf">create_initial_population</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">optmizer_func</span><span class="p">,</span> <span class="n">population_size</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Creates an initial population of agents.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    - env (HarlowExperimentEnv): environment.</span>
+<span class="sd">    - optimizer_func (torch.Optim): optimizer to use for training.</span>
+<span class="sd">    - population_size (int, default = 50): the size of the initial population.</span>
+<span class="sd">    - hidden_size (int, default = 20): the size of LSTM layer in A2C agent.</span>
+
+<span class="sd">    Outputs:</span>
+<span class="sd">    - population (list): initial population which consists of tuples (agent, score).</span>
+<span class="sd">    - best_score (int): the best score for the individual in the population registered so far.</span>
+<span class="sd">    """</span>
+    <span class="n">population</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">total_score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">best_score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">population_size</span><span class="p">):</span>
+        <span class="n">agent</span> <span class="o">=</span> <span class="n">ActorCritic</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">)</span>
+        <span class="n">score</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">evaluate_individual</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">optmizer_func</span><span class="p">)</span>
+        <span class="n">best_score</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">best_score</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+        <span class="n">total_score</span> <span class="o">+=</span> <span class="o">...</span>
+        <span class="n">population</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">agent</span><span class="p">,</span> <span class="n">score</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Generation: 0, mean population score: </span><span class="si">{</span><span class="n">total_score</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">population_size</span><span class="si">}</span><span class="s2">, best score: </span><span class="si">{</span><span class="n">best_score</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">population</span><span class="p">,</span> <span class="n">best_score</span>
+
+<span class="k">def</span> <span class="nf">create_new_agent</span><span class="p">(</span><span class="n">agent1</span><span class="p">,</span> <span class="n">agent2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Creates new agent using crossing over technique over layers of network and mutation of the parameters with Gaussian noise.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    - agent1 (ActorCritic): first parent agent.</span>
+<span class="sd">    - agent2 (ActorCritic): second parent agent.</span>
+
+<span class="sd">    Outputs:</span>
+<span class="sd">    - new_agent (ActorCritic): new agent which is offspring of the given two.</span>
+<span class="sd">    """</span>
+    <span class="c1">#creates agent as copy of the first one</span>
+    <span class="n">new_agent</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">agent1</span><span class="p">)</span>
+
+    <span class="c1">#evolving network parameters with crossing over (over separate layes) &amp; mutating (Gaussian noise)</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">new_agent</span><span class="o">.</span><span class="n">named_modules</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+                <span class="n">module</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">_modules</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span>
+                <span class="n">module</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">_modules</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span>
+            <span class="c1">#add noise</span>
+            <span class="n">module</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="o">...</span>
+            <span class="n">module</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="o">...</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+                <span class="n">module</span><span class="o">.</span><span class="n">weight_ih_l0</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">_modules</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">weight_ih_l0</span><span class="o">.</span><span class="n">data</span>
+                <span class="n">module</span><span class="o">.</span><span class="n">weight_hh_l0</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">_modules</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">weight_hh_l0</span><span class="o">.</span><span class="n">data</span>
+                <span class="n">module</span><span class="o">.</span><span class="n">bias_ih_l0</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">_modules</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">bias_ih_l0</span><span class="o">.</span><span class="n">data</span>
+                <span class="n">module</span><span class="o">.</span><span class="n">bias_hh_l0</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">_modules</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">bias_hh_l0</span><span class="o">.</span><span class="n">data</span>
+            <span class="c1">#add noise</span>
+            <span class="n">module</span><span class="o">.</span><span class="n">weight_ih_l0</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">weight_ih_l0</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="o">...</span>
+            <span class="n">module</span><span class="o">.</span><span class="n">weight_hh_l0</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">weight_hh_l0</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="o">...</span>
+            <span class="n">module</span><span class="o">.</span><span class="n">bias_ih_l0</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">bias_ih_l0</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="o">...</span>
+            <span class="n">module</span><span class="o">.</span><span class="n">bias_hh_l0</span><span class="o">.</span><span class="n">data</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn_like</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">bias_hh_l0</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="o">...</span>
+
+    <span class="c1">#evolving &amp; mutating hyperparameters</span>
+    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+        <span class="n">new_agent</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">learning_rate</span>
+    <span class="n">new_agent</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="o">...</span>
+    <span class="n">new_agent</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">new_agent</span><span class="o">.</span><span class="n">learning_rate</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span> <span class="mf">0.01</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+        <span class="n">new_agent</span><span class="o">.</span><span class="n">discount_factor</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">discount_factor</span>
+    <span class="n">new_agent</span><span class="o">.</span><span class="n">discount_factor</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="o">...</span>
+    <span class="n">new_agent</span><span class="o">.</span><span class="n">discount_factor</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">new_agent</span><span class="o">.</span><span class="n">discount_factor</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">),</span> <span class="mf">0.99</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+        <span class="n">new_agent</span><span class="o">.</span><span class="n">state_value_estimate_cost</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">state_value_estimate_cost</span>
+    <span class="n">new_agent</span><span class="o">.</span><span class="n">state_value_estimate_cost</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="o">...</span>
+    <span class="n">new_agent</span><span class="o">.</span><span class="n">state_value_estimate_cost</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">new_agent</span><span class="o">.</span><span class="n">discount_factor</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="mf">0.7</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+        <span class="n">new_agent</span><span class="o">.</span><span class="n">entropy_cost</span> <span class="o">=</span> <span class="n">agent2</span><span class="o">.</span><span class="n">entropy_cost</span>
+    <span class="n">new_agent</span><span class="o">.</span><span class="n">entropy_cost</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="o">...</span>
+    <span class="n">new_agent</span><span class="o">.</span><span class="n">entropy_cost</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">new_agent</span><span class="o">.</span><span class="n">discount_factor</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">),</span> <span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_agent</span>
+
+<span class="k">def</span> <span class="nf">update_population</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">parents_population</span><span class="p">,</span> <span class="n">best_score</span><span class="p">,</span> <span class="n">new_generation_new_individuals</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Updates population with new individuals which are the result of crossing over and mutation of two parents agents.</span>
+<span class="sd">    Removes the same amount of random agents from the population.</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    - env (HarlowExperimentEnv): environment.</span>
+<span class="sd">    - optimizer_func (torch.Optim): optimizer to use for training.</span>
+<span class="sd">    - population (list): current population which consists of tuples (agent, score).</span>
+<span class="sd">    - parents_population (list) : parents individuals (part of current population) for creating new individuals.</span>
+<span class="sd">    - best_score (int): the best score for the individual in the population registered so far.</span>
+<span class="sd">    - new_generation_new_individuals (int, default = 5): the number of individuals to create (and the old ones to remove).</span>
+<span class="sd">    """</span>
+
+    <span class="c1">#create new individuals</span>
+    <span class="n">new_individuals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">new_generation_new_individuals</span><span class="p">):</span>
+        <span class="n">agent1</span><span class="p">,</span> <span class="n">agent2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">new_agent</span> <span class="o">=</span> <span class="n">create_new_agent</span><span class="p">(</span><span class="n">agent1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">agent2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">score</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">evaluate_individual</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">)</span>
+        <span class="c1">#evaluate whether best score has increased</span>
+        <span class="n">best_score</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">best_score</span><span class="p">)</span>
+        <span class="n">new_individuals</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">new_agent</span><span class="p">,</span> <span class="n">score</span><span class="p">))</span>
+
+    <span class="c1">#remove random old individuals</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+        <span class="n">population</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">population</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">population</span> <span class="o">+</span> <span class="n">new_individuals</span><span class="p">,</span> <span class="n">best_score</span>
+</pre></div>
+</div>
+</div>
+
+</div>
+<p><a class="reference external" href="https://github.com/neuromatch/course-content-template/tree/main/tutorials/W2D4_Macrolearning/solutions/W2D4_Tutorial4_Solution_55c8042e.py"><em>Click for solution</em></a></p>
+<p>In order to get the desired results of the genetic algorithm, one should wait for ecosystem to evolve enough:) Unfortunately, we don’t have that much time, thus in order to see the initial results and compare them with the expected ones (valid implementation), we will only run for 1 generation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#selection - random</span>
+<span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1">#define environment</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">HarlowExperimentEnv</span><span class="p">()</span>
+
+<span class="c1">#define agent and optimizer</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">ActorCritic</span><span class="p">(</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">optimizer_func</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">RMSprop</span>
+
+<span class="c1">#GA consts</span>
+<span class="n">num_generations</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">tournament_size</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">parents_size</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">new_generation_new_individuals</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">mean_population_scores</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#create population</span>
+<span class="n">population</span><span class="p">,</span> <span class="n">best_score</span> <span class="o">=</span> <span class="n">create_initial_population</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">generation</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_generations</span><span class="p">):</span>
+
+  <span class="c1">#at first, select top individuals from population (of size tournament_size) (selectivy happens here)</span>
+  <span class="n">sorted_population</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="n">tournament_population</span> <span class="o">=</span> <span class="n">sorted_population</span><span class="p">[:</span><span class="n">tournament_size</span><span class="p">]</span>
+
+  <span class="c1">#random choice of parents from tournament population</span>
+  <span class="n">parents_population</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">tournament_population</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">parents_size</span><span class="p">)</span>
+
+  <span class="c1">#update population</span>
+  <span class="n">population</span><span class="p">,</span> <span class="n">best_score</span> <span class="o">=</span> <span class="n">update_population</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">parents_population</span><span class="p">,</span> <span class="n">best_score</span><span class="p">)</span>
+
+  <span class="n">mean_population_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">agent_score</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">agent_score</span> <span class="ow">in</span> <span class="n">population</span><span class="p">]))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Generation </span><span class="si">{</span><span class="n">generation</span><span class="si">}</span><span class="s2">, mean population score: </span><span class="si">{</span><span class="n">mean_population_scores</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">, best score: </span><span class="si">{</span><span class="n">best_score</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+</div>
+<p>If you change <code class="docutils literal notranslate"><span class="pre">num_generations</span></code> to 800 in the previous code cell, the plot for the mean score in the population will roughly take the following form.</p>
+<p><img alt="Picture which depicts the plot of mean scores per generation." src="https://github.com/neuromatch/NeuroAI_Course/blob/D8/tutorials/W2D4_MacroLearning/static/evolution.png?raw=true"/></p>
+<p>In the very start of the tutorial, we have downloaded the best agent we obtained from the training on 800 generations (you can get the same if you add extra infrastructure code around to “catch” such agent as soon as score reaches some threshold value; in this case, it can be even set up to 200). In the next section we are going to compare its performance with rnadomly initialized agent and observe that, indeed, during evolutionary processes we developed agent with parameters who is able to learn more quickly.</p>
+<section id="id6">
+<h3>Submit your feedback<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Submit your feedback</span>
+<span class="c1"># content_review(f"{feedback_prefix}_genetic_algorithm")</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+<section id="think-1-evolutionary-theories-in-code">
+<h2>Think 1: Evolutionary Theories in Code<a class="headerlink" href="#think-1-evolutionary-theories-in-code" title="Permalink to this heading">#</a></h2>
+<p>In this section we have observed how Baldwin effect together with genetic algorithm evolves individuals’ parameters so that they quickly learn the similar tasks whenever being exposed to the new ones in the enviornment. We would like to propose you to think about other evolutionary biology ideas (for example, Darwinian and Lamarckian) and discuss what should be changed in the implementation approach to use these ideas (simply put, what parts of code should be change to reflect their essence)?</p>
+<p>Take 3 minutes to think on your own (you might want to search for Lamarckian evolution, for example), then discuss your pictures in a group.</p>
+<p><a class="reference external" href="https://github.com/neuromatch/course-content-template/tree/main/tutorials/W2D4_Macrolearning/solutions/W2D4_Tutorial4_Solution_8f14d78f.py"><em>Click for solution</em></a></p>
+<section id="id7">
+<h3>Submit your feedback<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Submit your feedback</span>
+<span class="c1"># content_review(f"{feedback_prefix}_evolutionary_theories_in_code")</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils"/>
+<section class="tex2jax_ignore mathjax_ignore" id="section-5-newbie-experienced-agents">
+<h1>Section 5: Newbie &amp; Experienced Agents<a class="headerlink" href="#section-5-newbie-experienced-agents" title="Permalink to this heading">#</a></h1>
+<p><em>Estimated timing to here from start of tutorial: 45 minutes</em></p>
+<p>This section proposes comparison of the evolutionary trained (found) agent which performs Harlow experiment with the one which is initialized from scratch.</p>
+<p>Make sure you execute this cell to observe the plot!</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Make sure you execute this cell to observe the plot!</span>
+<span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1">#define environment</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">HarlowExperimentEnv</span><span class="p">()</span>
+
+<span class="c1">#define newbie agent and optimizer</span>
+<span class="n">newbie</span> <span class="o">=</span> <span class="n">ActorCritic</span><span class="p">(</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">optimizer_func</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">RMSprop</span>
+
+<span class="c1">#calculate newbie's score</span>
+<span class="n">total_score</span><span class="p">,</span> <span class="n">newbie_scores</span> <span class="o">=</span> <span class="n">evaluate_individual</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">newbie</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total score of newbie agent is </span><span class="si">{</span><span class="n">total_score</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="c1">#define experienced agent</span>
+<span class="n">experienced</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">"Evolution.pt"</span><span class="p">)</span>
+
+<span class="c1">#calculate experienced's score</span>
+<span class="n">total_score</span><span class="p">,</span> <span class="n">experienced_scores</span> <span class="o">=</span> <span class="n">evaluate_individual</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">experienced</span><span class="p">,</span> <span class="n">optimizer_func</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total score of experienced agent is </span><span class="si">{</span><span class="n">total_score</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+<span class="n">plot_two_boxplot_scores</span><span class="p">(</span><span class="n">newbie_scores</span><span class="p">,</span> <span class="n">experienced_scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+
+</div>
+<section id="id8">
+<h2>Submit your feedback<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Submit your feedback</span>
+<span class="c1"># content_review(f"{feedback_prefix}_newbie_experienced_agents")</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+</section>
+<hr class="docutils"/>
+<section class="tex2jax_ignore mathjax_ignore" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
+<p><em>Estimated timing of tutorial: 50 minutes</em></p>
+<p>Have a summary of what they learned with specific points.</p>
+<ol class="arabic simple">
+<li><p>Specific point A</p></li>
+<li><p>Specific point B</p></li>
+</ol>
+</section>
+<script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials/W2D4_Macrolearning/student"
+        },
+        predefinedOutput: true
+    }
+    </script>
+<script>kernelName = 'python3'</script>
+</article>
+<footer class="bd-footer-article">
+<!-- Previous / next buttons -->
+<div class="prev-next-area">
+<a class="left-prev" href="W2D4_Tutorial3.html" id="prev-link" title="previous page">
+<i class="fa-solid fa-angle-left"></i>
+<div class="prev-next-info">
+<p class="prev-next-subtitle">previous</p>
+<p class="prev-next-title">Tutorial 3: Meta-learning</p>
+</div>
+</a>
+<a class="right-next" href="W2D4_Tutorial5.html" id="next-link" title="next page">
+<div class="prev-next-info">
+<p class="prev-next-subtitle">next</p>
+<p class="prev-next-title">Tutorial 5: Replay</p>
+</div>
+<i class="fa-solid fa-angle-right"></i>
+</a>
+</div>
+</footer>
+</div>
+<div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+<div class="tocsection onthispage">
+<i class="fa-solid fa-list"></i> On this page
+</div>
+<nav class="page-toc" id="bd-toc-nav">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#">
+   Tutorial 4: Biological meta reinforcement learning
+  </a>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tutorial-objectives">
+   Tutorial Objectives
+  </a>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#install-and-import-feedback-gadget">
+     Install and import feedback gadget
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#figure-settings">
+     Figure settings
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#plotting-functions">
+     Plotting functions
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#helper-functions">
+     Helper functions
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#data-retrieval">
+     Data retrieval
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#set-device-gpu-or-cpu">
+     Set device (GPU or CPU).
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#set-random-seed">
+     Set random seed
+    </a>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#section-1-harlow-experiment">
+   Section 1: Harlow Experiment
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#video-1-video-1-name">
+     Video 1: Video 1 Name
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#submit-your-feedback">
+     Submit your feedback
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#coding-exercise-1-meta-environment">
+     Coding Exercise 1: Meta-Environment
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id1">
+       Submit your feedback
+      </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#section-2-advantage-actor-critic-a2c-agent">
+   Section 2: Advantage Actor Critic (A2C) Agent
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id2">
+     Submit your feedback
+    </a>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#section-3-baldwin-effect">
+   Section 3: Baldwin Effect
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#video-2-video-2-name">
+     Video 2: Video 2 Name
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id3">
+     Submit your feedback
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#coding-exercise-2-agent-s-rate-to-learn">
+     Coding Exercise 2: Agent’s Rate to Learn
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id4">
+       Submit your feedback
+      </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#section-4-evolutionary-framework">
+   Section 4: Evolutionary Framework
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#video-3-video-3-name">
+     Video 3: Video 3 Name
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id5">
+     Submit your feedback
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#coding-exercise-3-genetic-algorithm">
+     Coding Exercise 3: Genetic Algorithm
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id6">
+       Submit your feedback
+      </a>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#think-1-evolutionary-theories-in-code">
+     Think 1: Evolutionary Theories in Code
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id7">
+       Submit your feedback
+      </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#section-5-newbie-experienced-agents">
+   Section 5: Newbie &amp; Experienced Agents
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id8">
+     Submit your feedback
+    </a>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<footer class="bd-footer-content">
+<div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+<div class="footer-item">
+<p class="component-author">
+By Neuromatch
+</p>
+</div>
+<div class="footer-item">
+</div>
+<div class="footer-item">
+<p class="last-updated">
+Last updated on None.<br/>
+</p>
+</div>
+<div class="footer-item">
+<div class="extra_footer">
+<div>
+<a href="http://creativecommons.org/licenses/by/4.0/"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png"/></a>
+<a href="https://opensource.org/licenses/BSD-3-Clause"><img src="https://camo.githubusercontent.com/9b9ea65d95c9ef878afa1987df65731d47681336/68747470733a2f2f696d672e736869656c64732e696f2f707970692f6c2f736561626f726e2e737667"/></a>
+The contents of this repository are shared under the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+Software elements are additionally licensed under the <a href="https://opensource.org/licenses/BSD-3-Clause">BSD (3-Clause) License</a>.
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</main>
+</div>
+</div>
+<!-- Scripts loaded after <body> so the DOM is not blocked -->
+<script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+</body>
+</html>
