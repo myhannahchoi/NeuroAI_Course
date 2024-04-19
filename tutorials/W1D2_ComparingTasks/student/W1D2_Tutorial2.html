@@ -1,0 +1,2175 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Docutils 0.18.1: http://docutils.sourceforge.net/" name="generator"/>
+<title>Tutorial 2: Contrastive learning for object recognition — Neuromatch Academy: NeuroAI</title>
+<script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+<!-- Loaded before other Sphinx assets -->
+<link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet"/>
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet"/>
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet"/>
+<link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet"/>
+<link as="font" crossorigin="" href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
+<link as="font" crossorigin="" href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" rel="preload" type="font/woff2"/>
+<link href="../../../_static/pygments.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/styles/sphinx-book-theme.css?digest=4ec06e9971c5264fbd345897d5258098f11cc577" rel="stylesheet" type="text/css">
+<link href="../../../_static/togglebutton.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/copybutton.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/sphinx-thebe.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/custom.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" rel="stylesheet" type="text/css"/>
+<!-- Pre-loaded scripts that we'll load fully later -->
+<link as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94" rel="preload"/>
+<link as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94" rel="preload"/>
+<script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+<script src="../../../_static/jquery.js"></script>
+<script src="../../../_static/underscore.js"></script>
+<script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+<script src="../../../_static/doctools.js"></script>
+<script src="../../../_static/clipboard.min.js"></script>
+<script src="../../../_static/copybutton.js"></script>
+<script src="../../../_static/scripts/sphinx-book-theme.js?digest=8bf782fb4ee92b3d3646425e50f299c4e1fd152d"></script>
+<script>let toggleHintShow = 'Click to show';</script>
+<script>let toggleHintHide = 'Click to hide';</script>
+<script>let toggleOpenOnPrint = 'true';</script>
+<script src="../../../_static/togglebutton.js"></script>
+<script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+<script src="../../../_static/design-tabs.js"></script>
+<script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+<script async="async" src="../../../_static/sphinx-thebe.js"></script>
+<script type="application/vnd.jupyter.widget-state+json">{"state": {"6e86b4bb48e2482988aad228d97a8be5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "22dc6187bb2c42deb7979f66c4ba16c7": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_6e86b4bb48e2482988aad228d97a8be5", "msg_id": "", "outputs": [{"output_type": "stream", "name": "stdout", "text": "If you want to download the slides: https://osf.io/download//\n"}, {"output_type": "display_data", "metadata": {}, "data": {"text/plain": "<IPython.lib.display.IFrame at 0x7f24c82e6ee0>", "text/html": "\n        <iframe\n            width=\"730\"\n            height=\"410\"\n            src=\"https://mfr.ca-1.osf.io/render?url=https://osf.io//?direct%26mode=render%26action=download%26mode=render\"\n            frameborder=\"0\"\n            allowfullscreen\n            \n        ></iframe>\n        "}}], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+<script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+<script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+<script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/W1D2_ComparingTasks/student/W1D2_Tutorial2';</script>
+<link href="../../../_static/ai-logo.png" rel="shortcut icon">
+<link href="../../../genindex.html" rel="index" title="Index">
+<link href="../../../search.html" rel="search" title="Search"/>
+<link href="W1D2_Tutorial3.html" rel="next" title="Tutorial 3: Reinforcement learning across temporal scales"/>
+<link href="W1D2_Tutorial1.html" rel="prev" title="Tutorial 1:Task definition, application, relations and impacts on generalization"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="en" name="docsearch:language"/>
+</link></link></link></link></link></link></link></link></link></head>
+<body data-default-mode="" data-offset="180" data-spy="scroll" data-target="#bd-toc-nav">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<input class="sidebar-toggle" id="__primary" name="__primary" type="checkbox"/>
+<label class="overlay overlay-primary" for="__primary"></label>
+<input class="sidebar-toggle" id="__secondary" name="__secondary" type="checkbox"/>
+<label class="overlay overlay-secondary" for="__secondary"></label>
+<div class="search-button__wrapper">
+<div class="search-button__overlay"></div>
+<div class="search-button__search-container">
+<form action="../../../search.html" class="bd-search d-flex align-items-center" method="get">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input aria-label="Search this book..." autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." spellcheck="false" type="search"/>
+<span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+</div>
+</div>
+<nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+<label class="sidebar-toggle primary-toggle" for="__primary">
+<span class="fa-solid fa-bars"></span>
+</label>
+<div id="navbar-start">
+<a class="navbar-brand logo" href="../../intro.html">
+<img alt="Logo image" class="logo__image only-light" src="../../../_static/ai-logo.png"/>
+<img alt="Logo image" class="logo__image only-dark" src="../../../_static/ai-logo.png"/>
+</a>
+</div>
+<div class="col-lg-9 navbar-header-items">
+<div class="mr-auto" id="navbar-center">
+<div class="navbar-center-item">
+<nav class="navbar-nav">
+<p aria-label="Site Navigation" aria-level="1" class="sidebar-header-items__title" role="heading">
+        Site Navigation
+    </p>
+<ul class="navbar-nav" id="navbar-main-elements">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../Schedule/schedule_intro.html">
+                        Schedule
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../TechnicalHelp/tech_intro.html">
+                        Technical Help
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../TechnicalHelp/Links_Policy.html">
+                        Quick links and policies
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../prereqs/ComputationalNeuroscience.html">
+                        Prerequisites and preparatory materials for NMA Computational Neuroscience
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D0_NeuroVideoSeries/chapter_title.html">
+                        Neuro Video Series (W0D0)
+                      </a>
+</li>
+<div class="nav-item dropdown">
+<button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle nav-item" data-toggle="dropdown" type="button">
+                    More
+                </button>
+<div class="dropdown-menu">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D1_PythonWorkshop1/chapter_title.html">
+                        Python Workshop 1 (W0D1)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D2_PythonWorkshop2/chapter_title.html">
+                        Python Workshop 2 (W0D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D3_LinearAlgebra/chapter_title.html">
+                        Linear Algebra (W0D3)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D4_Calculus/chapter_title.html">
+                        Calculus (W0D4)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D5_Statistics/chapter_title.html">
+                        Statistics (W0D5)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W1D1_Generalization/chapter_title.html">
+                        Generalization (W1D1)
+                      </a>
+</li>
+<li class="nav-item current active">
+<a class="nav-link nav-internal" href="../chapter_title.html">
+                        ComparingTasks (W1D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W1D3_ComparingArtificialAndBiologicalNetworks/chapter_title.html">
+                        ComparingArtificialAndBiologicalNetworks (W1D3)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D1_Macrocircuits/chapter_title.html">
+                        Macrocircuits (W2D1)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D2_CognitiveStructures/chapter_title.html">
+                        Cognitive Structures (W2D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D3_Microlearning/chapter_title.html">
+                        Microlearning (W2D3)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D4_Macrolearning/chapter_title.html">
+                        Macrolearning (W2D4)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D5_Mysteries/chapter_title.html">
+                        Mysteries (W2D5)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/README.html">
+                        Introduction
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/keynote.html">
+                        Project Day keynote (W2D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/project_guidance.html">
+                        Daily guide for projects
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/datasets_overview.html">
+                        Project materials
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/continuing_your_project_after_the_course.html">
+                        Continuing your project after the course
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/past_projects_overview.html">
+                        Past projects
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/README.html">
+                        Introduction
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/impact_talks.html">
+                        Impact Talks
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/career_features.html">
+                        Career Features
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/career_panels.html">
+                        Career Panels
+                      </a>
+</li>
+</div>
+</div>
+</ul>
+</nav>
+</div>
+</div>
+<div id="navbar-end">
+<div class="navbar-end-item navbar-persistent--container">
+<button aria-label="Search" class="btn btn-sm navbar-btn search-button search-button__button" data-toggle="tooltip" title="Search">
+<i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+<div class="navbar-end-item">
+<button aria-label="light/dark" class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" data-toggle="tooltip" title="light/dark">
+<span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+<span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+<span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+</div>
+<div class="navbar-end-item">
+<ul aria-label="Icon Links" class="navbar-nav" id="navbar-icon-links">
+</ul>
+</div>
+</div>
+</div>
+<div class="navbar-persistent--mobile">
+<button aria-label="Search" class="btn btn-sm navbar-btn search-button search-button__button" data-toggle="tooltip" title="Search">
+<i class="fa-solid fa-magnifying-glass"></i>
+</button>
+</div>
+<label class="sidebar-toggle secondary-toggle" for="__secondary">
+<span class="fa-solid fa-outdent"></span>
+</label>
+</div>
+</nav>
+<div class="bd-container">
+<div class="bd-container__inner bd-page-width">
+<div class="bd-sidebar-primary bd-sidebar">
+<div class="sidebar-header-items sidebar-primary__section">
+<div class="sidebar-header-items__center">
+<div class="navbar-center-item">
+<nav class="navbar-nav">
+<p aria-label="Site Navigation" aria-level="1" class="sidebar-header-items__title" role="heading">
+        Site Navigation
+    </p>
+<ul class="navbar-nav" id="navbar-main-elements">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../Schedule/schedule_intro.html">
+                        Schedule
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../TechnicalHelp/tech_intro.html">
+                        Technical Help
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../TechnicalHelp/Links_Policy.html">
+                        Quick links and policies
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../prereqs/ComputationalNeuroscience.html">
+                        Prerequisites and preparatory materials for NMA Computational Neuroscience
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D0_NeuroVideoSeries/chapter_title.html">
+                        Neuro Video Series (W0D0)
+                      </a>
+</li>
+<div class="nav-item dropdown">
+<button aria-expanded="false" aria-haspopup="true" class="btn dropdown-toggle nav-item" data-toggle="dropdown" type="button">
+                    More
+                </button>
+<div class="dropdown-menu">
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D1_PythonWorkshop1/chapter_title.html">
+                        Python Workshop 1 (W0D1)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D2_PythonWorkshop2/chapter_title.html">
+                        Python Workshop 2 (W0D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D3_LinearAlgebra/chapter_title.html">
+                        Linear Algebra (W0D3)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D4_Calculus/chapter_title.html">
+                        Calculus (W0D4)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W0D5_Statistics/chapter_title.html">
+                        Statistics (W0D5)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W1D1_Generalization/chapter_title.html">
+                        Generalization (W1D1)
+                      </a>
+</li>
+<li class="nav-item current active">
+<a class="nav-link nav-internal" href="../chapter_title.html">
+                        ComparingTasks (W1D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W1D3_ComparingArtificialAndBiologicalNetworks/chapter_title.html">
+                        ComparingArtificialAndBiologicalNetworks (W1D3)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D1_Macrocircuits/chapter_title.html">
+                        Macrocircuits (W2D1)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D2_CognitiveStructures/chapter_title.html">
+                        Cognitive Structures (W2D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D3_Microlearning/chapter_title.html">
+                        Microlearning (W2D3)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D4_Macrolearning/chapter_title.html">
+                        Macrolearning (W2D4)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../W2D5_Mysteries/chapter_title.html">
+                        Mysteries (W2D5)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/README.html">
+                        Introduction
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/keynote.html">
+                        Project Day keynote (W2D2)
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/project_guidance.html">
+                        Daily guide for projects
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/datasets_overview.html">
+                        Project materials
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/continuing_your_project_after_the_course.html">
+                        Continuing your project after the course
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/docs/past_projects_overview.html">
+                        Past projects
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/README.html">
+                        Introduction
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/impact_talks.html">
+                        Impact Talks
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/career_features.html">
+                        Career Features
+                      </a>
+</li>
+<li class="nav-item">
+<a class="nav-link nav-internal" href="../../../projects/professional_development/career_panels.html">
+                        Career Panels
+                      </a>
+</li>
+</div>
+</div>
+</ul>
+</nav>
+</div>
+</div>
+<div class="sidebar-header-items__end">
+<div class="navbar-end-item">
+<button aria-label="light/dark" class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" data-toggle="tooltip" title="light/dark">
+<span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+<span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+<span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+</div>
+<div class="navbar-end-item">
+<ul aria-label="Icon Links" class="navbar-nav" id="navbar-icon-links">
+</ul>
+</div>
+</div>
+</div>
+<div class="sidebar-start-items sidebar-primary__section">
+<div class="sidebar-start-items__item">
+<a class="navbar-brand logo" href="../../intro.html">
+<img alt="Logo image" class="logo__image only-light" src="../../../_static/ai-logo.png"/>
+<img alt="Logo image" class="logo__image only-dark" src="../../../_static/ai-logo.png"/>
+</a>
+</div>
+<div class="sidebar-start-items__item">
+<form action="../../../search.html" class="bd-search d-flex align-items-center" method="get">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input aria-label="Search this book..." autocapitalize="off" autocomplete="off" autocorrect="off" class="form-control" id="search-input" name="q" placeholder="Search this book..." spellcheck="false" type="search"/>
+<span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+</div>
+<div class="sidebar-start-items__item"><nav aria-label="Main" class="bd-links" id="bd-docs-nav">
+<div class="bd-toc-item navbar-nav active">
+<ul class="nav bd-sidenav bd-sidenav__home-link">
+<li class="toctree-l1">
+<a class="reference internal" href="../../intro.html">
+                    Introduction
+                </a>
+</li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Schedule/schedule_intro.html">Schedule</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Schedule/daily_schedules.html">General schedule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Schedule/shared_calendars.html">Shared calendars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Schedule/timezone_widget.html">Timezone widget</a></li>
+</ul>
+</input></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../TechnicalHelp/tech_intro.html">Technical Help</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../TechnicalHelp/Jupyterbook.html">Using jupyterbook</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../TechnicalHelp/Tutorial_colab.html">Using Google Colab</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../TechnicalHelp/Tutorial_kaggle.html">Using Kaggle</a></li>
+</ul>
+</input></li>
+<li class="toctree-l2"><a class="reference internal" href="../../TechnicalHelp/Discord.html">Using discord</a></li>
+</ul>
+</input></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../TechnicalHelp/Links_Policy.html">Quick links and policies</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../prereqs/ComputationalNeuroscience.html">Prerequisites and preparatory materials for NMA Computational Neuroscience</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pre-reqs Refresher</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/chapter_title.html">Neuro Video Series (W0D0)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial1.html">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial2.html">Human Psychophysics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial3.html">Behavioral Readout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial4.html">Live in Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial5.html">Brain Signals: Spiking Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial6.html">Brain Signals: LFP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial7.html">Brain Signals: EEG &amp; MEG</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial8.html">Brain Signals: fMRI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial9.html">Brain Signals: Calcium Imaging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial10.html">Stimulus Representation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial11.html">Neurotransmitters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D0_NeuroVideoSeries/student/W0D0_Tutorial12.html">Neurons to Consciousness</a></li>
+</ul>
+</input></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D1_PythonWorkshop1/chapter_title.html">Python Workshop 1 (W0D1)</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D1_PythonWorkshop1/student/W0D1_Tutorial1.html">Tutorial: LIF Neuron Part I</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D2_PythonWorkshop2/chapter_title.html">Python Workshop 2 (W0D2)</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D2_PythonWorkshop2/student/W0D2_Tutorial1.html">Tutorial 1: LIF Neuron Part II</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D3_LinearAlgebra/chapter_title.html">Linear Algebra (W0D3)</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D3_LinearAlgebra/student/W0D3_Tutorial1.html">Tutorial 1: Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D3_LinearAlgebra/student/W0D3_Tutorial2.html">Tutorial 2: Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D3_LinearAlgebra/student/W0D3_Tutorial3.html">Bonus Tutorial: Discrete Dynamical Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D3_LinearAlgebra/student/W0D3_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D3_LinearAlgebra/student/W0D3_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D4_Calculus/chapter_title.html">Calculus (W0D4)</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D4_Calculus/student/W0D4_Tutorial1.html">Tutorial 1: Differentiation and Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D4_Calculus/student/W0D4_Tutorial2.html">Tutorial 2: Differential Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D4_Calculus/student/W0D4_Tutorial3.html">Tutorial 3: Numerical Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D4_Calculus/student/W0D4_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W0D5_Statistics/chapter_title.html">Statistics (W0D5)</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D5_Statistics/student/W0D5_Tutorial1.html">Tutorial 1: Probability Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D5_Statistics/student/W0D5_Tutorial2.html">Tutorial 2: Statistical Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D5_Statistics/student/W0D5_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W0D5_Statistics/student/W0D5_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundations</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W1D1_Generalization/chapter_title.html">Generalization (W1D1)</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_Intro.html">W1D1 Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_Tutorial1.html">Tutorial 1: Generalization in AI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_Tutorial2.html">Tutorial 2: Generalization in Neuroscience</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_Tutorial3.html">Tutorial 3: Generalization in Cognitive Science</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/further_reading.html">Suggested further readings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D1_Generalization/student/W1D1_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../chapter_title.html">ComparingTasks (W1D2)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="W1D2_Intro.html">W1D2 Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="W1D2_Tutorial1.html"><strong>Tutorial 1:Task definition, application, relations and impacts on generalization</strong></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tutorial 2: Contrastive learning for object recognition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="W1D2_Tutorial3.html">Tutorial 3: Reinforcement learning across temporal scales</a></li>
+<li class="toctree-l2"><a class="reference internal" href="W1D2_Outro.html">W1D2 Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="W1D2_DaySummary.html">W1D1 Day Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W1D3_ComparingArtificialAndBiologicalNetworks/chapter_title.html">ComparingArtificialAndBiologicalNetworks (W1D3)</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D3_ComparingArtificialAndBiologicalNetworks/student/W1D3_Tutorial1.html">Tutorial 1: Generalization and representational geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D3_ComparingArtificialAndBiologicalNetworks/student/W1D3_Tutorial2.html">Tutorial 4: Computation as transformation of representational geometries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D3_ComparingArtificialAndBiologicalNetworks/student/W1D3_Tutorial3.html">Tutorial 3: Representational geometry &amp; noise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D3_ComparingArtificialAndBiologicalNetworks/student/W1D3_Tutorial4.html">Tutorial 4: Statistical inference on representational geometries</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Architectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W2D1_Macrocircuits/chapter_title.html">Macrocircuits (W2D1)</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D1_Macrocircuits/student/W2D1_Intro.html">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D1_Macrocircuits/student/W2D1_Tutorial1.html">Tutorial 1: Depth vs Width</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D1_Macrocircuits/student/W2D1_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D1_Macrocircuits/further_reading.html">Suggested further readings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D1_Macrocircuits/student/W2D1_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W2D2_CognitiveStructures/chapter_title.html">Cognitive Structures (W2D2)</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D2_CognitiveStructures/student/W2D2_Intro.html">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D2_CognitiveStructures/student/W2D2_Tutorial1.html">Tutorial 1: Cognitive Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D2_CognitiveStructures/student/W2D2_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D2_CognitiveStructures/further_reading.html">Suggested further readings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D2_CognitiveStructures/student/W2D2_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W2D3_Microlearning/chapter_title.html">Microlearning (W2D3)</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D3_Microlearning/student/W2D3_Intro.html">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D3_Microlearning/student/W2D3_Tutorial1.html">Tutorial 7: Microlearning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D3_Microlearning/student/W2D3_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D3_Microlearning/further_reading.html">Suggested further readings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D3_Microlearning/student/W2D3_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W2D4_Macrolearning/chapter_title.html">Macrolearning (W2D4)</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D4_Macrolearning/student/W2D4_Intro.html">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D4_Macrolearning/student/W2D4_Tutorial1.html">Tutorial 1: The problem of changing data distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D4_Macrolearning/student/W2D4_Tutorial2.html">Tutorial 2: Continual Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D4_Macrolearning/student/W2D4_Tutorial3.html">Tutorial 3: Meta-learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D4_Macrolearning/student/W2D4_Tutorial4.html">Tutorial 4: Biological meta reinforcement learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D4_Macrolearning/student/W2D4_Tutorial5.html">Tutorial 5: Replay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D4_Macrolearning/student/W2D4_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D4_Macrolearning/further_reading.html">Suggested further readings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D4_Macrolearning/student/W2D4_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mysteries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../W2D5_Mysteries/chapter_title.html">Mysteries (W2D5)</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D5_Mysteries/student/W2D5_Intro.html">Intro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D5_Mysteries/student/W2D5_Tutorial1.html">Tutorial 1: Consciousness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D5_Mysteries/student/W2D5_Outro.html">Outro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D5_Mysteries/further_reading.html">Suggested further readings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W2D5_Mysteries/student/W2D5_DaySummary.html">Day Summary</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Project Booklet</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/README.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/keynote.html">Project Day keynote (W2D2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/docs/project_guidance.html">Daily guide for projects</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../projects/docs/datasets_overview.html">Project materials</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../projects/project-notebooks/Example_project.html">Project Template</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/docs/continuing_your_project_after_the_course.html">Continuing your project after the course</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../projects/docs/past_projects_overview.html">Past projects</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../projects/past-projects/example_past_project.html">Example Past Project</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Professional Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/professional_development/README.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/professional_development/impact_talks.html">Impact Talks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/professional_development/career_features.html">Career Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../projects/professional_development/career_panels.html">Career Panels</a></li>
+</ul>
+</div>
+</nav>
+</div>
+</div>
+<div class="sidebar-end-items sidebar-primary__section">
+<div class="sidebar-end-items__item">
+</div>
+</div>
+<div id="rtd-footer-container"></div>
+</div>
+<main class="bd-main" id="main-content">
+<div class="sbt-scroll-pixel-helper"></div>
+<div class="bd-content">
+<div class="bd-article-container">
+<div class="bd-header-article">
+<div class="col py-1 d-flex header-article-main">
+<div class="header-article__left">
+<label class="sidebar-toggle primary-toggle btn btn-sm" data-placement="right" data-toggle="tooltip" for="__primary" title="Toggle primary sidebar">
+<span class="fa-solid fa-bars"></span>
+</label>
+</div>
+<div class="header-article__right">
+<div class="dropdown dropdown-launch-buttons">
+<button aria-expanded="false" aria-label="Launch interactive content" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+<i class="fas fa-rocket"></i>
+</button>
+<ul class="dropdown-menu">
+</ul>
+</div>
+<button class="btn btn-sm" data-placement="bottom" data-toggle="tooltip" onclick="toggleFullScreen()" title="Fullscreen mode">
+<span class="btn__icon-container">
+<i class="fas fa-expand"></i>
+</span>
+</button>
+<div class="dropdown dropdown-repository-buttons">
+<button aria-expanded="false" aria-label="Source repositories" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+<i class="fab fa-github"></i>
+</button>
+<ul class="dropdown-menu">
+<li><a class="btn btn-sm dropdown-item" data-placement="left" data-toggle="tooltip" href="https://github.com/neuromatch/NeuroAI_Course" target="_blank" title="Source repository">
+<span class="btn__icon-container">
+<i class="fab fa-github"></i>
+</span>
+<span class="btn__text-container">repository</span>
+</a>
+
+<li><a class="btn btn-sm dropdown-item" data-placement="left" data-toggle="tooltip" href="https://github.com/neuromatch/NeuroAI_Course/issues/new?title=Issue%20on%20page%20%2Ftutorials/W1D2_ComparingTasks/student/W1D2_Tutorial2.html&amp;body=Your%20issue%20content%20here." target="_blank" title="Open an issue">
+<span class="btn__icon-container">
+<i class="fas fa-lightbulb"></i>
+</span>
+<span class="btn__text-container">open issue</span>
+</a>
+
+</li></li></ul>
+</div>
+<div class="dropdown dropdown-download-buttons">
+<button aria-expanded="false" aria-label="Download this page" class="btn dropdown-toggle" data-bs-toggle="dropdown" type="button">
+<i class="fas fa-download"></i>
+</button>
+<ul class="dropdown-menu">
+<li><a class="btn btn-sm dropdown-item" data-placement="left" data-toggle="tooltip" href="../../../_sources/tutorials/W1D2_ComparingTasks/student/W1D2_Tutorial2.ipynb" target="_blank" title="Download source file">
+<span class="btn__icon-container">
+<i class="fas fa-file"></i>
+</span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+
+<li>
+<button class="btn btn-sm dropdown-item" data-placement="left" data-toggle="tooltip" onclick="printPdf(this)" title="Print to PDF">
+<span class="btn__icon-container">
+<i class="fas fa-file-pdf"></i>
+</span>
+<span class="btn__text-container">.pdf</span>
+</button>
+
+</li></li></ul>
+</div>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" data-placement="left" data-toggle="tooltip" for="__secondary" title="Toggle secondary sidebar">
+<span class="fa-solid fa-list"></span>
+</label>
+</div>
+</div>
+</div>
+<div class="onlyprint" id="jb-print-docs-body">
+<h1>Tutorial 2: Contrastive learning for object recognition</h1>
+<!-- Table of contents -->
+<div id="print-main-content">
+<div id="jb-print-toc">
+<div>
+<h2> Contents </h2>
+</div>
+<nav aria-label="Page">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#">
+   Tutorial 2: Contrastive learning for object recognition
+  </a>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tutorial-objectives">
+   Tutorial Objectives
+  </a>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#install-and-import-feedback-gadget">
+     Install and import feedback gadget
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#install-dependencies">
+     Install dependencies
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#import-dependencies">
+     Import dependencies
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#figure-settings">
+     Figure settings
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#plotting-functions">
+     Plotting functions
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#helper-functions">
+     Helper functions
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#overview-of-the-tutorial">
+     Overview of the tutorial
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#speeding-up-training-and-inference">
+       Speeding up training and inference.
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#analysis-of-the-results">
+       Analysis of the results
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#what-is-contrastive-learning">
+       What is contrastive learning?
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#why-contrastive-learning">
+       Why contrastive learning?
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#terms-defined-and-other-stuff">
+       Terms defined and other stuff
+      </a>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#getting-started">
+     Getting Started
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#mini-residual-block">
+       Mini residual block
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#full-model-construction">
+       Full model construction
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#visualizing-the-cosine-similarity-of-embeddings-within-the-same-class-and-across-different-classes-before-training">
+       Visualizing the cosine similarity of embeddings within the same class and across different classes before training
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#visualizing-the-cosine-similarity-after-training">
+       Visualizing the cosine similarity AFTER training
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#using-the-network-to-identify-nearest-neighbors-in-the-test-set">
+       Using the network to identify nearest neighbors in the test set.
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#how-is-contrastive-learning-used-in-practice">
+       How is contrastive learning used in practice?
+      </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<article class="bd-article" role="main">
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-2-contrastive-learning-for-object-recognition">
+<h1>Tutorial 2: Contrastive learning for object recognition<a class="headerlink" href="#tutorial-2-contrastive-learning-for-object-recognition" title="Permalink to this heading">#</a></h1>
+<p><strong>Week 1, Day 2: Comparing Tasks</strong></p>
+<p><strong>By Neuromatch Academy</strong></p>
+<p><strong>Content creators:</strong> Andrew F. Luo, Leila Wehbe</p>
+<p><strong>Content reviewers:</strong> Names &amp; Surnames</p>
+<p><strong>Production editors:</strong> Names &amp; Surnames</p>
+<br/>
+<p>Acknowledgments: [ACKNOWLEDGMENT_INFORMATION]</p>
+</section>
+<hr class="docutils"/>
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-objectives">
+<h1>Tutorial Objectives<a class="headerlink" href="#tutorial-objectives" title="Permalink to this heading">#</a></h1>
+<p><em>Estimated timing of tutorial: 20 minutes</em></p>
+<p>By the end of this tutorial, participants will be able to:</p>
+<ol class="arabic simple">
+<li><p>Understand why we want to do contrastive learning.</p></li>
+<li><p>Understand the losses in contrastive learning.</p></li>
+<li><p>Run an example on contrastive learning using MNIST.</p></li>
+</ol>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "22dc6187bb2c42deb7979f66c4ba16c7"}</script></div>
+</div>
+</section>
+<hr class="docutils"/>
+<section class="tex2jax_ignore mathjax_ignore" id="setup">
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h1>
+<section id="install-and-import-feedback-gadget">
+<h2>Install and import feedback gadget<a class="headerlink" href="#install-and-import-feedback-gadget" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install and import feedback gadget</span>
+
+<span class="c1"># !pip3 install vibecheck datatops --quiet</span>
+
+<span class="c1"># from vibecheck import DatatopsContentReviewContainer</span>
+<span class="c1"># def content_review(notebook_section: str):</span>
+<span class="c1">#     return DatatopsContentReviewContainer(</span>
+<span class="c1">#         "",  # No text prompt - leave this as is</span>
+<span class="c1">#         notebook_section,</span>
+<span class="c1">#         {</span>
+<span class="c1">#             "url": "https://pmyvdlilci.execute-api.us-east-1.amazonaws.com/klab",</span>
+<span class="c1">#             "name": "sciencematch_sm", # change the name of the course : neuromatch_dl, climatematch_ct, etc</span>
+<span class="c1">#             "user_key": "y1x3mpx5",</span>
+<span class="c1">#         },</span>
+<span class="c1">#     ).render()</span>
+
+<span class="c1"># feedback_prefix = "W1D2_T1"</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="install-dependencies">
+<h2>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install dependencies</span>
+<span class="c1"># @markdown</span>
+
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>matplotlib<span class="w"> </span>torch<span class="w"> </span>torchvision<span class="w"> </span>tqdm<span class="w"> </span>ipysankeywidget<span class="w"> </span>ipywidgets
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (1.26.4)
+Requirement already satisfied: matplotlib in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (3.8.3)
+Requirement already satisfied: torch in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (2.2.2)
+Requirement already satisfied: torchvision in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (0.17.2)
+Requirement already satisfied: tqdm in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (4.66.2)
+Requirement already satisfied: ipysankeywidget in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (0.5.0)
+Requirement already satisfied: ipywidgets in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (8.1.2)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from matplotlib) (1.2.1)
+Requirement already satisfied: cycler&gt;=0.10 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from matplotlib) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from matplotlib) (4.51.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: kiwisolver&gt;=1.3.1 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from matplotlib) (1.4.5)
+Requirement already satisfied: packaging&gt;=20.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from matplotlib) (24.0)
+Requirement already satisfied: pillow&gt;=8 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from matplotlib) (10.2.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from matplotlib) (3.1.2)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from matplotlib) (2.9.0.post0)
+Requirement already satisfied: importlib-resources&gt;=3.2.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from matplotlib) (6.4.0)
+Requirement already satisfied: filelock in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (3.13.4)
+Requirement already satisfied: typing-extensions&gt;=4.8.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (4.11.0)
+Requirement already satisfied: sympy in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (1.12)
+Requirement already satisfied: networkx in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (3.2.1)
+Requirement already satisfied: jinja2 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (3.1.3)
+Requirement already satisfied: fsspec in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (2024.3.1)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==8.9.2.26 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (8.9.2.26)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (11.4.5.107)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.19.3 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (2.19.3)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
+Requirement already satisfied: triton==2.2.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (2.2.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from nvidia-cusolver-cu12==11.4.5.107-&gt;torch) (12.4.127)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: comm&gt;=0.1.3 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipywidgets) (0.2.2)
+Requirement already satisfied: ipython&gt;=6.1.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipywidgets) (8.18.1)
+Requirement already satisfied: traitlets&gt;=4.3.1 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipywidgets) (5.14.3)
+Requirement already satisfied: widgetsnbextension~=4.0.10 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipywidgets) (4.0.10)
+Requirement already satisfied: jupyterlab-widgets~=3.0.10 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipywidgets) (3.0.10)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: zipp&gt;=3.1.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from importlib-resources&gt;=3.2.0-&gt;matplotlib) (3.18.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: decorator in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (5.0.9)
+Requirement already satisfied: jedi&gt;=0.16 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (0.19.1)
+Requirement already satisfied: matplotlib-inline in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (0.1.7)
+Requirement already satisfied: prompt-toolkit&lt;3.1.0,&gt;=3.0.41 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (3.0.43)
+Requirement already satisfied: pygments&gt;=2.4.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (2.17.2)
+Requirement already satisfied: stack-data in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (0.6.3)
+Requirement already satisfied: exceptiongroup in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (1.2.1)
+Requirement already satisfied: pexpect&gt;4.3 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (4.9.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.16.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: MarkupSafe&gt;=2.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from jinja2-&gt;torch) (2.1.5)
+Requirement already satisfied: mpmath&gt;=0.19 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from sympy-&gt;torch) (1.3.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.8.4)
+Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from pexpect&gt;4.3-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.7.0)
+Requirement already satisfied: wcwidth in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.2.13)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: executing&gt;=1.2.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (2.0.1)
+Requirement already satisfied: asttokens&gt;=2.1.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (2.4.1)
+Requirement already satisfied: pure-eval in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from stack-data-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.2.2)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="import-dependencies">
+<h2>Import dependencies<a class="headerlink" href="#import-dependencies" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Import dependencies</span>
+<span class="c1"># @markdown</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">torchvision</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">matmul</span><span class="o">.</span><span class="n">allow_tf32</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">allow_tf32</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
+
+<span class="c1"># Set up logging</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">gc</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="figure-settings">
+<h2>Figure settings<a class="headerlink" href="#figure-settings" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Figure settings</span>
+<span class="c1"># @markdown</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'matplotlib.font_manager'</span><span class="p">)</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = 'retina' # perform high definition rendering for images and plots
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/NeuromatchAcademy/course-content/main/nma.mplstyle"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="plotting-functions">
+<h2>Plotting functions<a class="headerlink" href="#plotting-functions" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Plotting functions</span>
+<span class="c1"># @markdown</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="helper-functions">
+<h2>Helper functions<a class="headerlink" href="#helper-functions" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Helper functions</span>
+<span class="c1"># @markdown</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="overview-of-the-tutorial">
+<h2>Overview of the tutorial<a class="headerlink" href="#overview-of-the-tutorial" title="Permalink to this heading">#</a></h2>
+<p>To begin, we will start by importing all the necessary packages that we’ll need throughout our session. This initial step ensures that all the tools and functions required for our computations are readily available.</p>
+<section id="speeding-up-training-and-inference">
+<h3>Speeding up training and inference.<a class="headerlink" href="#speeding-up-training-and-inference" title="Permalink to this heading">#</a></h3>
+<p>Next, let’s discuss the ‘allow tf32’ settings in PyTorch, which are designed to enhance computational speed at the expense of precision. This setting is particularly relevant for operations involving tensors. PyTorch automatically enables this for CuDNN-based convolution operations to accelerate processing times. However, it’s important to note that for matrix multiplication tasks, this option remains disabled by default to maintain higher numerical precision.</p>
+</section>
+<section id="analysis-of-the-results">
+<h3>Analysis of the results<a class="headerlink" href="#analysis-of-the-results" title="Permalink to this heading">#</a></h3>
+<p>As we move forward, we’ll employ PCA (Principal Component Analysis) and t-SNE (t-Distributed Stochastic Neighbor Embedding) as our primary tools for visualizing data. These techniques are instrumental in reducing the dimensionality of the data, allowing us to observe patterns and relationships that are otherwise difficult to discern in high-dimensional spaces. By visualizing data in this way, we can gain insightful perspectives that are crucial for understanding complex datasets.</p>
+</section>
+<section id="what-is-contrastive-learning">
+<h3>What is contrastive learning?<a class="headerlink" href="#what-is-contrastive-learning" title="Permalink to this heading">#</a></h3>
+<p>Contrastive learning is often referred to as “self-supervised learning (SSL)” and has historically been known as “metric learning.” The essence of contrastive/metric learning is that instead of outputting a classification one-hot/softmax vector, or a regression value, you directly output a high-dimensional embedding.</p>
+<p>Here is an example: Given multiple data points from a single class (for example, three photos of you from different viewpoints) and different classes (for example, 10 photos from one or multiple people who are not you), you want the three embeddings from your photos to be closer to each other while being farther away from the ten embeddings from the different classes.</p>
+<p>Hence the name “metric learning,” where you seek to learn a metric/distance that fits the constraints of the data.</p>
+</section>
+<section id="why-contrastive-learning">
+<h3>Why contrastive learning?<a class="headerlink" href="#why-contrastive-learning" title="Permalink to this heading">#</a></h3>
+<p>It may not be immediately obvious why you would want to engage in contrastive/metric learning. Can’t you just use a giant 1000-class ImageNet-trained classifier and recognize every image? However, metric learning proves useful when the number of classes is not known ahead of time. For example, if I wanted a network to recognize human faces, there are 7 billion people on this planet, which makes it impossible for you to train a classification network with 7 billion output neurons. Nevertheless, I can train a network that outputs a high-dimensional embedding for each image. Now, given a reference image of a person, your network can decide if the new photo is close to or farther away from the reference image.</p>
+</section>
+<section id="terms-defined-and-other-stuff">
+<h3>Terms defined and other stuff<a class="headerlink" href="#terms-defined-and-other-stuff" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Positive pair—This refers to two data points that should be close together in embedding space. For example, two photos of you in different lighting conditions.</p></li>
+<li><p>Negative pair—This refers to two data points that should be far apart in embedding space. For example, a photo of you versus a photo of a dog (assuming you are not a dog). Note that positive pairs/negative pairs don’t have to be images. You could have a picture and the matching text be a positive pair as well. Recent work has also moved to positive pairs defined using an older version of the encoder (Google Momentum contrast or EMA contrastive).</p></li>
+<li><p>Pretext task—In computer vision, this refers to how you augment images to get positive pairs.
+Hard positive/negative mining—This refers to a practice where positive/negative pairs where the network struggles are used to train the network with more loss in some way.</p></li>
+<li><p>InfoNCE—This is one of the most common contrastive losses [1,2,3,4], which was proposed in similar ways multiple times by different authors. It is a cross-entropy loss of classifying the correct positive pair out from a pool of pairs. Note there are variants like MIL-NCE, which allow for multiple positive pairs.</p></li>
+</ul>
+</section>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h2>
+<p>First, we’ll start by outlining the network blocks that we plan to incorporate into our model. This involves defining each component as a class in PyTorch, which requires inheriting from the torch.nn.Module class. It’s crucial to remember that after defining your class, you must initialize it properly by calling super().<strong>init</strong>(). This step is essential as it ensures that all network sub-modules are registered correctly. Additionally, PyTorch provides several useful functions such as ModuleList, register_parameter, register_module, and register_buffer to help manage these components effectively.</p>
+<section id="mini-residual-block">
+<h3>Mini residual block<a class="headerlink" href="#mini-residual-block" title="Permalink to this heading">#</a></h3>
+<p>Our initial focus will be on creating a mini_residual block. This block adopts a modern approach to the residual design, featuring a prenormalization step as suggested by Kaiming He. We will also incorporate the LeakyReLU activation function. LeakyReLU is particularly favored in generative adversarial networks (GANs) due to its ability to maintain non-zero gradients, which helps in the training process by avoiding the vanishing gradient problem.</p>
+</section>
+<section id="full-model-construction">
+<h3>Full model construction<a class="headerlink" href="#full-model-construction" title="Permalink to this heading">#</a></h3>
+<p>Following the mini_residual block, we will construct the full model. This model will consist of a series of residual blocks stacked together. In PyTorch, the components of a model are organized in a sequence using nn.Sequential, which executes the blocks from the first to the last. This sequential arrangement simplifies the process of defining forward pass operations, ensuring that data flows through the blocks in the intended order. By stacking these blocks, the model can learn complex patterns from the data, enhancing its predictive performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">mini_residual</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="c1"># Follows "Identity Mappings in Deep Residual Networks", uses layernorm instead of batchnorm, uses leakyReLU instead of ReLU</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feat_in</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">feat_out</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">feat_hidden</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">use_norm</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">use_norm</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">feat_in</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="n">negative_slope</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>
+                                      <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">feat_in</span><span class="p">,</span> <span class="n">feat_hidden</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">feat_hidden</span><span class="p">),</span>
+                                      <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="n">negative_slope</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">feat_hidden</span><span class="p">,</span> <span class="n">feat_out</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">block</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="n">negative_slope</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">feat_in</span><span class="p">,</span> <span class="n">feat_hidden</span><span class="p">),</span>
+                                      <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(</span><span class="n">negative_slope</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">feat_hidden</span><span class="p">,</span> <span class="n">feat_out</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">feat_in</span><span class="o">!=</span><span class="n">feat_out</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bypass</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">feat_in</span><span class="p">,</span> <span class="n">feat_out</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bypass</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Identity</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">block</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bypass</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_dim</span><span class="p">,</span> <span class="n">out_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">num_blocks</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_proj</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">mini_residual</span><span class="p">(</span><span class="n">feat_in</span><span class="o">=</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">feat_out</span><span class="o">=</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">feat_hidden</span><span class="o">=</span><span class="n">hidden_dim</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_blocks</span><span class="p">)])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">out_dim</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">in_proj_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_proj</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">hidden_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">(</span><span class="n">in_proj_out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">(</span><span class="n">hidden_out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, let’s move on to defining the loss function for our model, using an approach extracted from the PyTorch metric learning package for better clarity. We will be implementing a variant of the InfoNCE loss function, which is widely recognized as one of the most effective contrastive or metric learning losses. It has been prominently used in various models, including OpenAI’s CLIP, due to its ability to enhance feature discrimination by contrasting positive pairs against negative pairs.</p>
+<p>InfoNCE typically requires substantial batch sizes—commonly 128 or even larger—to perform optimally. This requirement is due to the need for diverse negative samples in the batch to effectively learn the contrasts. However, large batch sizes can be impractical in resource-constrained settings or when data availability is limited.</p>
+<p>To address this, we will implement a modified version of InfoNCE as described in the “Decoupled Contrastive Learning” paper. This variant adapts the loss to be more suitable for smaller batch sizes by modifying the denominator of the InfoNCE formula. Specifically, it removes the positive example from the denominator, which reduces the computational demand and stabilizes training when fewer examples are available. This adjustment not only makes the loss function more flexible but also maintains robustness in learning discriminative features even with smaller batch sizes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is code from the pytorch metric learning package</span>
+<span class="c1"># Extracted out so it is clear what it is doing</span>
+
+<span class="k">def</span> <span class="nf">neg_inf</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">min</span>
+
+
+<span class="k">def</span> <span class="nf">small_val</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">tiny</span>
+
+<span class="k">def</span> <span class="nf">to_dtype</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tensor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_autocast_enabled</span><span class="p">():</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">dtype</span> <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">tensor</span><span class="o">.</span><span class="n">dtype</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">dt</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">get_matches_and_diffs</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">ref_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ref_labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ref_labels</span> <span class="o">=</span> <span class="n">labels</span>
+    <span class="n">labels1</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">labels2</span> <span class="o">=</span> <span class="n">ref_labels</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="p">(</span><span class="n">labels1</span> <span class="o">==</span> <span class="n">labels2</span><span class="p">)</span><span class="o">.</span><span class="n">byte</span><span class="p">()</span>
+    <span class="n">diffs</span> <span class="o">=</span> <span class="n">matches</span> <span class="o">^</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">ref_labels</span> <span class="ow">is</span> <span class="n">labels</span><span class="p">:</span>
+        <span class="n">matches</span><span class="o">.</span><span class="n">fill_diagonal_</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">matches</span><span class="p">,</span> <span class="n">diffs</span>
+
+<span class="k">def</span> <span class="nf">get_all_pairs_indices</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">ref_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Given a tensor of labels, this will return 4 tensors.</span>
+<span class="sd">    The first 2 tensors are the indices which form all positive pairs</span>
+<span class="sd">    The second 2 tensors are the indices which form all negative pairs</span>
+<span class="sd">    """</span>
+    <span class="n">matches</span><span class="p">,</span> <span class="n">diffs</span> <span class="o">=</span> <span class="n">get_matches_and_diffs</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">ref_labels</span><span class="p">)</span>
+    <span class="n">a1_idx</span><span class="p">,</span> <span class="n">p_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span>
+    <span class="n">a2_idx</span><span class="p">,</span> <span class="n">n_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">diffs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a1_idx</span><span class="p">,</span> <span class="n">p_idx</span><span class="p">,</span> <span class="n">a2_idx</span><span class="p">,</span> <span class="n">n_idx</span>
+
+<span class="k">def</span> <span class="nf">cos_sim</span><span class="p">(</span><span class="n">input_embeddings</span><span class="p">):</span>
+    <span class="c1"># batch, dim</span>
+    <span class="n">normed_embeddings</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">input_embeddings</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">normed_embeddings</span><span class="nd">@normed_embeddings</span><span class="o">.</span><span class="n">t</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">dcl_loss</span><span class="p">(</span><span class="n">pos_pairs</span><span class="p">,</span> <span class="n">neg_pairs</span><span class="p">,</span> <span class="n">indices_tuple</span><span class="p">,</span><span class="n">temperature</span><span class="o">=</span><span class="mf">0.07</span><span class="p">):</span>
+    <span class="c1"># This is the modified InfoNCE loss called "Decoupled Contrastive Learning" for small batch sizes</span>
+    <span class="c1"># Basically You remove the numerator from the sum to the denominator</span>
+
+    <span class="n">a1</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">indices_tuple</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="n">neg_pairs</span><span class="o">.</span><span class="n">dtype</span>
+        <span class="n">pos_pairs</span> <span class="o">=</span> <span class="n">pos_pairs</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">temperature</span>
+        <span class="n">neg_pairs</span> <span class="o">=</span> <span class="n">neg_pairs</span> <span class="o">/</span> <span class="n">temperature</span>
+        <span class="n">n_per_p</span> <span class="o">=</span> <span class="n">to_dtype</span><span class="p">(</span><span class="n">a2</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="n">a1</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="n">neg_pairs</span> <span class="o">=</span> <span class="n">neg_pairs</span> <span class="o">*</span> <span class="n">n_per_p</span>
+        <span class="n">neg_pairs</span><span class="p">[</span><span class="n">n_per_p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">neg_inf</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+
+        <span class="n">max_val</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span>
+            <span class="n">pos_pairs</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">neg_pairs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+        <span class="n">numerator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pos_pairs</span> <span class="o">-</span> <span class="n">max_val</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">denominator</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">neg_pairs</span> <span class="o">-</span> <span class="n">max_val</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">log_exp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span><span class="p">)</span> <span class="o">+</span> <span class="n">small_val</span><span class="p">(</span><span class="n">dtype</span><span class="p">))</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">log_exp</span>
+    <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">pair_based_loss</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">indices_tuple</span><span class="p">,</span> <span class="n">lossfunc</span><span class="p">):</span>
+    <span class="n">a1</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="n">indices_tuple</span>
+    <span class="n">pos_pair</span><span class="p">,</span> <span class="n">neg_pair</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">pos_pair</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="n">a1</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">neg_pair</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="n">a2</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">lossfunc</span><span class="p">(</span><span class="n">pos_pair</span><span class="p">,</span> <span class="n">neg_pair</span><span class="p">,</span> <span class="n">indices_tuple</span><span class="p">)</span>
+
+<span class="c1"># dummy_labels = torch.from_numpy(np.array([1,1,2,3,2,4]))</span>
+<span class="c1"># demo_matches, demo_diffs = get_matches_and_diffs(labels=dummy_labels)</span>
+<span class="c1"># results = get_all_pairs_indices(labels=dummy_labels)</span>
+<span class="c1"># final_loss = pair_based_loss(torch.randn(6,6),results, None)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we will make the Pytorch dataset object, this defines how data is loaded from disk for each batch, and what transform you want to apply. Note that you do not have to use torchvision transforms. It is very common to write your own transform code in the dataset object.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mnist_transforms</span><span class="o">=</span><span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.1307</span><span class="p">,),</span> <span class="p">(</span><span class="mf">0.3081</span><span class="p">,))])</span>
+<span class="n">test_dset</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s2">"./"</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">mnist_transforms</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">784</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">width</span> <span class="o">=</span> <span class="n">height</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">data_point</span> <span class="o">=</span> <span class="n">test_dset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data_point</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to ./MNIST/raw/train-images-idx3-ubyte.gz
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/9912422 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 9912422/9912422 [00:00&lt;00:00, 229335153.15it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./MNIST/raw/train-images-idx3-ubyte.gz to ./MNIST/raw
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to ./MNIST/raw/train-labels-idx1-ubyte.gz
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/28881 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 28881/28881 [00:00&lt;00:00, 73105427.78it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./MNIST/raw/train-labels-idx1-ubyte.gz to ./MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to ./MNIST/raw/t10k-images-idx3-ubyte.gz
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/1648877 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 1648877/1648877 [00:00&lt;00:00, 138212786.21it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./MNIST/raw/t10k-images-idx3-ubyte.gz to ./MNIST/raw
+
+Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to ./MNIST/raw/t10k-labels-idx1-ubyte.gz
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/4542 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 4542/4542 [00:00&lt;00:00, 10242219.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./MNIST/raw/t10k-labels-idx1-ubyte.gz to ./MNIST/raw
+</pre></div>
+</div>
+<img alt="../../../_images/7d842c547df143ec76063eae961a670ef22449aef2f9cb990ef65e4ef13571ef.png" src="../../../_images/7d842c547df143ec76063eae961a670ef22449aef2f9cb990ef65e4ef13571ef.png">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</img></div>
+</div>
+<p>Now we will make the model using the definition we wrote previously. And we will move it to the device you want. Note that in pytorch, calling <code class="docutils literal notranslate"><span class="pre">.to(device)</span></code> on a module acts on the module itself, as in it is an inplace operation. However for pytorch tensors directly (if you don’t call this function on a module) it is not inplace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mynet</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">in_dim</span><span class="o">=</span><span class="mi">784</span><span class="p">,</span> <span class="n">out_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+
+<span class="c1"># Automatically select the device</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cuda"</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">"cpu"</span><span class="p">)</span>
+
+<span class="c1"># Output the device that will be used</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Using device: </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Move the model to the selected device</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mynet</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using device: cpu
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us create a test dataloader, and see what the untrained network gives us in terms of representations for each number. We will compute the cosine similarity for each written character WITHIN the same class (we set the diagonal to np.nan to avoid comparing a written character to itself).</p>
+<p>We will also compute the cosine similarity for each written character across the classes.</p>
+<p>You should have a habit of calling <code class="docutils literal notranslate"><span class="pre">network.eval()</span></code> before evaluating a network, this is also an inplace operation. This will tell pytorch to freeze some buffers (like in batchnorm) and disable dropout.</p>
+<p>We use <code class="docutils literal notranslate"><span class="pre">torch.inference_mode()</span></code> here, this disables gradient computation and speeds up the testing process. However this may break some features, if it fails you can replace it with <code class="docutils literal notranslate"><span class="pre">torch.no_grad()</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">inference_mode</span></code> does not automatically enable <code class="docutils literal notranslate"><span class="pre">eval</span></code>!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First try with untrained network, find the cosine similarities within a class and across classes</span>
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># enable persistent_workers=True if more than 1 worker to save CPU</span>
+<span class="n">mynet</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">test_embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">sim_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">inference_mode</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">data_batch</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+        <span class="n">test_img</span><span class="p">,</span> <span class="n">test_label</span> <span class="o">=</span> <span class="n">data_batch</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">test_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">flat</span> <span class="o">=</span> <span class="n">test_img</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">pred_embeddings</span> <span class="o">=</span> <span class="n">mynet</span><span class="p">(</span><span class="n">flat</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">test_embeddings</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pred_embeddings</span><span class="p">)</span>
+        <span class="n">test_labels</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">test_label</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+<span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">)</span>
+<span class="n">test_embeddings_normed</span> <span class="o">=</span> <span class="n">test_embeddings</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-the-cosine-similarity-of-embeddings-within-the-same-class-and-across-different-classes-before-training">
+<h3>Visualizing the cosine similarity of embeddings within the same class and across different classes before training<a class="headerlink" href="#visualizing-the-cosine-similarity-of-embeddings-within-the-same-class-and-across-different-classes-before-training" title="Permalink to this heading">#</a></h3>
+<p>Ideally, you should see a very high cosine similarity for images within the same class (the diagonal), but very low cosine similarity for images not within the same class (the non-diagonal).</p>
+<p>But since our network is untrained, <em>you</em> will see there is not much difference, this is expected as the network is untrained. If you look at the plot, there is no clear structure to the similarities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embeddings</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]:</span>
+    <span class="n">embeddings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_embeddings_normed</span><span class="p">[</span><span class="n">test_labels</span><span class="o">==</span><span class="n">i</span><span class="p">]</span>
+
+<span class="c1"># Within class cosine similarity:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]:</span>
+    <span class="n">sims</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="nd">@embeddings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">sims</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">cur_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>
+    <span class="n">sim_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span>  <span class="n">cur_sim</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Within class </span><span class="si">{}</span><span class="s2"> cosine similarity"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cur_sim</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=================="</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">i</span><span class="o">&gt;</span><span class="n">j</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sims</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="nd">@embeddings</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">cur_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>
+            <span class="n">sim_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span>  <span class="n">cur_sim</span>
+            <span class="n">sim_matrix</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span>  <span class="n">cur_sim</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2"> cosine similarity </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">sims</span><span class="p">)))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sim_matrix</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"untrained network"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Within class 0.5637451528242164 cosine similarity
+Within class 0.6708619909345932 cosine similarity
+Within class 0.4889752758354173 cosine similarity
+Within class 0.5770483852604946 cosine similarity
+Within class 0.5481656500587296 cosine similarity
+Within class 0.5168578473781391 cosine similarity
+Within class 0.5539199206176618 cosine similarity
+Within class 0.5721295769554375 cosine similarity
+Within class 0.5972491874975348 cosine similarity
+Within class 0.6147959545079692 cosine similarity
+==================
+0 and 1 cosine similarity 0.34767382246124584
+0 and 2 cosine similarity 0.3847429227566705
+0 and 3 cosine similarity 0.4568798892854129
+0 and 4 cosine similarity 0.38802601305455514
+0 and 5 cosine similarity 0.4782435439727161
+0 and 6 cosine similarity 0.4276726287834943
+0 and 7 cosine similarity 0.4002057342278639
+0 and 8 cosine similarity 0.45931328190411497
+0 and 9 cosine similarity 0.4317979050934129
+1 and 2 cosine similarity 0.44505630823275616
+1 and 3 cosine similarity 0.49173992061400157
+1 and 4 cosine similarity 0.43436147970205174
+1 and 5 cosine similarity 0.4594159847223518
+1 and 6 cosine similarity 0.4451133282635549
+1 and 7 cosine similarity 0.4716780679918043
+1 and 8 cosine similarity 0.5032310396972033
+1 and 9 cosine similarity 0.49457925502203376
+2 and 3 cosine similarity 0.451014789790604
+2 and 4 cosine similarity 0.41730691749226345
+2 and 5 cosine similarity 0.4150001489339466
+2 and 6 cosine similarity 0.45142891705575666
+2 and 7 cosine similarity 0.4365053795180918
+2 and 8 cosine similarity 0.4928043856536395
+2 and 9 cosine similarity 0.4512972718888641
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 and 4 cosine similarity 0.440285036549705
+3 and 5 cosine similarity 0.5092083773455667
+3 and 6 cosine similarity 0.43407526107163247
+3 and 7 cosine similarity 0.466460915893113
+3 and 8 cosine similarity 0.5434641952761463
+3 and 9 cosine similarity 0.4961966631184404
+4 and 5 cosine similarity 0.43271368925192866
+4 and 6 cosine similarity 0.4696552571282759
+4 and 7 cosine similarity 0.495559099551486
+4 and 8 cosine similarity 0.49514464621475546
+4 and 9 cosine similarity 0.546708082231798
+5 and 6 cosine similarity 0.4434570449508411
+5 and 7 cosine similarity 0.44805767197586205
+5 and 8 cosine similarity 0.517525673410326
+5 and 9 cosine similarity 0.4898894949699879
+6 and 7 cosine similarity 0.4424934715256781
+6 and 8 cosine similarity 0.4916582438140444
+6 and 9 cosine similarity 0.4991994923048105
+7 and 8 cosine similarity 0.5065255568652086
+7 and 9 cosine similarity 0.546222612540156
+8 and 9 cosine similarity 0.5482715743403506
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f23c7b92a90&gt;
+</pre></div>
+</div>
+<img alt="../../../_images/fe801436d82d720f364ec42a6bafeca37ffe085170e6d8c33e70ca31da50ff57.png" src="../../../_images/fe801436d82d720f364ec42a6bafeca37ffe085170e6d8c33e70ca31da50ff57.png">
+</img></div>
+</div>
+<p>Now we will train the network!</p>
+<p>Note how we decay the learning rate, so the final learning rate will be half that of the inital learning rate. AdamW is the Adam optimizer with decoupled weight decay. A learning rate of 3e-4 and a weight decay of 1e-2 in AdamW are pretty typical. Note that weight decay in AdamW and SGD work differently in the pytorch implementations. In pytorch, the adamw weight decay is further scaled by learning rate (real weight decay = weight decay * lr) but in SGD, it is not scaled by learning rate. So in AdamW, it is common to use higher weight decay values than SGD.</p>
+<p>Also note how we call <code class="docutils literal notranslate"><span class="pre">mynet.train()</span></code> before we start training. That sets mynet to training mode, and enables the buffers and dropout layers (if they were present in the network architecture.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># Automatically select the device</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cuda"</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">"cpu"</span><span class="p">)</span>
+
+<span class="c1"># Output the device that will be used</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Using device: </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">train_dset</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s2">"./"</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">mnist_transforms</span><span class="p">)</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># enable persistent_workers=True if more than 1 worker to save CPU</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">del</span> <span class="n">optimizer</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">empty_cache</span><span class="p">()</span>
+    <span class="c1"># Nuke the optimizer from memory if students try re-running this block</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">del</span> <span class="n">mynet</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">empty_cache</span><span class="p">()</span>
+    <span class="c1"># Nuke the network from memory if students try re-running this block</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="n">mynet</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">in_dim</span><span class="o">=</span><span class="mi">784</span><span class="p">,</span> <span class="n">out_dim</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">mynet</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># This enables training mode, which may affect dropout and stuff</span>
+<span class="n">mynet</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Is the network in training mode?"</span><span class="p">,</span> <span class="n">mynet</span><span class="o">.</span><span class="n">training</span><span class="p">)</span>
+<span class="n">init_lr</span> <span class="o">=</span> <span class="mf">3e-4</span>
+<span class="n">lr_decay_factor</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span><span class="p">(</span><span class="n">mynet</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">init_lr</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+
+<span class="n">loss_tracker</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">epoch_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">epochs</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">loss_epoch_tracker</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">batch_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># decay lr to half that of initial by the end of training</span>
+    <span class="n">new_lrate</span> <span class="o">=</span> <span class="n">init_lr</span> <span class="o">*</span> <span class="p">(</span><span class="n">lr_decay_factor</span> <span class="o">**</span> <span class="p">(</span><span class="n">epoch_id</span> <span class="o">/</span> <span class="n">epochs</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+        <span class="n">param_group</span><span class="p">[</span><span class="s1">'lr'</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_lrate</span>
+
+    <span class="n">batches_in_epoch</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">data_batch</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">train_img</span><span class="p">,</span> <span class="n">train_label</span> <span class="o">=</span> <span class="n">data_batch</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">train_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">flat</span> <span class="o">=</span> <span class="n">train_img</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">train_label</span> <span class="o">=</span> <span class="n">train_label</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">predicted_results</span> <span class="o">=</span> <span class="n">mynet</span><span class="p">(</span><span class="n">flat</span><span class="p">)</span>
+        <span class="c1"># Now to compute loss</span>
+        <span class="n">similarities</span> <span class="o">=</span> <span class="n">cos_sim</span><span class="p">(</span><span class="n">predicted_results</span><span class="p">)</span>
+        <span class="n">label_pos_neg</span> <span class="o">=</span> <span class="n">get_all_pairs_indices</span><span class="p">(</span><span class="n">train_label</span><span class="p">)</span>
+        <span class="n">final_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">pair_based_loss</span><span class="p">(</span><span class="n">similarities</span><span class="p">,</span> <span class="n">label_pos_neg</span><span class="p">,</span> <span class="n">dcl_loss</span><span class="p">))</span>
+
+        <span class="c1"># Compute gradients from the loss to the parameters that require a gradient</span>
+        <span class="n">final_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+        <span class="c1"># Now we use the optimizer and the gradients to change the original parameters</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="c1"># .item() converts the CUDA tensor to a single CPU scalar.</span>
+        <span class="c1"># Note this only works on tensors with a single value</span>
+        <span class="c1"># Avoid calling .item() too frequently, as it involves a GPU -&gt; CPU transfer it is slow!</span>
+        <span class="n">loss_cpu_number</span> <span class="o">=</span> <span class="n">final_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+        <span class="c1"># We keep track of the losses here</span>
+        <span class="c1"># This is just for human visualization, doesn't really affect training</span>
+        <span class="n">loss_epoch_tracker</span><span class="o">+=</span><span class="n">loss_cpu_number</span>
+        <span class="n">batch_counter</span> <span class="o">+=</span><span class="mi">1</span>
+
+        <span class="c1"># Every 500 batches, we print the current epoch, batches seen for the current epoch, and the current batch loss</span>
+        <span class="k">if</span> <span class="n">batch_counter</span><span class="o">%</span><span class="k">500</span> == 0:
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Epoch </span><span class="si">{}</span><span class="s2">, Batch </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">, loss: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch_id</span><span class="p">,</span> <span class="n">batch_counter</span><span class="p">,</span> <span class="n">batches_in_epoch</span><span class="p">,</span> <span class="n">loss_cpu_number</span><span class="p">))</span>
+
+    <span class="c1"># Every epoch we print out the average loss over the epoch</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Epoch average loss </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loss_epoch_tracker</span><span class="o">/</span><span class="n">batch_counter</span><span class="p">))</span>
+<span class="c1"># Test mode</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using device: cpu
+Is the network in training mode? True
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1, Batch 500/1200, loss: -5.004095077514648
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1, Batch 1000/1200, loss: -5.595829010009766
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch average loss -4.53914941653454
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2, Batch 500/1200, loss: -8.782033920288086
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2, Batch 1000/1200, loss: -7.597368240356445
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch average loss -7.303379771554222
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 3, Batch 500/1200, loss: -6.8576860427856445
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 3, Batch 1000/1200, loss: -11.223709106445312
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch average loss -8.495759292840958
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 4, Batch 500/1200, loss: -8.748641967773438
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 4, Batch 1000/1200, loss: -5.059738636016846
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch average loss -9.046538232512152
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 5, Batch 500/1200, loss: -10.3446044921875
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 5, Batch 1000/1200, loss: -10.886665344238281
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch average loss -9.450487128992876
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 6, Batch 500/1200, loss: -10.036503791809082
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 6, Batch 1000/1200, loss: -9.24433708190918
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch average loss -9.67004772303005
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 7, Batch 500/1200, loss: -6.722270965576172
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 7, Batch 1000/1200, loss: -10.533967971801758
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch average loss -10.067936094800631
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 8, Batch 500/1200, loss: -11.920721054077148
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 8, Batch 1000/1200, loss: -10.676753044128418
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch average loss -10.180947927832603
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 9, Batch 500/1200, loss: -7.25316047668457
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 9, Batch 1000/1200, loss: -9.15990161895752
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch average loss -10.352183472514152
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 10, Batch 500/1200, loss: -9.665081024169922
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 10, Batch 1000/1200, loss: -9.864184379577637
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch average loss -10.511493992606798
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us now extract the features from the trained network!</p>
+<p>Again, please make it a habit to set the network into eval mode.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># enable persistent_workers=True if more than 1 worker to save CPU</span>
+<span class="n">mynet</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">test_embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">inference_mode</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">data_batch</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+        <span class="n">test_img</span><span class="p">,</span> <span class="n">test_label</span> <span class="o">=</span> <span class="n">data_batch</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">test_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">flat</span> <span class="o">=</span> <span class="n">test_img</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">pred_embeddings</span> <span class="o">=</span> <span class="n">mynet</span><span class="p">(</span><span class="n">flat</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">test_embeddings</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pred_embeddings</span><span class="p">)</span>
+        <span class="n">test_labels</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">test_label</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_labels</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Feature extraction done!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Feature extraction done!
+</pre></div>
+</div>
+</div>
+</div>
+<p>As the network was trained using infoNCE, we will normalize each feature to unit norm. PCA further expects the features to be centered and 1 std.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">)</span>
+<span class="n">test_embeddings_normed</span> <span class="o">=</span> <span class="n">test_embeddings</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_embeddings_normed</span> <span class="o">=</span> <span class="n">test_embeddings_normed</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_embeddings_normed</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_embeddings_normed</span> <span class="o">=</span> <span class="n">test_embeddings_normed</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">test_embeddings_normed</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pca_embeddings</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For TSNE, we just normalize each feature to unit norm due to infoNCE. We will not further center.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">)</span>
+<span class="n">test_embeddings_normed</span> <span class="o">=</span> <span class="n">test_embeddings</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">tsne_embeddings</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">)</span>
+<span class="c1"># This takes like a minute, go grab a coffee or something</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_labels</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">tsne_embeddings</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((10000,), (10000, 2))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Look at how the features for each number are distributed! Note how well separated all the embeddings for different characters are.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_embeddings</span> <span class="o">=</span> <span class="n">tsne_embeddings</span>
+<span class="c1"># TSNE or PCA? TSNE is nicer to look at.</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">my_embeddings</span><span class="p">[</span><span class="n">test_labels</span><span class="o">==</span><span class="n">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">my_embeddings</span><span class="p">[</span><span class="n">test_labels</span><span class="o">==</span><span class="n">num</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
+<span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">my_embeddings</span><span class="p">[</span><span class="n">test_labels</span><span class="o">==</span><span class="n">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">my_embeddings</span><span class="p">[</span><span class="n">test_labels</span><span class="o">==</span><span class="n">num</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">"green"</span><span class="p">)</span>
+<span class="n">num</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">my_embeddings</span><span class="p">[</span><span class="n">test_labels</span><span class="o">==</span><span class="n">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">my_embeddings</span><span class="p">[</span><span class="n">test_labels</span><span class="o">==</span><span class="n">num</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
+<span class="n">num</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">my_embeddings</span><span class="p">[</span><span class="n">test_labels</span><span class="o">==</span><span class="n">num</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">my_embeddings</span><span class="p">[</span><span class="n">test_labels</span><span class="o">==</span><span class="n">num</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s2">"orange"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f23d8583640&gt;
+</pre></div>
+</div>
+<img alt="../../../_images/92d0f7d2e65a6862bde696583b2c871049439ec6933877cfcb8dd90d33813e2e.png" src="../../../_images/92d0f7d2e65a6862bde696583b2c871049439ec6933877cfcb8dd90d33813e2e.png">
+</img></div>
+</div>
+</section>
+<section id="visualizing-the-cosine-similarity-after-training">
+<h3>Visualizing the cosine similarity AFTER training<a class="headerlink" href="#visualizing-the-cosine-similarity-after-training" title="Permalink to this heading">#</a></h3>
+<p>Note now that diagonal is strongly more positive than the off-diagonal, this means within the same class, the similarity is much stronger than outside a class.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># enable persistent_workers=True if more than 1 worker to save CPU</span>
+<span class="n">mynet</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">test_embeddings</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">sim_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">inference_mode</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">data_batch</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+        <span class="n">test_img</span><span class="p">,</span> <span class="n">test_label</span> <span class="o">=</span> <span class="n">data_batch</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">test_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">flat</span> <span class="o">=</span> <span class="n">test_img</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">non_blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">pred_embeddings</span> <span class="o">=</span> <span class="n">mynet</span><span class="p">(</span><span class="n">flat</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">test_embeddings</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pred_embeddings</span><span class="p">)</span>
+        <span class="n">test_labels</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">test_label</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+<span class="n">test_embeddings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">)</span>
+<span class="n">test_embeddings_normed</span> <span class="o">=</span> <span class="n">test_embeddings</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">test_embeddings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_labels</span><span class="p">)</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]:</span>
+    <span class="n">embeddings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span><span class="n">test_embeddings_normed</span><span class="p">[</span><span class="n">test_labels</span><span class="o">==</span><span class="n">i</span><span class="p">]</span>
+
+
+
+<span class="c1"># Within class cosine similarity:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]:</span>
+    <span class="n">sims</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="nd">@embeddings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">sims</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+    <span class="n">cur_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>
+    <span class="n">sim_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span>  <span class="n">cur_sim</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Within class </span><span class="si">{}</span><span class="s2"> cosine similarity"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cur_sim</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"=================="</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="n">i</span><span class="o">&gt;</span><span class="n">j</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sims</span> <span class="o">=</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="nd">@embeddings</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">cur_sim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span>
+            <span class="n">sim_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span>  <span class="n">cur_sim</span>
+            <span class="n">sim_matrix</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span>  <span class="n">cur_sim</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{}</span><span class="s2"> and </span><span class="si">{}</span><span class="s2"> cosine similarity </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">sims</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sim_matrix</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"trained network"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Within class 0.979264699393682 cosine similarity
+Within class 0.9732618118045274 cosine similarity
+Within class 0.9642629919279572 cosine similarity
+Within class 0.9519070210446469 cosine similarity
+Within class 0.9433275695668791 cosine similarity
+Within class 0.9317941583011218 cosine similarity
+Within class 0.94004986223241 cosine similarity
+Within class 0.9301401250870874 cosine similarity
+Within class 0.9278351961866743 cosine similarity
+Within class 0.9481420223018899 cosine similarity
+==================
+0 and 1 cosine similarity -0.13334361449814908
+0 and 2 cosine similarity -0.08196295862974873
+0 and 3 cosine similarity -0.1054840612600339
+0 and 4 cosine similarity -0.09792926086226512
+0 and 5 cosine similarity -0.05862759557061426
+0 and 6 cosine similarity -0.09471996977073317
+0 and 7 cosine similarity -0.11858133156362298
+0 and 8 cosine similarity -0.08609973035626042
+0 and 9 cosine similarity -0.09321027822943884
+1 and 2 cosine similarity -0.12401539573895298
+1 and 3 cosine similarity -0.12960048032762944
+1 and 4 cosine similarity -0.13762683495872183
+1 and 5 cosine similarity -0.11396348020175857
+1 and 6 cosine similarity -0.11181830135912121
+1 and 7 cosine similarity -0.14803726581172114
+1 and 8 cosine similarity -0.12187867891028842
+1 and 9 cosine similarity -0.12965516784417622
+2 and 3 cosine similarity -0.09686774857910946
+2 and 4 cosine similarity -0.1064126120528585
+2 and 5 cosine similarity -0.07262703017873141
+2 and 6 cosine similarity -0.11891448725641583
+2 and 7 cosine similarity -0.10365514081953238
+2 and 8 cosine similarity -0.08991926790508047
+2 and 9 cosine similarity -0.10243516172675435
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 and 4 cosine similarity -0.1145981698211727
+3 and 5 cosine similarity -0.07417539083785654
+3 and 6 cosine similarity -0.0927309602260535
+3 and 7 cosine similarity -0.1306349793008867
+3 and 8 cosine similarity -0.07405440546929458
+3 and 9 cosine similarity -0.12722853728547504
+4 and 5 cosine similarity -0.08490624635987733
+4 and 6 cosine similarity -0.09966273064030298
+4 and 7 cosine similarity -0.13575711771992363
+4 and 8 cosine similarity -0.10042425134246798
+4 and 9 cosine similarity -0.055580540744416915
+5 and 6 cosine similarity -0.0679139288585311
+5 and 7 cosine similarity -0.12562076206558323
+5 and 8 cosine similarity -0.056229256955684044
+5 and 9 cosine similarity -0.07947907404526294
+6 and 7 cosine similarity -0.12418813126081288
+6 and 8 cosine similarity -0.08964962840562572
+6 and 9 cosine similarity -0.08826764968723858
+7 and 8 cosine similarity -0.13310649570429936
+7 and 9 cosine similarity -0.1456533176570388
+8 and 9 cosine similarity -0.0868588378021391
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f23c7cf2b20&gt;
+</pre></div>
+</div>
+<img alt="../../../_images/a114f62e8ff4000ac349255d50fac7f93a40aad26ffca71bdcb677c5b2cd41f1.png" src="../../../_images/a114f62e8ff4000ac349255d50fac7f93a40aad26ffca71bdcb677c5b2cd41f1.png">
+</img></div>
+</div>
+</section>
+<section id="using-the-network-to-identify-nearest-neighbors-in-the-test-set">
+<h3>Using the network to identify nearest neighbors in the test set.<a class="headerlink" href="#using-the-network-to-identify-nearest-neighbors-in-the-test-set" title="Permalink to this heading">#</a></h3>
+<p>But how do people actually use a contrastive learned network? In Person Re-ID (reidentification), you will use a network to compute the embeddings for two images, and check if the embeddings have cosine/euclidean similarity above some threshold to decide if they are the same person.</p>
+<p>In foundation model training (CLIP), people typically fine tune the entire network or train a linear probe or small network on the last layer outputs.</p>
+<p>Here, we will follow the person Re-ID setup, and try to find the most similar image in a test set and decide if they represent the same character!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sims_all</span> <span class="o">=</span> <span class="n">test_embeddings_normed</span><span class="nd">@test_embeddings_normed</span><span class="o">.</span><span class="n">T</span>
+<span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">sims_all</span><span class="p">,</span> <span class="o">-</span><span class="mf">1000.0</span><span class="p">)</span>
+<span class="c1"># Set to a small value so it doesn't give us the same number for argmax</span>
+
+<span class="n">idx_to_check</span> <span class="o">=</span> <span class="mi">3029</span>
+<span class="n">best_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">sims_all</span><span class="p">[</span><span class="n">idx_to_check</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">test_dset</span><span class="p">[</span><span class="n">idx_to_check</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">test_dset</span><span class="p">[</span><span class="n">best_idx</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/6601eeb4cc3cf163d805fb870fc43317456381954a7dcecea8c2e79cf5f1888e.png" src="../../../_images/6601eeb4cc3cf163d805fb870fc43317456381954a7dcecea8c2e79cf5f1888e.png"/>
+<img alt="../../../_images/2c27058fe2599b06930a4cb8e42c511691bda6c6b126b375dd2855383397c5e4.png" src="../../../_images/2c27058fe2599b06930a4cb8e42c511691bda6c6b126b375dd2855383397c5e4.png"/>
+</div>
+</div>
+</section>
+<section id="how-is-contrastive-learning-used-in-practice">
+<h3>How is contrastive learning used in practice?<a class="headerlink" href="#how-is-contrastive-learning-used-in-practice" title="Permalink to this heading">#</a></h3>
+<p>Nearly all vision foundation models (DINO and DINOv2, CLIP and all CLIP derivatives including OpenCLIP/EVA-CLIP) are trained using contrastive losses. DINO/v2 is trained on images alone, while CLIP is trained on a combination of images and text.</p>
+<p>When only images are used, the contrastive learning loss is applied to augmentations of the same image. Examples include crops/flips/rotations of images – when used in the way, the augmentations are called a “pretext task”. Typically, augmentations of the same image are treated as instances where the embeddings should be the same. So for example, a network should recognize a photo of you, and a photo of you flipped (or brightness changed, or noise added, or changed to black and white) as a photo of the same person.</p>
+<p>When images and text are used together as in CLIP, you have images and captions of those images – for example the caption “A photo of a dog” may be matched to a picture of a blue heeler puppy. These captions are typicalled scraped from online sources, and collected into datasets like LAION-2B/COYO-700M/CommonCrawl. While these captions are typically not high quality, having billions of them do seem to mitigate this issue. When contrastive learning is used in this case, typically a dual encoder is used – one for text, and one for the image. The network is trained using a loss which minimizes the distance between the correct text and image pair, while distances between incorrect text and image pairs are maximized. For example – the caption “A photo of a dog” and the picture of the blue heeler puppy should have embeddings that are close, while the caption should be far away from a picture of a cat. Often times, normalized dot-product (cosine similarity), angular distance (Universal Sentence Encoder) euclidean distance, or squared euclidean distance are applied to compute the “distance” of the embeddings.</p>
+<p>Referencess:</p>
+<p>[1] Unsupervised feature learning via non-parametric
+instance discrimination (2018)</p>
+<p>[2] Representation learning with contrastive predictive coding (2018)</p>
+<p>[3] A simple framework for contrastive learning of visual representations (2020)</p>
+<p>[4] Improved Deep Metric Learning with Multi-class N-pair Loss Objective (2016)</p>
+<p>[4] Noise-contrastive estimation: A new estimation principle for unnormalize
+statistical models (2010)</p>
+</section>
+</section>
+</section>
+<script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials/W1D2_ComparingTasks/student"
+        },
+        predefinedOutput: true
+    }
+    </script>
+<script>kernelName = 'python3'</script>
+</article>
+<footer class="bd-footer-article">
+<!-- Previous / next buttons -->
+<div class="prev-next-area">
+<a class="left-prev" href="W1D2_Tutorial1.html" id="prev-link" title="previous page">
+<i class="fa-solid fa-angle-left"></i>
+<div class="prev-next-info">
+<p class="prev-next-subtitle">previous</p>
+<p class="prev-next-title"><strong>Tutorial 1:Task definition, application, relations and impacts on generalization</strong></p>
+</div>
+</a>
+<a class="right-next" href="W1D2_Tutorial3.html" id="next-link" title="next page">
+<div class="prev-next-info">
+<p class="prev-next-subtitle">next</p>
+<p class="prev-next-title">Tutorial 3: Reinforcement learning across temporal scales</p>
+</div>
+<i class="fa-solid fa-angle-right"></i>
+</a>
+</div>
+</footer>
+</div>
+<div class="bd-sidebar-secondary bd-toc">
+<div class="toc-item">
+<div class="tocsection onthispage">
+<i class="fa-solid fa-list"></i> On this page
+</div>
+<nav class="page-toc" id="bd-toc-nav">
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#">
+   Tutorial 2: Contrastive learning for object recognition
+  </a>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tutorial-objectives">
+   Tutorial Objectives
+  </a>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#install-and-import-feedback-gadget">
+     Install and import feedback gadget
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#install-dependencies">
+     Install dependencies
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#import-dependencies">
+     Import dependencies
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#figure-settings">
+     Figure settings
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#plotting-functions">
+     Plotting functions
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#helper-functions">
+     Helper functions
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#overview-of-the-tutorial">
+     Overview of the tutorial
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#speeding-up-training-and-inference">
+       Speeding up training and inference.
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#analysis-of-the-results">
+       Analysis of the results
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#what-is-contrastive-learning">
+       What is contrastive learning?
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#why-contrastive-learning">
+       Why contrastive learning?
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#terms-defined-and-other-stuff">
+       Terms defined and other stuff
+      </a>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#getting-started">
+     Getting Started
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#mini-residual-block">
+       Mini residual block
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#full-model-construction">
+       Full model construction
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#visualizing-the-cosine-similarity-of-embeddings-within-the-same-class-and-across-different-classes-before-training">
+       Visualizing the cosine similarity of embeddings within the same class and across different classes before training
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#visualizing-the-cosine-similarity-after-training">
+       Visualizing the cosine similarity AFTER training
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#using-the-network-to-identify-nearest-neighbors-in-the-test-set">
+       Using the network to identify nearest neighbors in the test set.
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#how-is-contrastive-learning-used-in-practice">
+       How is contrastive learning used in practice?
+      </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<footer class="bd-footer-content">
+<div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+<div class="footer-item">
+<p class="component-author">
+By Neuromatch
+</p>
+</div>
+<div class="footer-item">
+</div>
+<div class="footer-item">
+<p class="last-updated">
+Last updated on None.<br/>
+</p>
+</div>
+<div class="footer-item">
+<div class="extra_footer">
+<div>
+<a href="http://creativecommons.org/licenses/by/4.0/"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png"/></a>
+<a href="https://opensource.org/licenses/BSD-3-Clause"><img src="https://camo.githubusercontent.com/9b9ea65d95c9ef878afa1987df65731d47681336/68747470733a2f2f696d672e736869656c64732e696f2f707970692f6c2f736561626f726e2e737667"/></a>
+The contents of this repository are shared under the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+Software elements are additionally licensed under the <a href="https://opensource.org/licenses/BSD-3-Clause">BSD (3-Clause) License</a>.
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</main>
+</div>
+</div>
+<!-- Scripts loaded after <body> so the DOM is not blocked -->
+<script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+</body>
+</html>
