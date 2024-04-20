@@ -1,1 +1,1 @@
-# ComparingArtificialAndBiologicalNetworks
+# Comparing Artificial And Biological Networks
