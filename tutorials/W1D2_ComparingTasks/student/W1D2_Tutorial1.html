@@ -589,6 +589,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_Intro.html">Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_Tutorial1.html">Tutorial 1: Sparsity and Sparse Coding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_Tutorial2.html">Tutorial 2: Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_Tutorial3.html">Tutorial 3: Attention</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_Outro.html">Outro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_DaySummary.html">Day Summary</a></li>
 </ul>
@@ -970,7 +971,9 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: torchvision in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (0.17.2)
-Requirement already satisfied: torchmetrics in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (1.3.2)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: torchmetrics in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (1.3.2)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: filelock in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (3.13.4)
@@ -993,9 +996,7 @@ Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /opt/hostedtoolcach
 Requirement already satisfied: triton==2.2.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (2.2.0)
 Requirement already satisfied: nvidia-nvjitlink-cu12 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from nvidia-cusolver-cu12==11.4.5.107-&gt;torch) (12.4.127)
 Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torchvision) (1.26.4)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pillow!=8.3.*,&gt;=5.3.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torchvision) (10.2.0)
+Requirement already satisfied: pillow!=8.3.*,&gt;=5.3.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torchvision) (10.2.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: packaging&gt;17.1 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torchmetrics) (24.0)
@@ -1038,11 +1039,11 @@ Requirement already satisfied: jinja2 in /opt/hostedtoolcache/Python/3.9.19/x64/
 Requirement already satisfied: fsspec in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (2024.3.1)
 Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
 Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
-Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
-Requirement already satisfied: nvidia-cudnn-cu12==8.9.2.26 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (8.9.2.26)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.3.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==8.9.2.26 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (8.9.2.26)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.3.1)
 Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (11.0.2.54)
 Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (10.3.2.106)
 Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (11.4.5.107)
@@ -1092,8 +1093,8 @@ Requirement already satisfied: pure-eval in /opt/hostedtoolcache/Python/3.9.19/x
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="-Color -Color-Green">0.0/330.1 kB</span> <span class="-Color -Color-Red">?</span> eta <span class="-Color -Color-Cyan">-:--:--</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="-Color -Color-Green">112.6/330.1 kB</span> <span class="-Color -Color-Red">3.5 MB/s</span> eta <span class="-Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="-Color -Color-Green">330.1/330.1 kB</span> <span class="-Color -Color-Red">6.0 MB/s</span> eta <span class="-Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="-Color -Color-Green">102.4/330.1 kB</span> <span class="-Color -Color-Red">2.9 MB/s</span> eta <span class="-Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class="-Color -Color-Green">330.1/330.1 kB</span> <span class="-Color -Color-Red">5.7 MB/s</span> eta <span class="-Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -1570,13 +1571,13 @@ Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to ./dat
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/9912422 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 9912422/9912422 [00:00&lt;00:00, 208390154.05it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 9912422/9912422 [00:00&lt;00:00, 235305800.30it/s]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/MNIST/raw/train-images-idx3-ubyte.gz to ./data/MNIST/raw
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
@@ -1586,7 +1587,7 @@ Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz to ./dat
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/28881 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 28881/28881 [00:00&lt;00:00, 71508674.04it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 28881/28881 [00:00&lt;00:00, 56473516.93it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1601,30 +1602,28 @@ Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz to ./data
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/1648877 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 1648877/1648877 [00:00&lt;00:00, 113693984.72it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 1648877/1648877 [00:00&lt;00:00, 144783875.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/MNIST/raw/t10k-images-idx3-ubyte.gz to ./data/MNIST/raw
 
 Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to ./data/MNIST/raw/t10k-labels-idx1-ubyte.gz
+Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to ./data/MNIST/raw/t10k-labels-idx1-ubyte.gz
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/4542 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 4542/4542 [00:00&lt;00:00, 27137505.37it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 4542/4542 [00:00&lt;00:00, 8856591.71it/s]
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/MNIST/raw/t10k-labels-idx1-ubyte.gz to ./data/MNIST/raw
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(54000, 6000, 5000, 5000)
@@ -1660,7 +1659,7 @@ Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/1108e78fcfe12497f40cac93bbf061185e44c27b843c5d45ae4bc0d13e760fbf.png" src="../../../_images/1108e78fcfe12497f40cac93bbf061185e44c27b843c5d45ae4bc0d13e760fbf.png">
+<img alt="../../../_images/ee7d42e40fc72e7c617d50593a8e840ad67147080449e26371670e9123c7a481.png" src="../../../_images/ee7d42e40fc72e7c617d50593a8e840ad67147080449e26371670e9123c7a481.png">
 </img></div>
 </div>
 <p>Prepare the dataset for loading to the network</p>
@@ -2316,119 +2315,173 @@ Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 1| Train cost:  58551.57422| Val cost:  75896.96875| Test cost:  70294.83543|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 1| Train cost:  58551.57031| Val cost:  75896.39844| Test cost:  70294.41505|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 2| Train cost:  58549.91797| Val cost:  75887.95312| Test cost:  70309.58030|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 2| Train cost:  58549.66406| Val cost:  75886.71875| Test cost:  70308.35519|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 3| Train cost:  58542.43750| Val cost:  75866.89844| Test cost:  70287.20632|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 3| Train cost:  58541.80078| Val cost:  75864.17188| Test cost:  70284.77183|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 4| Train cost:  58527.43750| Val cost:  75826.42969| Test cost:  70249.28693|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 4| Train cost:  58525.08594| Val cost:  75821.71875| Test cost:  70245.16199|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 5| Train cost:  58494.53125| Val cost:  75754.49219| Test cost:  70189.82811|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 5| Train cost:  58492.65625| Val cost:  75747.13281| Test cost:  70182.32335|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 6| Train cost:  58442.43750| Val cost:  75633.91406| Test cost:  70081.68406|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 6| Train cost:  58435.96094| Val cost:  75620.82031| Test cost:  70070.32372|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 7| Train cost:  58343.44922| Val cost:  75442.50781| Test cost:  69909.26924|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 7| Train cost:  58335.18750| Val cost:  75417.63281| Test cost:  69892.27343|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 8| Train cost:  58209.46875| Val cost:  75134.80469| Test cost:  69622.31923|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 8| Train cost:  58190.68750| Val cost:  75114.02344| Test cost:  69596.33571|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 9| Train cost:  57965.10156| Val cost:  74663.34375| Test cost:  69204.89394|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 9| Train cost:  57943.60156| Val cost:  74643.62500| Test cost:  69169.19240|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 10| Train cost:  57613.23047| Val cost:  73974.95312| Test cost:  68556.06588|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 10| Train cost:  57591.58594| Val cost:  73867.58594| Test cost:  68503.36840|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 11| Train cost:  57129.15625| Val cost:  72892.80469| Test cost:  67618.66691|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 11| Train cost:  57064.60156| Val cost:  72820.35156| Test cost:  67548.02633|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 12| Train cost:  56293.41406| Val cost:  71440.44531| Test cost:  66289.96447|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 12| Train cost:  56304.13281| Val cost:  71301.78125| Test cost:  66192.67457|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 13| Train cost:  55228.40625| Val cost:  69509.57812| Test cost:  64534.60365|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 13| Train cost:  55337.78906| Val cost:  69290.53906| Test cost:  64429.13763|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 14| Train cost:  53921.48047| Val cost:  67287.39844| Test cost:  62578.10737|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 14| Train cost:  53949.25000| Val cost:  67233.60938| Test cost:  62496.46667|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 15| Train cost:  52432.44922| Val cost:  65500.67188| Test cost:  61058.68452|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 15| Train cost:  52311.71094| Val cost:  65477.87109| Test cost:  61097.08741|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 16| Train cost:  51201.46094| Val cost:  65500.52734| Test cost:  61218.70291|
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 17| Train cost:  51496.28906| Val cost:  65620.41406| Test cost:  61251.78252|
-Elapsed: 39.78741979598999
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 16| Train cost:  51245.10938| Val cost:  65853.80469| Test cost:  61501.19828|
+Elapsed: 37.85407471656799
 Saving the model: models/ConvNet_inpainting_10.pth
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 1| Train cost:  65321.14746| Val cost:  67799.78125| Test cost:  69720.69352|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 1| Train cost:  66104.27344| Val cost:  75973.21875| Test cost:  69685.47510|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 2| Train cost:  66256.20898| Val cost:  63173.07031| Test cost:  65004.20020|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 2| Train cost:  67745.95117| Val cost:  69993.05469| Test cost:  64464.47687|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 3| Train cost:  57079.56641| Val cost:  52646.92188| Test cost:  54151.19562|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 3| Train cost:  60101.37305| Val cost:  60416.45703| Test cost:  56510.63585|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 4| Train cost:  51947.84961| Val cost:  48314.62891| Test cost:  49884.12842|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 4| Train cost:  53506.02539| Val cost:  53505.19141| Test cost:  49858.54906|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 5| Train cost:  49887.02930| Val cost:  46246.44141| Test cost:  47657.29792|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 5| Train cost:  45300.84082| Val cost:  50836.48828| Test cost:  47092.30315|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 6| Train cost:  45827.50781| Val cost:  44498.41016| Test cost:  46103.48594|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 6| Train cost:  43338.80371| Val cost:  49157.11719| Test cost:  45421.52500|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 7| Train cost:  41192.01367| Val cost:  43083.42188| Test cost:  44701.76670|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 7| Train cost:  39999.25000| Val cost:  46039.91406| Test cost:  42332.31116|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 8| Train cost:  42314.45215| Val cost:  40813.73047| Test cost:  42599.28693|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 8| Train cost:  43346.93750| Val cost:  44431.13672| Test cost:  40819.64156|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 9| Train cost:  38242.72705| Val cost:  39677.70312| Test cost:  41287.76179|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 9| Train cost:  37790.75195| Val cost:  44087.44531| Test cost:  40239.14248|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 10| Train cost:  39076.31152| Val cost:  39161.05859| Test cost:  40680.75932|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 10| Train cost:  37037.41309| Val cost:  42871.57422| Test cost:  39467.43550|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 11| Train cost:  37774.77148| Val cost:  37938.82031| Test cost:  39601.98731|
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 12| Train cost:  35554.97070| Val cost:  37970.20703| Test cost:  39384.19465|
-Elapsed: 28.521902322769165
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 11| Train cost:  36555.97949| Val cost:  42884.01953| Test cost:  39199.82632|
+Elapsed: 26.28298306465149
 Saving the model: models/ConvNet_inpainting_100.pth
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 1| Train cost:  57344.20312| Val cost:  48309.56738| Test cost:  51075.27487|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 1| Train cost:  58754.75378| Val cost:  48476.56836| Test cost:  46740.72792|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 2| Train cost:  45240.54382| Val cost:  40492.27148| Test cost:  42109.33805|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 2| Train cost:  42903.18103| Val cost:  41103.86816| Test cost:  38890.79395|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 3| Train cost:  38501.26727| Val cost:  36143.80664| Test cost:  37563.65717|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 3| Train cost:  38576.17102| Val cost:  39890.79297| Test cost:  37304.56100|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 4| Train cost:  36532.60541| Val cost:  36299.89355| Test cost:  37250.74450|
-Elapsed: 10.932788133621216
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 4| Train cost:  37710.37683| Val cost:  40039.49805| Test cost:  37012.26954|
+Elapsed: 10.992488622665405
 Saving the model: models/ConvNet_inpainting_1000.pth
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 1| Train cost:  38922.24870| Val cost:  36172.53449| Test cost:  36586.28071|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 1| Train cost:  38591.96315| Val cost:  36683.13136| Test cost:  36498.85212|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 2| Train cost:  36417.51345| Val cost:  36058.48510| Test cost:  36492.45452|
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 2| Train cost:  32797.62951| Val cost:  29538.36568| Test cost:  28832.62476|
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 3| Train cost:  36304.65434| Val cost:  36082.68873| Test cost:  36507.00944|
-Elapsed: 18.919326782226562
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 3| Train cost:  26753.96784| Val cost:  24584.95960| Test cost:  23910.61064|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 4| Train cost:  22778.06876| Val cost:  22143.77227| Test cost:  21544.14901|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 5| Train cost:  21238.18517| Val cost:  21472.07840| Test cost:  20959.27656|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 6| Train cost:  20564.73516| Val cost:  20777.74353| Test cost:  20227.07392|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 7| Train cost:  20003.04126| Val cost:  20152.55893| Test cost:  19796.31144|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 8| Train cost:  19478.35698| Val cost:  19821.93343| Test cost:  19426.63869|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 9| Train cost:  19144.35199| Val cost:  19528.33895| Test cost:  19273.71910|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 10| Train cost:  18807.66027| Val cost:  19094.71323| Test cost:  18829.29266|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 11| Train cost:  18575.88774| Val cost:  18831.93225| Test cost:  18599.48834|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 12| Train cost:  18339.50348| Val cost:  18529.07112| Test cost:  18239.09610|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 13| Train cost:  18067.35590| Val cost:  18461.12079| Test cost:  18283.79795|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 14| Train cost:  17950.33193| Val cost:  18328.08092| Test cost:  18070.69265|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 15| Train cost:  17710.80770| Val cost:  18111.89102| Test cost:  17830.12883|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 16| Train cost:  17657.99150| Val cost:  17862.74690| Test cost:  17638.96318|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 17| Train cost:  17386.74335| Val cost:  17809.22983| Test cost:  17500.35239|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 18| Train cost:  17080.59156| Val cost:  17433.18717| Test cost:  16965.27564|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 19| Train cost:  16646.59119| Val cost:  17075.89090| Test cost:  16656.49307|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 20| Train cost:  16300.25133| Val cost:  16670.36998| Test cost:  16327.85822|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 21| Train cost:  16031.95790| Val cost:  16429.38398| Test cost:  16193.23567|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 22| Train cost:  15816.20367| Val cost:  15998.32815| Test cost:  15734.10655|
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 23| Train cost:  15623.02100| Val cost:  16127.52218| Test cost:  15762.36211|
+Elapsed: 146.3715238571167
 Saving the model: models/ConvNet_inpainting_10000.pth
 </pre></div>
 </div>

@@ -589,6 +589,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_Intro.html">Intro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_Tutorial1.html">Tutorial 1: Sparsity and Sparse Coding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_Tutorial2.html">Tutorial 2: Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_Tutorial3.html">Tutorial 3: Attention</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_Outro.html">Outro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../W1D5_Microcircuits/student/W1D5_DaySummary.html">Day Summary</a></li>
 </ul>
@@ -904,7 +905,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ol>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "573cf45ad78942f4a06b62161270c176"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "41f436d0324e474cac78a7b0d5e8cf5c"}</script></div>
 </div>
 </section>
 <hr class="docutils"/>
@@ -1001,9 +1002,7 @@ Requirement already satisfied: pygments&gt;=2.4.0 in /opt/hostedtoolcache/Python
 Requirement already satisfied: stack-data in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (0.6.3)
 Requirement already satisfied: exceptiongroup in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (1.2.1)
 Requirement already satisfied: pexpect&gt;4.3 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from ipython&gt;=6.1.0-&gt;ipywidgets) (4.9.0)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.16.0)
+Requirement already satisfied: six&gt;=1.5 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.16.0)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: MarkupSafe&gt;=2.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from jinja2-&gt;torch) (2.1.5)
@@ -1517,9 +1516,9 @@ Verification successful: All models are in the correct directory.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/97a81cdb20f3cefb30699f9ea9362c29fa59bdc285dd0bb8189f837468dcb6c8.png" src="../../../_images/97a81cdb20f3cefb30699f9ea9362c29fa59bdc285dd0bb8189f837468dcb6c8.png">
-<img alt="../../../_images/d355c4379bb0fcb5954e1a11bc001e9cfcb2b3a94c0383c60792409104e463f2.png" src="../../../_images/d355c4379bb0fcb5954e1a11bc001e9cfcb2b3a94c0383c60792409104e463f2.png">
-<img alt="../../../_images/e115b32f798c8be78ba24d1e037997bf3c517a7e69219bd478a49fb8c22b00ee.png" src="../../../_images/e115b32f798c8be78ba24d1e037997bf3c517a7e69219bd478a49fb8c22b00ee.png"/>
+<img alt="../../../_images/b0efab917a0480d3cb4bd7bbcf1b74f473a8f3c4d8acd5069d1457fb43e0698c.png" src="../../../_images/b0efab917a0480d3cb4bd7bbcf1b74f473a8f3c4d8acd5069d1457fb43e0698c.png">
+<img alt="../../../_images/4565de67aee2a7c86fb7c48786fee833cb9c866938a046fd971c1c55c5947433.png" src="../../../_images/4565de67aee2a7c86fb7c48786fee833cb9c866938a046fd971c1c55c5947433.png">
+<img alt="../../../_images/9307d9c6e4888b3fc32970211aee5667e0306be918ce0d9d0568371bb8e3f2dc.png" src="../../../_images/9307d9c6e4888b3fc32970211aee5667e0306be918ce0d9d0568371bb8e3f2dc.png"/>
 </img></img></div>
 </div>
 </section>
@@ -1647,7 +1646,7 @@ Loading classification dataset...
   warnings.warn("using untested python implementation of "
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 1/20 took 0:00:10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 1/20 took 0:00:11
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/pybpl/bottomup/generate_random_parses.py:9: UserWarning: using untested python implementation of 'generate_random_walks'
@@ -1666,13 +1665,13 @@ Loading classification dataset...
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 5/20 took 0:00:02
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 6/20 took 0:02:24
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 6/20 took 0:02:28
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 7/20 took 0:00:03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 8/20 took 0:00:17
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 8/20 took 0:00:18
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 9/20 took 0:00:02
@@ -1735,31 +1734,53 @@ Loading classification dataset...
 <span class="g g-Whitespace">    </span><span class="mi">193</span>         <span class="n">splines_batch</span><span class="p">,</span> <span class="n">drawings_batch</span><span class="p">,</span> <span class="n">filter_small</span><span class="p">,</span> <span class="n">denormalize</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">194</span> <span class="k">return</span> <span class="n">losses</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/type/model.py:160,</span> in <span class="ni">TypeModel._losses_fn</span><span class="nt">(self, splines_list, drawing_list, filter_small, denormalize)</span>
-<span class="g g-Whitespace">    </span><span class="mi">158</span> <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ns</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">ns</span> <span class="ow">in</span> <span class="n">ns_list</span><span class="p">]</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/type/model.py:163,</span> in <span class="ni">TypeModel._losses_fn</span><span class="nt">(self, splines_list, drawing_list, filter_small, denormalize)</span>
 <span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="k">if</span> <span class="n">denormalize</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">160</span>     <span class="n">losses_loc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loc</span><span class="o">.</span><span class="n">losses_fn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span>     <span class="n">losses_loc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loc</span><span class="o">.</span><span class="n">losses_fn</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">161</span>         <span class="n">x_canv</span><span class="o">=</span><span class="n">canvases</span><span class="p">,</span> <span class="n">prev</span><span class="o">=</span><span class="n">prevs</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">locs</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">162</span>         <span class="n">mean_X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">space_mean</span><span class="p">,</span> <span class="n">std_X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">space_scale</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">163</span>     <span class="n">losses_stk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stk</span><span class="o">.</span><span class="n">losses_fn</span><span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">163</span>     <span class="n">losses_stk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stk</span><span class="o">.</span><span class="n">losses_fn</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">164</span>         <span class="n">x_canv</span><span class="o">=</span><span class="n">canvases</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">locs</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">trajs</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">165</span>         <span class="n">std_X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">space_scale</span>
 <span class="g g-Whitespace">    </span><span class="mi">166</span>     <span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">167</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>     <span class="n">losses_loc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loc</span><span class="o">.</span><span class="n">losses_fn</span><span class="p">(</span><span class="n">x_canv</span><span class="o">=</span><span class="n">canvases</span><span class="p">,</span> <span class="n">prev</span><span class="o">=</span><span class="n">prevs</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">locs</span><span class="p">)</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/type/location_model.py:118,</span> in <span class="ni">CNNStart.losses_fn</span><span class="nt">(self, x_canv, start, prev, mean_X, std_X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">116</span> <span class="k">def</span> <span class="nf">losses_fn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_canv</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">mean_X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">std_X</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">117</span>     <span class="c1"># forward model</span>
-<span class="ne">--&gt; </span><span class="mi">118</span>     <span class="n">start_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x_canv</span><span class="p">,</span> <span class="n">prev</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="c1"># apply de-normalize</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="k">if</span> <span class="p">(</span><span class="n">mean_X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">std_X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/type/stroke_model.py:353,</span> in <span class="ni">LSTMConditioned.losses_fn</span><span class="nt">(self, x, x_canv, start, std_X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span> <span class="n">mask_v</span> <span class="o">=</span> <span class="n">terminate_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span> <span class="c1"># compute forward pass</span>
+<span class="ne">--&gt; </span><span class="mi">353</span> <span class="n">x_pred</span><span class="p">,</span> <span class="n">v_logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_canv</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">354</span> <span class="c1"># apply de-normalize</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span> <span class="k">if</span> <span class="n">std_X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/type/location_model.py:84,</span> in <span class="ni">CNNStart.forward</span><span class="nt">(self, x, prev)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'bilinear'</span><span class="p">,</span> <span class="n">align_corners</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span> <span class="n">x</span> <span class="o">=</span> <span class="n">zscore_canvases</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">84</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># (n,64,1,1)</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (n,64)</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span> <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">prev</span><span class="p">],</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (n,64+2)</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/type/stroke_model.py:294,</span> in <span class="ni">LSTMConditioned.forward</span><span class="nt">(self, x, x_canv, start)</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span> <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s_embed</span><span class="p">(</span><span class="n">start</span><span class="p">)</span> <span class="c1"># (n,16)</span>
+<span class="g g-Whitespace">    </span><span class="mi">293</span> <span class="c1"># init</span>
+<span class="ne">--&gt; </span><span class="mi">294</span> <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cnn</span><span class="p">(</span><span class="n">x_canv</span><span class="p">)</span> <span class="c1"># (n,locs,feats)</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span> <span class="n">h_t</span><span class="p">,</span> <span class="n">c_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_init</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span> <span class="c1"># (layers,n,hid)</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_att</span><span class="o">.</span><span class="n">register_annotation</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/module.py:1511,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1509</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1510</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1511</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/module.py:1520,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1515</span> <span class="c1"># If we don't have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1516</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1517</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1518</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1519</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1520</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1522</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1523</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/type/stroke_model.py:33,</span> in <span class="ni">CNN.forward</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'bilinear'</span><span class="p">,</span> <span class="n">align_corners</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">x</span> <span class="o">=</span> <span class="n">zscore_canvases</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">new_stats</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">new_zscore</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">33</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># (n,8,5,5)</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (n,5,5,8)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># (n,5*5,8)</span>
 
 <span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/module.py:1511,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1509</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
@@ -1797,30 +1818,17 @@ Loading classification dataset...
 <span class="g g-Whitespace">   </span><span class="mi">1522</span> <span class="k">try</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1523</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/container.py:217,</span> in <span class="ni">Sequential.forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span>     <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">217</span>         <span class="nb">input</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">218</span>     <span class="k">return</span> <span class="nb">input</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/conv.py:460,</span> in <span class="ni">Conv2d.forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">460</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conv_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/module.py:1511,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1509</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1510</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1511</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/module.py:1520,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1515</span> <span class="c1"># If we don't have any hooks, we want to skip the rest of the logic in</span>
-<span class="g g-Whitespace">   </span><span class="mi">1516</span> <span class="c1"># this function, and just call forward.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1517</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1518</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1519</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1520</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1522</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1523</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/activation.py:356,</span> in <span class="ni">Tanh.forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">355</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">356</span>     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/conv.py:456,</span> in <span class="ni">Conv2d._conv_forward</span><span class="nt">(self, input, weight, bias)</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding_mode</span> <span class="o">!=</span> <span class="s1">'zeros'</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span>     <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reversed_padding_repeated_twice</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">padding_mode</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span>                     <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span>                     <span class="n">_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">456</span> <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
