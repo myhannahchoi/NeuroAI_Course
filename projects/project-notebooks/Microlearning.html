@@ -66,7 +66,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Comparing networks: characterizing computational similarity in task-trained recurrent neural networks" href="ComparingNetworks.html" />
-    <link rel="prev" title="Datasets" href="../docs/datasets_overview.html" />
+    <link rel="prev" title="Macrocircuits: leveraging neural architectural priors and modularity in embodied agents" href="Macrocircuits.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -855,6 +855,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../docs/project_guidance.html">Daily guide for projects</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../docs/datasets_overview.html">Project materials</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Macrocircuits.html">Macrocircuits: leveraging neural architectural priors and modularity in embodied agents</a></li>
+
+
+
+
+
+
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Microlearning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ComparingNetworks.html">Comparing networks: characterizing computational similarity in task-trained recurrent neural networks</a></li>
 
@@ -1473,21 +1480,6 @@ Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyt
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz to ./data/MNIST/raw/train-images-idx3-ubyte.gz
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/9912422 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|▎         | 360448/9912422 [00:00&lt;00:02, 3297112.93it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 62%|██████▏   | 6160384/9912422 [00:00&lt;00:00, 32177614.41it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 9912422/9912422 [00:00&lt;00:00, 39004093.36it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/MNIST/raw/train-images-idx3-ubyte.gz to ./data/MNIST/raw
 </pre></div>
 </div>
@@ -1499,15 +1491,6 @@ Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyt
 Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyte.gz to ./data/MNIST/raw/train-labels-idx1-ubyte.gz
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/28881 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 28881/28881 [00:00&lt;00:00, 1251944.99it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/MNIST/raw/train-labels-idx1-ubyte.gz to ./data/MNIST/raw
 
 Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
@@ -1515,31 +1498,9 @@ Failed to download (trying next):
 HTTP Error 403: Forbidden
 
 Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz
-Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz to ./data/MNIST/raw/t10k-images-idx3-ubyte.gz
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/1648877 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 12%|█▏        | 196608/1648877 [00:00&lt;00:00, 1595218.26it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 26%|██▌       | 425984/1648877 [00:00&lt;00:00, 1899200.07it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|████▎     | 720896/1648877 [00:00&lt;00:00, 2185056.77it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 66%|██████▌   | 1081344/1648877 [00:00&lt;00:00, 2633982.88it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 91%|█████████▏| 1507328/1648877 [00:00&lt;00:00, 3004806.12it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 1648877/1648877 [00:00&lt;00:00, 2758516.85it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz to ./data/MNIST/raw/t10k-images-idx3-ubyte.gz
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/MNIST/raw/t10k-images-idx3-ubyte.gz to ./data/MNIST/raw
@@ -1554,21 +1515,13 @@ Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte.gz to ./data/MNIST/raw/t10k-labels-idx1-ubyte.gz
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/4542 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 4542/4542 [00:00&lt;00:00, 8466901.67it/s]
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/MNIST/raw/t10k-labels-idx1-ubyte.gz to ./data/MNIST/raw
-
-Number of examples retained:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of examples retained:
   24001 (training)
   5999 (validation)
   5000 (test)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1759,7 +1712,7 @@ Number of examples retained:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c6682e67444a7b98ee2c19d22931952bc2f5aaf445fd28e7336819f494ef419a.png" src="../../_images/c6682e67444a7b98ee2c19d22931952bc2f5aaf445fd28e7336819f494ef419a.png" />
+<img alt="../../_images/111a8528b7e285d4ca618dc1aec84cc496fb47ae1d4662f96bda8d73797872bd.png" src="../../_images/111a8528b7e285d4ca618dc1aec84cc496fb47ae1d4662f96bda8d73797872bd.png" />
 </div>
 </div>
 </section>
@@ -2202,30 +2155,6 @@ Number of examples retained:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/5 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 1/5 [00:05&lt;00:20,  5.13s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 2/5 [00:10&lt;00:15,  5.26s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 3/5 [00:15&lt;00:10,  5.29s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 4/5 [00:21&lt;00:05,  5.31s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 5/5 [00:26&lt;00:00,  5.31s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 5/5 [00:26&lt;00:00,  5.29s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </div>
 </div>
 <p><strong>Note:</strong> The training function does not use the <code class="docutils literal notranslate"><span class="pre">test_loader</span></code>. This additional dataloader can be used to evaluate the models if, for example, you need use the validation set for model selection.</p>
@@ -2482,7 +2411,7 @@ Number of examples retained:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/48699ea8c3b82bfee9e2fef1c9f4b69a6ef92b7f9a44d8f54a481200bfec7b89.png" src="../../_images/48699ea8c3b82bfee9e2fef1c9f4b69a6ef92b7f9a44d8f54a481200bfec7b89.png" />
+<img alt="../../_images/9216ecfd9f5746fe86fbe8bc5afb963ae5b71365752a02650e39a90b2de0f51c.png" src="../../_images/9216ecfd9f5746fe86fbe8bc5afb963ae5b71365752a02650e39a90b2de0f51c.png" />
 </div>
 </div>
 </section>
@@ -2496,7 +2425,7 @@ Number of examples retained:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/293255b3379b75bc1ef860735840645385fd3b8dded01c64c72b4ea146c2d6fc.png" src="../../_images/293255b3379b75bc1ef860735840645385fd3b8dded01c64c72b4ea146c2d6fc.png" />
+<img alt="../../_images/0124009ff3c8a0aa10a065840accaa485ae47572685e5f995cba4e52d19e3e52.png" src="../../_images/0124009ff3c8a0aa10a065840accaa485ae47572685e5f995cba4e52d19e3e52.png" />
 </div>
 </div>
 </section>
@@ -2510,7 +2439,7 @@ Number of examples retained:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fbc78af8b0b77af2f00c18737e932189e92ab2afaa7e20beca2222d5ab4090ae.png" src="../../_images/fbc78af8b0b77af2f00c18737e932189e92ab2afaa7e20beca2222d5ab4090ae.png" />
+<img alt="../../_images/50d6ce571ffaf277147589740d605b78510935321be8d41518058a01ea3cb655.png" src="../../_images/50d6ce571ffaf277147589740d605b78510935321be8d41518058a01ea3cb655.png" />
 </div>
 </div>
 </section>
@@ -2525,7 +2454,7 @@ Number of examples retained:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0fc5ecfaedf28a8b4ea0b2ecbac41fc0b97fddb13b2272f3ba427b3d0f513c67.png" src="../../_images/0fc5ecfaedf28a8b4ea0b2ecbac41fc0b97fddb13b2272f3ba427b3d0f513c67.png" />
+<img alt="../../_images/d7092af310f85e991a57ba2c8d116fbdb8d785589ec863fa6ec822ffa3a67cd0.png" src="../../_images/d7092af310f85e991a57ba2c8d116fbdb8d785589ec863fa6ec822ffa3a67cd0.png" />
 </div>
 </div>
 <p>❓ <strong>What other metrics might you collect or visualize to understand how the model is learning to perform this task?</strong></p>
@@ -2874,7 +2803,7 @@ Same as (Left), but negatively active neurons are marked with - (slightly active
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c46e162d831fcf4e42961927dfada50d8208451ee61dad76fd3b08875aa3194c.png" src="../../_images/c46e162d831fcf4e42961927dfada50d8208451ee61dad76fd3b08875aa3194c.png" />
+<img alt="../../_images/fd9f241bf39f69b9c99044e58cd68953964ed0aa71359f890c9e2341e1c08e91.png" src="../../_images/fd9f241bf39f69b9c99044e58cd68953964ed0aa71359f890c9e2341e1c08e91.png" />
 </div>
 </div>
 <p>The number of examples for each class in the training and validation sets are shown. Dashed lines show what counts would be expected if there were the same number of examples in each class.</p>
@@ -2910,49 +2839,10 @@ Same as (Left), but negatively active neurons are marked with - (slightly active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/10 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 1/10 [00:01&lt;00:09,  1.01s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 2/10 [00:02&lt;00:08,  1.05s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 3/10 [00:03&lt;00:07,  1.06s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 4/10 [00:04&lt;00:06,  1.06s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 5/10 [00:05&lt;00:05,  1.06s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 6/10 [00:06&lt;00:04,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 7/10 [00:07&lt;00:03,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 8/10 [00:08&lt;00:02,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 9/10 [00:09&lt;00:01,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 10/10 [00:10&lt;00:00,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 10/10 [00:10&lt;00:00,  1.06s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<img alt="../../_images/9c7e0f513bff619253dec8e103184d6f39be346b105d9c0397e892362a2c9b74.png" src="../../_images/9c7e0f513bff619253dec8e103184d6f39be346b105d9c0397e892362a2c9b74.png" />
-<img alt="../../_images/fedc966fc889cab568e9e06e6ee195674798a44e1091f5ecac11389b4ace3f60.png" src="../../_images/fedc966fc889cab568e9e06e6ee195674798a44e1091f5ecac11389b4ace3f60.png" />
-<img alt="../../_images/dc1bfff22fac1311591fc611b60ae1ab74fd737211928f8b213d088bb435dd90.png" src="../../_images/dc1bfff22fac1311591fc611b60ae1ab74fd737211928f8b213d088bb435dd90.png" />
-<img alt="../../_images/aed2378623fa51b205cf2c4e1649fe8e54d99e45766aaba765579907a5731135.png" src="../../_images/aed2378623fa51b205cf2c4e1649fe8e54d99e45766aaba765579907a5731135.png" />
+<img alt="../../_images/2f7ec2d6d0933ce2328dc148e324a5b8e3314d92110bdd4bf254e069bdca9945.png" src="../../_images/2f7ec2d6d0933ce2328dc148e324a5b8e3314d92110bdd4bf254e069bdca9945.png" />
+<img alt="../../_images/51da7ce57e0f2277f7ea35463d4339cbea05c6e2880b1552bbd1d0f5235025f0.png" src="../../_images/51da7ce57e0f2277f7ea35463d4339cbea05c6e2880b1552bbd1d0f5235025f0.png" />
+<img alt="../../_images/ebbd94f6b2aca0d5db7e1dfdba8970ecf710258730e07f5cce865ed4e38bef98.png" src="../../_images/ebbd94f6b2aca0d5db7e1dfdba8970ecf710258730e07f5cce865ed4e38bef98.png" />
+<img alt="../../_images/514235864a0211a6e3641f86c7f620ed7119109f3ac71610803747d4d04faeb6.png" src="../../_images/514235864a0211a6e3641f86c7f620ed7119109f3ac71610803747d4d04faeb6.png" />
 </div>
 </div>
 <p>Try running the previous cell <strong>several times</strong> to see how often the model succeeds in learning this simple classification task.</p>
@@ -2988,49 +2878,10 @@ Same as (Left), but negatively active neurons are marked with - (slightly active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/10 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 1/10 [00:01&lt;00:09,  1.02s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 2/10 [00:02&lt;00:08,  1.05s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 3/10 [00:03&lt;00:07,  1.06s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 4/10 [00:04&lt;00:06,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 5/10 [00:05&lt;00:05,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 6/10 [00:06&lt;00:04,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 7/10 [00:07&lt;00:03,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 8/10 [00:08&lt;00:02,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 9/10 [00:09&lt;00:01,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 10/10 [00:10&lt;00:00,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 10/10 [00:10&lt;00:00,  1.07s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<img alt="../../_images/cd91cec7e3c257b1b4b1e824f4e56d92fdf165d788bc7cbd84bbbdb1e48ad7e2.png" src="../../_images/cd91cec7e3c257b1b4b1e824f4e56d92fdf165d788bc7cbd84bbbdb1e48ad7e2.png" />
-<img alt="../../_images/fedc966fc889cab568e9e06e6ee195674798a44e1091f5ecac11389b4ace3f60.png" src="../../_images/fedc966fc889cab568e9e06e6ee195674798a44e1091f5ecac11389b4ace3f60.png" />
-<img alt="../../_images/d157edc0401cd69790ba00d703c5beae3c2fe4cfbc4b63ce683959a470a694ad.png" src="../../_images/d157edc0401cd69790ba00d703c5beae3c2fe4cfbc4b63ce683959a470a694ad.png" />
-<img alt="../../_images/32ab15ac45cf9bea66727bf712b528ce881c26a01d618d41348fd3343e5a069b.png" src="../../_images/32ab15ac45cf9bea66727bf712b528ce881c26a01d618d41348fd3343e5a069b.png" />
+<img alt="../../_images/7e75cfd3cd3e8047660ae3a9211194089a8aa0600d07e4cc8492b2795a25dcd1.png" src="../../_images/7e75cfd3cd3e8047660ae3a9211194089a8aa0600d07e4cc8492b2795a25dcd1.png" />
+<img alt="../../_images/51da7ce57e0f2277f7ea35463d4339cbea05c6e2880b1552bbd1d0f5235025f0.png" src="../../_images/51da7ce57e0f2277f7ea35463d4339cbea05c6e2880b1552bbd1d0f5235025f0.png" />
+<img alt="../../_images/d05a0f7bf00a1cfd9086d6554e3c4e7a6574c8f062233b0a964fe3041948d3ab.png" src="../../_images/d05a0f7bf00a1cfd9086d6554e3c4e7a6574c8f062233b0a964fe3041948d3ab.png" />
+<img alt="../../_images/19886af2cf0cb43d1648a457edcd1d3d2cddb8245b8a18703c00a97563cf7d5b.png" src="../../_images/19886af2cf0cb43d1648a457edcd1d3d2cddb8245b8a18703c00a97563cf7d5b.png" />
 </div>
 </div>
 <p>Try running the previous cell <strong>several times</strong>. The model should now be more successful at learning this simple classification task.</p>
@@ -3159,34 +3010,10 @@ Same as (Left), but negatively active neurons are marked with - (slightly active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/5 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 1/5 [00:01&lt;00:06,  1.53s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 2/5 [00:03&lt;00:04,  1.55s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 3/5 [00:04&lt;00:03,  1.56s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 4/5 [00:06&lt;00:01,  1.56s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 5/5 [00:07&lt;00:00,  1.57s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 5/5 [00:07&lt;00:00,  1.56s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<img alt="../../_images/4f44ad9fd920d00aeb0d0ff274e36b11897f7f39cda2a676f0975a68a208f243.png" src="../../_images/4f44ad9fd920d00aeb0d0ff274e36b11897f7f39cda2a676f0975a68a208f243.png" />
-<img alt="../../_images/1646a33a269e8a0623a6592983326a2d4fe78764e209416899a04f7cf5c39385.png" src="../../_images/1646a33a269e8a0623a6592983326a2d4fe78764e209416899a04f7cf5c39385.png" />
-<img alt="../../_images/d1e851742a126866ab3b8cc10439df220ed6336868df66fb46030d9d95a9e055.png" src="../../_images/d1e851742a126866ab3b8cc10439df220ed6336868df66fb46030d9d95a9e055.png" />
-<img alt="../../_images/cf75cd10f98b1333eba84e11f666c24d64ac31829563d6b5f4b737f91deeec78.png" src="../../_images/cf75cd10f98b1333eba84e11f666c24d64ac31829563d6b5f4b737f91deeec78.png" />
+<img alt="../../_images/dae0ab7c37d7b282a377f98ca25b9daa8faddb6e3fc016169092114af0516a62.png" src="../../_images/dae0ab7c37d7b282a377f98ca25b9daa8faddb6e3fc016169092114af0516a62.png" />
+<img alt="../../_images/227122287522fdd096083e75680393de4a7b3d71caf94a56bf06b114d87f2cbf.png" src="../../_images/227122287522fdd096083e75680393de4a7b3d71caf94a56bf06b114d87f2cbf.png" />
+<img alt="../../_images/57a264c4e3ac7613d439c3a30b7080c483fc6062889f73cc12d915551fbb1bad.png" src="../../_images/57a264c4e3ac7613d439c3a30b7080c483fc6062889f73cc12d915551fbb1bad.png" />
+<img alt="../../_images/6cfe7eb671fa12ad1c1312b1ff01e883cd1693292b8b43982aea7265ad27382f.png" src="../../_images/6cfe7eb671fa12ad1c1312b1ff01e883cd1693292b8b43982aea7265ad27382f.png" />
 </div>
 </div>
 <p>Now, let’s try training a model with Hebbian learning (and outputs clamped to targets). Since the task is harder, we’ll increase the number of training epochs to <code class="docutils literal notranslate"><span class="pre">15</span></code>.</p>
@@ -3206,63 +3033,9 @@ Same as (Left), but negatively active neurons are marked with - (slightly active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/15 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 1/15 [00:01&lt;00:21,  1.52s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 13%|█▎        | 2/15 [00:03&lt;00:20,  1.57s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 3/15 [00:04&lt;00:19,  1.59s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 27%|██▋       | 4/15 [00:06&lt;00:17,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 33%|███▎      | 5/15 [00:07&lt;00:16,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 6/15 [00:09&lt;00:14,  1.61s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|████▋     | 7/15 [00:11&lt;00:13,  1.65s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████▎    | 8/15 [00:12&lt;00:11,  1.63s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 9/15 [00:14&lt;00:09,  1.63s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 67%|██████▋   | 10/15 [00:16&lt;00:08,  1.63s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 73%|███████▎  | 11/15 [00:17&lt;00:06,  1.62s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 12/15 [00:19&lt;00:04,  1.61s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 87%|████████▋ | 13/15 [00:20&lt;00:03,  1.61s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 93%|█████████▎| 14/15 [00:22&lt;00:01,  1.61s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 15/15 [00:24&lt;00:00,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 15/15 [00:24&lt;00:00,  1.61s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<img alt="../../_images/6449a6709dc1dfda301770f1d6505dff7f3622381376f80ccdf4e29ef38805ac.png" src="../../_images/6449a6709dc1dfda301770f1d6505dff7f3622381376f80ccdf4e29ef38805ac.png" />
-<img alt="../../_images/3594c8fb3494a6aa7b6c82ff32ace5d258b703ca440f9038e13b59156fd6cc5b.png" src="../../_images/3594c8fb3494a6aa7b6c82ff32ace5d258b703ca440f9038e13b59156fd6cc5b.png" />
-<img alt="../../_images/6b8ec51b31e99d42452f9bacc6b0afccfeeb212808b096b9cdcfeabba4fb69dd.png" src="../../_images/6b8ec51b31e99d42452f9bacc6b0afccfeeb212808b096b9cdcfeabba4fb69dd.png" />
+<img alt="../../_images/c870014ad7add12b5958f4f31059bd446bacdfbfa022eb50fbe1e0b576ae32e7.png" src="../../_images/c870014ad7add12b5958f4f31059bd446bacdfbfa022eb50fbe1e0b576ae32e7.png" />
+<img alt="../../_images/746771807d9aaaaf059cf8f8a90c9291d27e19d3dfc31eb4d434ea0efe648648.png" src="../../_images/746771807d9aaaaf059cf8f8a90c9291d27e19d3dfc31eb4d434ea0efe648648.png" />
+<img alt="../../_images/dd786452bbb30ddf185a1cf709621d5f5ea5ad259f0d4ab1bbde28dea5aeb05d.png" src="../../_images/dd786452bbb30ddf185a1cf709621d5f5ea5ad259f0d4ab1bbde28dea5aeb05d.png" />
 </div>
 </div>
 <p>Try running the previous cell a few times to see how often the model is successful.</p>
@@ -3285,63 +3058,9 @@ Same as (Left), but negatively active neurons are marked with - (slightly active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/15 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 1/15 [00:01&lt;00:21,  1.52s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 13%|█▎        | 2/15 [00:03&lt;00:20,  1.57s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 3/15 [00:04&lt;00:19,  1.59s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 27%|██▋       | 4/15 [00:06&lt;00:17,  1.59s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 33%|███▎      | 5/15 [00:07&lt;00:15,  1.59s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 6/15 [00:09&lt;00:14,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|████▋     | 7/15 [00:11&lt;00:12,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████▎    | 8/15 [00:12&lt;00:11,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 9/15 [00:14&lt;00:09,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 67%|██████▋   | 10/15 [00:15&lt;00:07,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 73%|███████▎  | 11/15 [00:17&lt;00:06,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 12/15 [00:19&lt;00:04,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 87%|████████▋ | 13/15 [00:20&lt;00:03,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 93%|█████████▎| 14/15 [00:22&lt;00:01,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 15/15 [00:23&lt;00:00,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 15/15 [00:23&lt;00:00,  1.60s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<img alt="../../_images/c456cb233a68a1d8359f977d42b677fa17d78674f834f5c498369855bd41d85b.png" src="../../_images/c456cb233a68a1d8359f977d42b677fa17d78674f834f5c498369855bd41d85b.png" />
-<img alt="../../_images/caf64e61cf9d2ba9ac02b8df5f7dd91c71120973d8481e671ebcf5b20b5c4160.png" src="../../_images/caf64e61cf9d2ba9ac02b8df5f7dd91c71120973d8481e671ebcf5b20b5c4160.png" />
-<img alt="../../_images/3fb48427194174ae6c59b54eb4ce1d108dec833d5ed8a3c6e3951b287b72e1e1.png" src="../../_images/3fb48427194174ae6c59b54eb4ce1d108dec833d5ed8a3c6e3951b287b72e1e1.png" />
+<img alt="../../_images/9eff1cd5e662018144c191ff1162b643b6ac901cdeff76c7c9f12ff46e95e10a.png" src="../../_images/9eff1cd5e662018144c191ff1162b643b6ac901cdeff76c7c9f12ff46e95e10a.png" />
+<img alt="../../_images/287fc1ad6aa05f7cc2d424fe18ec5fe669cad2c3979169c6edb45ed804fd4e96.png" src="../../_images/287fc1ad6aa05f7cc2d424fe18ec5fe669cad2c3979169c6edb45ed804fd4e96.png" />
+<img alt="../../_images/07c7efd4f5ee0a3047edd0132c664187ddde94e1c9d93f642b7c9f091c7b6e16.png" src="../../_images/07c7efd4f5ee0a3047edd0132c664187ddde94e1c9d93f642b7c9f091c7b6e16.png" />
 </div>
 </div>
 <p>Performance tends to be highly variable and unstable. At best, the network is able to classify 2 classes, but generally not all 3 classes.</p>
@@ -3402,33 +3121,9 @@ Same as (Left), but negatively active neurons are marked with - (slightly active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/5 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 1/5 [00:05&lt;00:20,  5.12s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 2/5 [00:10&lt;00:15,  5.28s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 3/5 [00:15&lt;00:10,  5.33s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 4/5 [00:21&lt;00:05,  5.37s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 5/5 [00:26&lt;00:00,  5.37s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 5/5 [00:26&lt;00:00,  5.34s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<img alt="../../_images/90f8382aa246017c829da60d57b658ef8027e3c8e578057996ba60c389383c28.png" src="../../_images/90f8382aa246017c829da60d57b658ef8027e3c8e578057996ba60c389383c28.png" />
-<img alt="../../_images/74de7a86ccb12697c69fa144a6283f9c013f45375744f81f7863e495d37b9144.png" src="../../_images/74de7a86ccb12697c69fa144a6283f9c013f45375744f81f7863e495d37b9144.png" />
-<img alt="../../_images/476a1917c7346baa55c065f879d7f15f53318fa58be8d3328a02bd53bb1cfc80.png" src="../../_images/476a1917c7346baa55c065f879d7f15f53318fa58be8d3328a02bd53bb1cfc80.png" />
+<img alt="../../_images/d89f2ef9c201ec30ee481c06124a38d0fe8b48d45d199fab640e9f3574529616.png" src="../../_images/d89f2ef9c201ec30ee481c06124a38d0fe8b48d45d199fab640e9f3574529616.png" />
+<img alt="../../_images/13d543bd902ebce670200012be4e30fcb77e03c2cd4e5051bcf1d2964aec7e65.png" src="../../_images/13d543bd902ebce670200012be4e30fcb77e03c2cd4e5051bcf1d2964aec7e65.png" />
+<img alt="../../_images/3f1137cd619e83f71bf9712f6725484b0756d2e85866c6ac2977de96dee7619a.png" src="../../_images/3f1137cd619e83f71bf9712f6725484b0756d2e85866c6ac2977de96dee7619a.png" />
 </div>
 </div>
 <p>Using Hebbian learning and error backpropagation allows us to achieve above chance performance on the the full MNIST classification task, though performance is still much lower than when using error backpropagation on its own.</p>
@@ -3609,7 +3304,7 @@ Same as (Left), but negatively active neurons are marked with - (slightly active
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a6218615905b718dbf0b02b57d7665aab53ef0a0c80dddcdcaada7e6e683a335.png" src="../../_images/a6218615905b718dbf0b02b57d7665aab53ef0a0c80dddcdcaada7e6e683a335.png" />
+<img alt="../../_images/facaa6ff80ca89107b8f9a7cf7853d03248f7bd023b8211eb069512fa82c242c.png" src="../../_images/facaa6ff80ca89107b8f9a7cf7853d03248f7bd023b8211eb069512fa82c242c.png" />
 </div>
 </div>
 <p>The dots in the plots show the SNR <strong>for each layer</strong> (small dot: first layer; larger dot: second layer).</p>
@@ -3837,88 +3532,10 @@ Same as (Left), but negatively active neurons are marked with - (slightly active
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting Cosine similarities for backprop-trained model...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/10 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 1/10 [00:04&lt;00:43,  4.85s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 2/10 [00:09&lt;00:39,  4.96s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 3/10 [00:14&lt;00:35,  5.01s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 4/10 [00:20&lt;00:30,  5.06s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 5/10 [00:25&lt;00:25,  5.05s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 6/10 [00:30&lt;00:20,  5.05s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 7/10 [00:35&lt;00:15,  5.05s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 8/10 [00:40&lt;00:10,  5.06s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 9/10 [00:45&lt;00:05,  5.06s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 10/10 [00:50&lt;00:00,  5.06s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 10/10 [00:50&lt;00:00,  5.04s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting Cosine similarities for Hebbian-trained model...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/10 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 1/10 [00:04&lt;00:44,  4.89s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 2/10 [00:10&lt;00:40,  5.10s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 3/10 [00:15&lt;00:36,  5.20s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|████      | 4/10 [00:20&lt;00:31,  5.23s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 5/10 [00:26&lt;00:26,  5.26s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 6/10 [00:31&lt;00:21,  5.27s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 7/10 [00:36&lt;00:15,  5.27s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|████████  | 8/10 [00:41&lt;00:10,  5.29s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 9/10 [00:47&lt;00:05,  5.35s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 10/10 [00:52&lt;00:00,  5.34s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 10/10 [00:52&lt;00:00,  5.27s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<img alt="../../_images/4b92222a15fea2c6cd6dd3c9982c476e3b916da94291ec5b75905babf64554c8.png" src="../../_images/4b92222a15fea2c6cd6dd3c9982c476e3b916da94291ec5b75905babf64554c8.png" />
+<img alt="../../_images/11e7d04f19d1b4d7fa886677f928ea6bc9d59aa098ec8bb9b4b5fc6b97d0eec5.png" src="../../_images/11e7d04f19d1b4d7fa886677f928ea6bc9d59aa098ec8bb9b4b5fc6b97d0eec5.png" />
 </div>
 </div>
 <p>As expected, gradient updates proposed by error backpropagation necessarily have <strong>no bias</strong> with respect to themselves (cosine similarity near 1.0). In contrast, although gradient updates proposed by Hebbian learning for the <strong>second layer</strong> (big dots) are <strong>well aligned</strong> with error backpropagation updates, the updates proposed for the <strong>first layer</strong> (small dots) are <strong>highly biased</strong> (cosine similarity near 0.0).</p>
@@ -4004,11 +3621,11 @@ Same as (Left), but negatively active neurons are marked with - (slightly active
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="../docs/datasets_overview.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="Macrocircuits.html" title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Datasets</p>
+          <p class="prev-next-title">Macrocircuits: leveraging neural architectural priors and modularity in embodied agents</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="ComparingNetworks.html" title="next page">

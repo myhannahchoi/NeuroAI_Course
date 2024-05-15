@@ -524,6 +524,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../../projects/README.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../projects/docs/project_guidance.html">Daily guide for projects</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../projects/docs/datasets_overview.html">Project materials</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../projects/project-notebooks/Macrocircuits.html">Macrocircuits: leveraging neural architectural priors and modularity in embodied agents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../projects/project-notebooks/Microlearning.html">Microlearning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../projects/project-notebooks/ComparingNetworks.html">Comparing networks: characterizing computational similarity in task-trained recurrent neural networks</a></li>
 </ul>
@@ -774,7 +775,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ol>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4db2c20ec2324a68b1f169451b8d4909"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "69c4ba8d715d4fdabb0e08a3f90bcf76"}</script></div>
 </div>
 </section>
 <hr class="docutils"/>
@@ -835,7 +836,7 @@ Requirement already satisfied: filelock in /opt/hostedtoolcache/Python/3.9.19/x6
 Requirement already satisfied: typing-extensions in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (4.11.0)
 Requirement already satisfied: sympy in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (1.12)
 Requirement already satisfied: jinja2 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (3.1.4)
-Requirement already satisfied: fsspec in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (2024.3.1)
+Requirement already satisfied: fsspec in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (2024.5.0)
 Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
 Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
 Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
@@ -844,11 +845,11 @@ Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /opt/hostedtoolca
 Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (11.0.2.54)
 Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (10.3.2.106)
 Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.18.1 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (2.18.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.0.106)
-Requirement already satisfied: nvidia-nccl-cu12==2.18.1 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (2.18.1)
-Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (12.1.105)
 Requirement already satisfied: triton==2.1.0 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torch) (2.1.0)
 Requirement already satisfied: nvidia-nvjitlink-cu12 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from nvidia-cusolver-cu12==11.4.5.107-&gt;torch) (12.4.127)
 Requirement already satisfied: requests in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from torchvision) (2.31.0)
@@ -886,7 +887,9 @@ Requirement already satisfied: mpmath&gt;=0.19 in /opt/hostedtoolcache/Python/3.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.8.4)
-Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from pexpect&gt;4.3-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.7.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ptyprocess&gt;=0.5 in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from pexpect&gt;4.3-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.7.0)
 Requirement already satisfied: wcwidth in /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages (from prompt-toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=6.1.0-&gt;ipywidgets) (0.2.13)
 </pre></div>
 </div>
@@ -1392,9 +1395,9 @@ Verification successful: All models are in the correct directory.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/5188571946cf8b1373f71daea10f2880a4a815ccf394fdc0bc04b98e0b4a13c9.png" src="../../../_images/5188571946cf8b1373f71daea10f2880a4a815ccf394fdc0bc04b98e0b4a13c9.png">
-<img alt="../../../_images/8f5450ee1abd9fe3cd651b918bd6a071bf17bcca72762d0d1b78c5e95ec7e44f.png" src="../../../_images/8f5450ee1abd9fe3cd651b918bd6a071bf17bcca72762d0d1b78c5e95ec7e44f.png">
-<img alt="../../../_images/b56f49a47fbc00bc0db4ac65d1d17be968ee0810ecae33967e3edd0da57c4924.png" src="../../../_images/b56f49a47fbc00bc0db4ac65d1d17be968ee0810ecae33967e3edd0da57c4924.png"/>
+<img alt="../../../_images/315eee4b87ceeb522129eb9668fb27d1c08e33a34607b3fb957cfcdb1bd69899.png" src="../../../_images/315eee4b87ceeb522129eb9668fb27d1c08e33a34607b3fb957cfcdb1bd69899.png">
+<img alt="../../../_images/1148c4611a59fc0bd2256aa38cbd6aa5f1b914033bc04319ae514f2c03585970.png" src="../../../_images/1148c4611a59fc0bd2256aa38cbd6aa5f1b914033bc04319ae514f2c03585970.png">
+<img alt="../../../_images/df2efa28bcb99e3cd19e7db8c4f68d836bccde30385ffbcb55d0fcad33380438.png" src="../../../_images/df2efa28bcb99e3cd19e7db8c4f68d836bccde30385ffbcb55d0fcad33380438.png"/>
 </img></img></div>
 </div>
 </section>
@@ -1511,22 +1514,10 @@ Loading model...
 Loading classification dataset...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3526.)
-  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting top-K parses for each train image...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/pybpl/bottomup/generate_random_parses.py:9: UserWarning: using untested python implementation of 'generate_random_walks'
-  warnings.warn("using untested python implementation of "
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 1/20 took 0:00:12
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/pybpl/bottomup/generate_random_parses.py:9: UserWarning: using untested python implementation of 'generate_random_walks'
-  warnings.warn("using untested python implementation of "
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 1/20 took 0:00:11
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 2/20 took 0:00:30
@@ -1535,13 +1526,13 @@ Loading classification dataset...
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 3/20 took 0:00:02
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 4/20 took 0:00:13
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 4/20 took 0:00:14
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 5/20 took 0:00:03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 6/20 took 0:02:40
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 6/20 took 0:02:41
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>image 7/20 took 0:00:04
@@ -1618,34 +1609,39 @@ Loading classification dataset...
 <span class="g g-Whitespace">    </span><span class="mi">144</span> <span class="n">canvases</span> <span class="o">=</span> <span class="n">canvases</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (ntot, 1, 105, 105)</span>
 <span class="g g-Whitespace">    </span><span class="mi">146</span> <span class="c1"># normalize spatial coordinates</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/rendering/renderer.py:73,</span> in <span class="ni">Renderer.forward_partial</span><span class="nt">(self, drawing, blur_sigma, epsilon, concat)</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span> <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pimgs</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="n">pimgs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">pimgs</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">73</span> <span class="n">pimgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">broaden_and_blur</span><span class="p">(</span><span class="n">pimgs</span><span class="p">,</span> <span class="n">blur_sigma</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span> <span class="k">if</span> <span class="n">concat</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="k">return</span> <span class="n">pimgs</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/rendering/renderer.py:70,</span> in <span class="ni">Renderer.forward_partial</span><span class="nt">(self, drawing, blur_sigma, epsilon, concat)</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="w"> </span><span class="sd">"""</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span><span class="sd"> In this version, we include all partial canvas renders in addition</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span><span class="sd"> to the final renders</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span><span class="sd"> """</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">drawing</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">70</span>     <span class="n">pimgs</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">painter</span><span class="o">.</span><span class="n">forward_partial</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">drawing</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pimgs</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span>     <span class="n">pimgs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">pimgs</span><span class="p">)</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/module.py:1518,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1516</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1517</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1518</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/rendering/renderer.py:70,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="w"> </span><span class="sd">"""</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span><span class="sd"> In this version, we include all partial canvas renders in addition</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span><span class="sd"> to the final renders</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span><span class="sd"> """</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">drawing</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">70</span>     <span class="n">pimgs</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">painter</span><span class="o">.</span><span class="n">forward_partial</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">drawing</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pimgs</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span>     <span class="n">pimgs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">pimgs</span><span class="p">)</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/torch/nn/modules/module.py:1527,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1522</span> <span class="c1"># If we don't have any hooks, we want to skip the rest of the logic in</span>
-<span class="g g-Whitespace">   </span><span class="mi">1523</span> <span class="c1"># this function, and just call forward.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1524</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1525</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1526</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1527</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1529</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1530</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/rendering/renderer.py:202,</span> in <span class="ni">Painter.forward_partial</span><span class="nt">(self, drawing)</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">imsize</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">stk</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">drawing</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">202</span>     <span class="n">canvas</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_stroke</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">stk</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span>     <span class="n">pimgs</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">canvas</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span> <span class="k">return</span> <span class="n">pimgs</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/rendering/renderer.py:273,</span> in <span class="ni">BroadenAndBlur.forward</span><span class="nt">(self, x, blur_sigma, epsilon)</span>
-<span class="g g-Whitespace">    </span><span class="mi">271</span> <span class="c1"># apply blur</span>
-<span class="g g-Whitespace">    </span><span class="mi">272</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">273</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">H_blur</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">blur_pad</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">274</span> <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">hardtanh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">275</span> <span class="c1"># apply pixel noise</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.9.19/x64/lib/python3.9/site-packages/gns/rendering/renderer.py:133,</span> in <span class="ni">Painter.add_stroke</span><span class="nt">(self, pimg, stk)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span> <span class="n">stk</span> <span class="o">=</span> <span class="n">stk</span><span class="p">[</span><span class="o">~</span><span class="n">out</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span> <span class="c1"># compute distance between each trajectory point and the next one</span>
+<span class="ne">--&gt; </span><span class="mi">133</span> <span class="k">if</span> <span class="n">stk</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span>     <span class="n">myink</span> <span class="o">=</span> <span class="n">stk</span><span class="o">.</span><span class="n">new_tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ink_pp</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="k">else</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
