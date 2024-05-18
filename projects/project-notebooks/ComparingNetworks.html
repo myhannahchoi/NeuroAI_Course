@@ -1060,7 +1060,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#section-5-inspecting-the-performance-of-trained-models">
-   Section 5: Inspecting the performance of trained models:
+   Section 5: Inspecting the performance of trained models
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -1082,12 +1082,12 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#section-6-introducing-the-random-target-task">
-   Section 6: Introducing the Random Target task:
+   Section 6: Introducing the Random Target task
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conclusion">
-   Conclusion:
+   Conclusion
   </a>
  </li>
 </ul>
@@ -1160,7 +1160,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "2645aa4426a2418db3bc1c78b4ec6e78"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "6be3afb561d1441b9a54b94689e1e23d"}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1285,7 +1285,7 @@ title="Print to PDF"
 
 <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">redirect_stdout</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">()):</span> <span class="c1">#to suppress output</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">dirname</span><span class="p">):</span>
-        <span class="o">!</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/glibesyck/ComputationThruDynamicsBenchmark
+        <span class="o">!</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/neuromatch/ComputationThruDynamicsBenchmark
         <span class="o">%</span><span class="k">cd</span> ComputationThruDynamicsBenchmark
         <span class="o">!</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
 
@@ -1383,7 +1383,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/41b0d192e8cee771c6b29e36810929e2dbd44dd149934f2a11c789346a9d22cb.png" src="../../_images/41b0d192e8cee771c6b29e36810929e2dbd44dd149934f2a11c789346a9d22cb.png" />
+<img alt="../../_images/fbee3cce7d319f5a9e2bd0d325c572a1ff740e11ce8526afc935aabb21f16567.png" src="../../_images/fbee3cce7d319f5a9e2bd0d325c572a1ff740e11ce8526afc935aabb21f16567.png" />
 </div>
 </div>
 <p>Above, we are plotting the inputs and outputs of the 3BFF task. One trial is 500 time steps, each with a 1% probability of getting an “up” or “down” pulse on each of its 3 input channels. When the task receives an “up” pulse, the state corresponding to that input channel moves from zero to one (if possible), and if a state at one receives a “down” pulse, it goes to zero. In this way, this system acts as 3 bits of memory, encoding 8 potential system states (2^3 states). We add noise to the inputs of the system so that it better reflects realistic computations that a neural circuit might perform.</p>
@@ -1396,7 +1396,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ea906476ace751921d98bd9d5da00d165dc61cee5372e0e6d203e565cd999dab.png" src="../../_images/ea906476ace751921d98bd9d5da00d165dc61cee5372e0e6d203e565cd999dab.png" />
+<img alt="../../_images/2d47a133c45bc45c20242f445368d45058f505290b7eae9aef75716c42146c55.png" src="../../_images/2d47a133c45bc45c20242f445368d45058f505290b7eae9aef75716c42146c55.png" />
 </div>
 </div>
 <p>Now that we can see the basic logic of the task, let’s do a basic overview of what task-training is!</p>
@@ -1511,7 +1511,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="section-5-inspecting-the-performance-of-trained-models">
-<h2>Section 5: Inspecting the performance of trained models:<a class="headerlink" href="#section-5-inspecting-the-performance-of-trained-models" title="Permalink to this heading">#</a></h2>
+<h2>Section 5: Inspecting the performance of trained models<a class="headerlink" href="#section-5-inspecting-the-performance-of-trained-models" title="Permalink to this heading">#</a></h2>
 <p>Now that the models have been trained, let’s see if we can determine how similar their computational strategies are to each other!</p>
 <p>To make your life easier, we’ve provided an “analysis” object that abstracts away much of the data handling, allowing you to work more easily with the data from the models.</p>
 <p>The analysis object also offers visualization tools that can help to see how well the trained model learned to perform the task!</p>
@@ -1542,7 +1542,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/21894aa6fd5c4a31ff63632634969c66e521f22b42370fd83638fa0e72acd508.png" src="../../_images/21894aa6fd5c4a31ff63632634969c66e521f22b42370fd83638fa0e72acd508.png" />
+<img alt="../../_images/2d88ac1c320dd70c9ce66b5d0aba82c49feb942bcc91e45a982bf5a35a7a1512.png" src="../../_images/2d88ac1c320dd70c9ce66b5d0aba82c49feb942bcc91e45a982bf5a35a7a1512.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1558,7 +1558,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d62c5e9309579c9a2cdbfad6fb8bb52062b494c19a805e041f2703f4b2262d1e.png" src="../../_images/d62c5e9309579c9a2cdbfad6fb8bb52062b494c19a805e041f2703f4b2262d1e.png" />
+<img alt="../../_images/5f5ce31a1a37d273b2287d9fa18d80692f86c977b1da9c5689689d2f43df39a7.png" src="../../_images/5f5ce31a1a37d273b2287d9fa18d80692f86c977b1da9c5689689d2f43df39a7.png" />
 </div>
 </div>
 <p>There are also useful data visualization functions, such as visualizing a scree plot of the latent activity.</p>
@@ -1570,11 +1570,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.36831608, 0.28358565, 0.19855936, 0.02294556, 0.0205846 ,
-       0.01803322, 0.0085261 , 0.00715601, 0.00561155, 0.00507619])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.30129819, 0.28852259, 0.25390471, 0.03175105, 0.0193927 ,
+       0.01500144, 0.00863537, 0.00800575, 0.00742347, 0.00518592])
 </pre></div>
 </div>
-<img alt="../../_images/fcacfa6befb5a973ab010a18129246135ce89a9ba92a34728eca3cdffedb938d.png" src="../../_images/fcacfa6befb5a973ab010a18129246135ce89a9ba92a34728eca3cdffedb938d.png" />
+<img alt="../../_images/3319ae4aec03b3d98b85608e24457eb21178bf3027f547daac18aaa474a51b79.png" src="../../_images/3319ae4aec03b3d98b85608e24457eb21178bf3027f547daac18aaa474a51b79.png" />
 </div>
 </div>
 <p>Importantly, the analysis object also provides functions that give access to the raw latent activity, predicted outputs, etc. of the trained models! All of these functions accept a “phase” variable that designates whether to return the training and/or validation datasets.
@@ -1682,8 +1682,8 @@ Latent shape for target model: (800, 500, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 of linear regression fit: [0.65441905 0.66179803 0.5725866 ]
-Variance-weighted R2 of linear regression fit: 0.6542445955330236
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 of linear regression fit: [0.56559467 0.44751504 0.50028326]
+Variance-weighted R2 of linear regression fit: 0.5396808975512654
 </pre></div>
 </div>
 </div>
@@ -1706,7 +1706,7 @@ Variance-weighted R2 of linear regression fit: 0.6542445955330236
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d7cfdc32cfb80c9403af94ed0750110c400f88629121e2298b8e872b551a36e2.png" src="../../_images/d7cfdc32cfb80c9403af94ed0750110c400f88629121e2298b8e872b551a36e2.png" />
+<img alt="../../_images/ab17bef043081b9263640c346eb869fe85200755a05eb641a4ec765801ba75c4.png" src="../../_images/ab17bef043081b9263640c346eb869fe85200755a05eb641a4ec765801ba75c4.png" />
 </div>
 </div>
 </section>
@@ -1747,8 +1747,8 @@ Variance-weighted R2 of linear regression fit: 0.6542445955330236
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/41819d47401ff7754ce91a18b71d923d449cbf87cd87bd23f1cf068baaee3998.png" src="../../_images/41819d47401ff7754ce91a18b71d923d449cbf87cd87bd23f1cf068baaee3998.png" />
-<img alt="../../_images/6eeace6db5f1a1cbcda891e52d291662e6c96c359eab42d1b5e9a2a964ec1965.png" src="../../_images/6eeace6db5f1a1cbcda891e52d291662e6c96c359eab42d1b5e9a2a964ec1965.png" />
+<img alt="../../_images/38cc49bc5ec1deccabed4e599cdea04e22af4c835268388130c1aceb74ca2e37.png" src="../../_images/38cc49bc5ec1deccabed4e599cdea04e22af4c835268388130c1aceb74ca2e37.png" />
+<img alt="../../_images/3443094a2aa9ec81f369bc214fa9e258aed8fbb7a00dad2a0a086d6319f31bb5.png" src="../../_images/3443094a2aa9ec81f369bc214fa9e258aed8fbb7a00dad2a0a086d6319f31bb5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1765,7 +1765,7 @@ Variance-weighted R2 of linear regression fit: 0.6542445955330236
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a23f1848b9559e52d088a0847bf086b37b879ff407374e96b1fcbf77750315b2.png" src="../../_images/a23f1848b9559e52d088a0847bf086b37b879ff407374e96b1fcbf77750315b2.png" />
+<img alt="../../_images/bb49c9441c24970341589cda7db0b58d1910ffd6e5af49f5593d56fe7e2e553c.png" src="../../_images/bb49c9441c24970341589cda7db0b58d1910ffd6e5af49f5593d56fe7e2e553c.png" />
 </div>
 </div>
 <p>❓❓❓</p>
@@ -1775,7 +1775,7 @@ Variance-weighted R2 of linear regression fit: 0.6542445955330236
 </section>
 </section>
 <section id="section-6-introducing-the-random-target-task">
-<h2>Section 6: Introducing the Random Target task:<a class="headerlink" href="#section-6-introducing-the-random-target-task" title="Permalink to this heading">#</a></h2>
+<h2>Section 6: Introducing the Random Target task<a class="headerlink" href="#section-6-introducing-the-random-target-task" title="Permalink to this heading">#</a></h2>
 <p>Now that we’ve developed intuition on a simple, well understood task, let’s move up the ladder of complexity!</p>
 <p>The second task is a random-target reaching task performed by an RNN controlling a 2-joint musculoskeletal model of an arm actuated by 6 Mujoco muscles. This environment was built using MotorNet, a package developed by <a class="reference external" href="https://github.com/OlivierCodol/MotorNet">Oli Codol et al.</a> that provides environments for training RNNs to control biomechanical models!</p>
 <p>Here is a short clip of what this task looks like when performed by a well-trained model:</p>
@@ -1860,7 +1860,7 @@ Variance-weighted R2 of linear regression fit: 0.6542445955330236
 <p>In the later questions, we will ask you to modify the environments in MotorNet to test how well your models can generalize to new tasks!</p>
 </section>
 <section id="conclusion">
-<h2>Conclusion:<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
 <p>That’s it!</p>
 <p>To recap, in this tutorial we learned:</p>
 <ol class="arabic simple">
@@ -1952,7 +1952,7 @@ Variance-weighted R2 of linear regression fit: 0.6542445955330236
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#section-5-inspecting-the-performance-of-trained-models">
-   Section 5: Inspecting the performance of trained models:
+   Section 5: Inspecting the performance of trained models
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -1974,12 +1974,12 @@ Variance-weighted R2 of linear regression fit: 0.6542445955330236
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#section-6-introducing-the-random-target-task">
-   Section 6: Introducing the Random Target task:
+   Section 6: Introducing the Random Target task
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#conclusion">
-   Conclusion:
+   Conclusion
   </a>
  </li>
 </ul>
