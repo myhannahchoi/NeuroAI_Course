@@ -1039,6 +1039,28 @@ title="Print to PDF"
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#project-background">
+     Project Background
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#project-slides">
+     Project slides
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#project-template">
+     Project Template
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#section-1-preparing-the-environment">
    Section 1: Preparing the environment
   </a>
@@ -1099,7 +1121,7 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <p><a href="https://colab.research.google.com/github/neuromatch/NeuroAI_Course/blob/main/projects/project-notebooks/ComparingNetworks.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>   <a href="https://kaggle.com/kernels/welcome?src=https://raw.githubusercontent.com/neuromatch/NeuroAI_Course/blob/main/projects/project-notebooks/ComparingNetworks.ipynb" target="_parent"><img alt="Open in Kaggle" src="https://kaggle.com/static/images/open-in-kaggle.svg" /></a></p>
+  <p><a href="https://colab.research.google.com/github/neuromatch/NeuroAI_Course/blob/main/projects/project-notebooks/ComparingNetworks.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>   <a href="https://kaggle.com/kernels/welcome?src=https://raw.githubusercontent.com/neuromatch/NeuroAI_Course/blob/main/projects/project-notebooks/ComparingNetworks.ipynb" target="_blank"><img alt="Open in Kaggle" src="https://kaggle.com/static/images/open-in-kaggle.svg" /></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="comparing-networks-characterizing-computational-similarity-in-task-trained-recurrent-neural-networks">
 <h1>Comparing networks: Characterizing computational similarity in task-trained recurrent neural networks<a class="headerlink" href="#comparing-networks-characterizing-computational-similarity-in-task-trained-recurrent-neural-networks" title="Permalink to this heading">#</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
@@ -1107,72 +1129,19 @@ title="Print to PDF"
 <p><strong>Content reviewers:</strong> Chris Versteeg, Hannah Choi, Eva Dyer</p>
 <p><strong>Production editors:</strong> Konstantine Tsafatinos, Ella Batty, Spiros Chavlis, Samuele Bolotta, Hlib Solodzhuk</p>
 <hr class="docutils" />
-<p><strong>Background</strong>: Researchers training artificial networks to perform tasks (e.g., image classification, motor control) have found that the activity in the artificial networks can resemble the activity of biological neurons from brain areas thought to perform similar tasks. Unfortunately, it is unclear whether a superficial similarity in neural activation necessarily translates to a conserved computational strategy. We need ways to assess how well different models are able to capture the computational principles, which will require datasets where the ground-truth computations are known and we can analyze similarity between artificial and natural systems. The aim of this project is to explore ways to measure alignment in dynamical systems, and to study different approaches to quantify the changes in representations across different tasks and across different architectures.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Project Background</span>
-
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-
-
-<span class="k">class</span> <span class="nc">PlayVideo</span><span class="p">(</span><span class="n">IFrame</span><span class="p">):</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
-    <span class="k">if</span> <span class="n">source</span> <span class="o">==</span> <span class="s1">&#39;Bilibili&#39;</span><span class="p">:</span>
-      <span class="n">src</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://player.bilibili.com/player.html?bvid=</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1">&amp;page=</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s1">&#39;</span>
-    <span class="k">elif</span> <span class="n">source</span> <span class="o">==</span> <span class="s1">&#39;Osf&#39;</span><span class="p">:</span>
-      <span class="n">src</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;https://mfr.ca-1.osf.io/render?url=https://osf.io/download/</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1">/?direct%26mode=render&#39;</span>
-    <span class="nb">super</span><span class="p">(</span><span class="n">PlayVideo</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">display_videos</span><span class="p">(</span><span class="n">video_ids</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-  <span class="n">tab_contents</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">video_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">video_ids</span><span class="p">):</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
-    <span class="k">with</span> <span class="n">out</span><span class="p">:</span>
-      <span class="k">if</span> <span class="n">video_ids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Youtube&#39;</span><span class="p">:</span>
-        <span class="n">video</span> <span class="o">=</span> <span class="n">YouTubeVideo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">video_ids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">W</span><span class="p">,</span>
-                             <span class="n">height</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Video available at https://youtube.com/watch?v=</span><span class="si">{</span><span class="n">video</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-      <span class="k">else</span><span class="p">:</span>
-        <span class="n">video</span> <span class="o">=</span> <span class="n">PlayVideo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">video_ids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">source</span><span class="o">=</span><span class="n">video_ids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">W</span><span class="p">,</span>
-                          <span class="n">height</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">fs</span><span class="p">,</span> <span class="n">autoplay</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">video_ids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Bilibili&#39;</span><span class="p">:</span>
-          <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Video available at https://www.bilibili.com/video/</span><span class="si">{</span><span class="n">video</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">video_ids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Osf&#39;</span><span class="p">:</span>
-          <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Video available at https://osf.io/</span><span class="si">{</span><span class="n">video</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-      <span class="n">display</span><span class="p">(</span><span class="n">video</span><span class="p">)</span>
-    <span class="n">tab_contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">tab_contents</span>
-
-
-<span class="n">video_ids</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Youtube&#39;</span><span class="p">,</span> <span class="s1">&#39;KpXu34cvWPE&#39;</span><span class="p">)]</span>
-<span class="n">tab_contents</span> <span class="o">=</span> <span class="n">display_videos</span><span class="p">(</span><span class="n">video_ids</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mi">854</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">480</span><span class="p">)</span>
-<span class="n">tabs</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Tab</span><span class="p">()</span>
-<span class="n">tabs</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="n">tab_contents</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tab_contents</span><span class="p">)):</span>
-  <span class="n">tabs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">video_ids</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">display</span><span class="p">(</span><span class="n">tabs</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<section id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this heading">#</a></h2>
+<p>Researchers training artificial networks to perform tasks (e.g., image classification, motor control) have found that the activity in the artificial networks can resemble the activity of biological neurons from brain areas thought to perform similar tasks. Unfortunately, it is unclear whether a superficial similarity in neural activation necessarily translates to a conserved computational strategy. We need ways to assess how well different models are able to capture the computational principles, which will require datasets where the ground-truth computations are known and we can analyze similarity between artificial and natural systems. The aim of this project is to explore ways to measure alignment in dynamical systems, and to study different approaches to quantify the changes in representations across different tasks and across different architectures.</p>
+<section id="project-background">
+<h3>Project Background<a class="headerlink" href="#project-background" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "6be3afb561d1441b9a54b94689e1e23d"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "f875ab860da04af1930204df938b06d6"}</script></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Project slides</span>
-
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
-<span class="n">link_id</span> <span class="o">=</span> <span class="s2">&quot;vb3tw&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;If you want to download the slides: https://osf.io/download/</span><span class="si">{</span><span class="n">link_id</span><span class="si">}</span><span class="s2">/&quot;</span><span class="p">)</span>
-<span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;https://mfr.ca-1.osf.io/render?url=https://osf.io/download/</span><span class="si">{</span><span class="n">link_id</span><span class="si">}</span><span class="s2">/?direct%26mode=render&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">854</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">480</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+</section>
+<section id="project-slides">
+<h3>Project slides<a class="headerlink" href="#project-slides" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If you want to download the slides: https://osf.io/download/vb3tw/
 </pre></div>
@@ -1188,7 +1157,15 @@ title="Print to PDF"
         ></iframe>
         </div></div>
 </div>
-<div class="cell docutils container">
+</section>
+<section id="project-template">
+<h3>Project Template<a class="headerlink" href="#project-template" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Project Template</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
@@ -1201,6 +1178,7 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html"><img src="https://github.com/neuromatch/NeuroAI_Course/blob/main/projects/project-notebooks/static/ComputationalSimilarityTemplate.png?raw=true"/></div></div>
 </div>
@@ -1225,12 +1203,20 @@ title="Print to PDF"
 <p>❓❓❓</p>
 <p><em>Cells which will a decent amount of time to run (&gt;5 mins)</em></p>
 <p>⏳⏳⏳</p>
+</section>
+</section>
 <section id="section-1-preparing-the-environment">
 <h2>Section 1: Preparing the environment<a class="headerlink" href="#section-1-preparing-the-environment" title="Permalink to this heading">#</a></h2>
 <p><strong>IF USING COLAB</strong>:</p>
 <p>Uncomment the lines of code below and run them in order. The top cell only needs to be run once, but the second cell (envStr) needs to be re-run if the Colab notebook crashes. These blocks install the needed dependencies and set up your environment.</p>
 <p>⏳⏳⏳</p>
-<div class="cell docutils container">
+<p>Colab installation (Part 1)</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Colab installation (Part 1)</span>
 
@@ -1242,8 +1228,15 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<p>Colab installation (Part 2)</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Colab installation (Part 2)</span>
 
@@ -1251,8 +1244,15 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<p>Colab installation (Part 3)</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Colab installation (Part 3)</span>
 
@@ -1270,10 +1270,17 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p><strong>IF RUNNING LOCALLY (recommended if possible)</strong>:</p>
 <p>Follow the instructions <a class="reference external" href="https://github.com/snel-repo/ComputationThruDynamicsBenchmark">here</a> to setup the separatte environment for this project, or you can run the cell below for general installment.</p>
-<div class="cell docutils container">
+<p>Local installation</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Local installation</span>
 
@@ -1302,6 +1309,7 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 </div>
 </div>
@@ -1383,7 +1391,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fbee3cce7d319f5a9e2bd0d325c572a1ff740e11ce8526afc935aabb21f16567.png" src="../../_images/fbee3cce7d319f5a9e2bd0d325c572a1ff740e11ce8526afc935aabb21f16567.png" />
+<img alt="../../_images/fcb38fae3dbc53e52094446d4e6b668a1d8ace4406b81e6651f00b62cd422cf0.png" src="../../_images/fcb38fae3dbc53e52094446d4e6b668a1d8ace4406b81e6651f00b62cd422cf0.png" />
 </div>
 </div>
 <p>Above, we are plotting the inputs and outputs of the 3BFF task. One trial is 500 time steps, each with a 1% probability of getting an “up” or “down” pulse on each of its 3 input channels. When the task receives an “up” pulse, the state corresponding to that input channel moves from zero to one (if possible), and if a state at one receives a “down” pulse, it goes to zero. In this way, this system acts as 3 bits of memory, encoding 8 potential system states (2^3 states). We add noise to the inputs of the system so that it better reflects realistic computations that a neural circuit might perform.</p>
@@ -1396,7 +1404,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2d47a133c45bc45c20242f445368d45058f505290b7eae9aef75716c42146c55.png" src="../../_images/2d47a133c45bc45c20242f445368d45058f505290b7eae9aef75716c42146c55.png" />
+<img alt="../../_images/549c8497ea181648463c0fa32fdc423071ea5c256d9889b23c5db874ef3c9167.png" src="../../_images/549c8497ea181648463c0fa32fdc423071ea5c256d9889b23c5db874ef3c9167.png" />
 </div>
 </div>
 <p>Now that we can see the basic logic of the task, let’s do a basic overview of what task-training is!</p>
@@ -1542,7 +1550,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2d88ac1c320dd70c9ce66b5d0aba82c49feb942bcc91e45a982bf5a35a7a1512.png" src="../../_images/2d88ac1c320dd70c9ce66b5d0aba82c49feb942bcc91e45a982bf5a35a7a1512.png" />
+<img alt="../../_images/af06775191d7eebc64e41e1135df2301dee17300075d1000d4ee05f1abe2cd6a.png" src="../../_images/af06775191d7eebc64e41e1135df2301dee17300075d1000d4ee05f1abe2cd6a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1558,7 +1566,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/5f5ce31a1a37d273b2287d9fa18d80692f86c977b1da9c5689689d2f43df39a7.png" src="../../_images/5f5ce31a1a37d273b2287d9fa18d80692f86c977b1da9c5689689d2f43df39a7.png" />
+<img alt="../../_images/8d0f04a1a129c6647f6f12545cf9c5cafb8344d501912b9e9c222340a3873985.png" src="../../_images/8d0f04a1a129c6647f6f12545cf9c5cafb8344d501912b9e9c222340a3873985.png" />
 </div>
 </div>
 <p>There are also useful data visualization functions, such as visualizing a scree plot of the latent activity.</p>
@@ -1570,11 +1578,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.30129819, 0.28852259, 0.25390471, 0.03175105, 0.0193927 ,
-       0.01500144, 0.00863537, 0.00800575, 0.00742347, 0.00518592])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.3288651 , 0.28970428, 0.24558858, 0.02056834, 0.01883003,
+       0.01683728, 0.00705855, 0.00646673, 0.00579903, 0.00542819])
 </pre></div>
 </div>
-<img alt="../../_images/3319ae4aec03b3d98b85608e24457eb21178bf3027f547daac18aaa474a51b79.png" src="../../_images/3319ae4aec03b3d98b85608e24457eb21178bf3027f547daac18aaa474a51b79.png" />
+<img alt="../../_images/8ce25edc0d61cd9d4a8e644fece6675689b4ca653b88257600062a911cc956de.png" src="../../_images/8ce25edc0d61cd9d4a8e644fece6675689b4ca653b88257600062a911cc956de.png" />
 </div>
 </div>
 <p>Importantly, the analysis object also provides functions that give access to the raw latent activity, predicted outputs, etc. of the trained models! All of these functions accept a “phase” variable that designates whether to return the training and/or validation datasets.
@@ -1682,8 +1690,8 @@ Latent shape for target model: (800, 500, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 of linear regression fit: [0.56559467 0.44751504 0.50028326]
-Variance-weighted R2 of linear regression fit: 0.5396808975512654
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 of linear regression fit: [0.67122663 0.67658289 0.57029962]
+Variance-weighted R2 of linear regression fit: 0.6714345481505058
 </pre></div>
 </div>
 </div>
@@ -1706,7 +1714,7 @@ Variance-weighted R2 of linear regression fit: 0.5396808975512654
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ab17bef043081b9263640c346eb869fe85200755a05eb641a4ec765801ba75c4.png" src="../../_images/ab17bef043081b9263640c346eb869fe85200755a05eb641a4ec765801ba75c4.png" />
+<img alt="../../_images/8d77b980129d7838c34ba48e8f1239f75c6c2461a95d84977f7b3c3d2eaf60f7.png" src="../../_images/8d77b980129d7838c34ba48e8f1239f75c6c2461a95d84977f7b3c3d2eaf60f7.png" />
 </div>
 </div>
 </section>
@@ -1747,8 +1755,8 @@ Variance-weighted R2 of linear regression fit: 0.5396808975512654
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/38cc49bc5ec1deccabed4e599cdea04e22af4c835268388130c1aceb74ca2e37.png" src="../../_images/38cc49bc5ec1deccabed4e599cdea04e22af4c835268388130c1aceb74ca2e37.png" />
-<img alt="../../_images/3443094a2aa9ec81f369bc214fa9e258aed8fbb7a00dad2a0a086d6319f31bb5.png" src="../../_images/3443094a2aa9ec81f369bc214fa9e258aed8fbb7a00dad2a0a086d6319f31bb5.png" />
+<img alt="../../_images/2c154ab1f7a549e5c1fad544be8e9857ba03668a4ded84471246257728f0446b.png" src="../../_images/2c154ab1f7a549e5c1fad544be8e9857ba03668a4ded84471246257728f0446b.png" />
+<img alt="../../_images/754d36e0ec26437eb1ff560eb2a28420a1a284dc00e7e011e536c38b33ab0b5e.png" src="../../_images/754d36e0ec26437eb1ff560eb2a28420a1a284dc00e7e011e536c38b33ab0b5e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1765,7 +1773,7 @@ Variance-weighted R2 of linear regression fit: 0.5396808975512654
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/bb49c9441c24970341589cda7db0b58d1910ffd6e5af49f5593d56fe7e2e553c.png" src="../../_images/bb49c9441c24970341589cda7db0b58d1910ffd6e5af49f5593d56fe7e2e553c.png" />
+<img alt="../../_images/e18f8de2aa7e3db7728f1480c134590d3fb64099b73936f99c2a37d71093a7a3.png" src="../../_images/e18f8de2aa7e3db7728f1480c134590d3fb64099b73936f99c2a37d71093a7a3.png" />
 </div>
 </div>
 <p>❓❓❓</p>
@@ -1930,6 +1938,28 @@ Variance-weighted R2 of linear regression fit: 0.5396808975512654
 </div>
 <nav id="bd-toc-nav" class="page-toc">
     <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#project-background">
+     Project Background
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#project-slides">
+     Project slides
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#project-template">
+     Project Template
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#section-1-preparing-the-environment">
    Section 1: Preparing the environment
