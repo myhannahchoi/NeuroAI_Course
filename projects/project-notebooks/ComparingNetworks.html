@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Comparing networks: Characterizing computational similarity in task-trained recurrent neural networks &#8212; Neuromatch Academy: NeuroAI</title>
+    <title>Comparing networks &#8212; Neuromatch Academy: NeuroAI</title>
   
   
   
@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Professional Development" href="../professional_development/README.html" />
-    <link rel="prev" title="Microlearning: Credit assignment and local learning rules in artificial and neural systems" href="Microlearning.html" />
+    <link rel="prev" title="Microlearning" href="Microlearning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -853,7 +853,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../docs/project_guidance.html">Daily guide for projects</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../docs/datasets_overview.html">Project materials</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Macrocircuits.html">Macrocircuits: Leveraging neural architectural priors and modularity in embodied agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Macrocircuits.html">Macrocircuits</a></li>
 
 
 
@@ -1028,7 +1028,7 @@ title="Print to PDF"
             
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Comparing networks: Characterizing computational similarity in task-trained recurrent neural networks</h1>
+    <h1>Comparing networks</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -1121,9 +1121,10 @@ title="Print to PDF"
 
             <article class="bd-article" role="main">
               
-  <p><a href="https://colab.research.google.com/github/neuromatch/NeuroAI_Course/blob/main/projects/project-notebooks/ComparingNetworks.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>   <a href="https://kaggle.com/kernels/welcome?src=https://raw.githubusercontent.com/neuromatch/NeuroAI_Course/blob/main/projects/project-notebooks/ComparingNetworks.ipynb" target="_blank"><img alt="Open in Kaggle" src="https://kaggle.com/static/images/open-in-kaggle.svg" /></a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="comparing-networks-characterizing-computational-similarity-in-task-trained-recurrent-neural-networks">
-<h1>Comparing networks: Characterizing computational similarity in task-trained recurrent neural networks<a class="headerlink" href="#comparing-networks-characterizing-computational-similarity-in-task-trained-recurrent-neural-networks" title="Permalink to this heading">#</a></h1>
+  <p><a href="https://colab.research.google.com/github/neuromatch/NeuroAI_Course/blob/main/projects/project-notebooks/ComparingNetworks.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>   <a href="https://kaggle.com/kernels/welcome?src=https://raw.githubusercontent.com/neuromatch/NeuroAI_Course/main/projects/project-notebooks/ComparingNetworks.ipynb" target="_blank"><img alt="Open in Kaggle" src="https://kaggle.com/static/images/open-in-kaggle.svg" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="comparing-networks">
+<h1>Comparing networks<a class="headerlink" href="#comparing-networks" title="Permalink to this heading">#</a></h1>
+<p><em><strong>Comparing networks: Characterizing computational similarity in task-trained recurrent neural networks</strong></em></p>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong> Chris Versteeg</p>
 <p><strong>Content reviewers:</strong> Chris Versteeg, Hannah Choi, Eva Dyer</p>
@@ -1136,7 +1137,7 @@ title="Print to PDF"
 <h3>Project Background<a class="headerlink" href="#project-background" title="Permalink to this heading">#</a></h3>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "f875ab860da04af1930204df938b06d6"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "fbad572ea0584238b9b6b07965932cb6"}</script></div>
 </div>
 </section>
 <section id="project-slides">
@@ -1207,10 +1208,10 @@ title="Print to PDF"
 </section>
 <section id="section-1-preparing-the-environment">
 <h2>Section 1: Preparing the environment<a class="headerlink" href="#section-1-preparing-the-environment" title="Permalink to this heading">#</a></h2>
-<p><strong>IF USING COLAB</strong>:</p>
-<p>Uncomment the lines of code below and run them in order. The top cell only needs to be run once, but the second cell (envStr) needs to be re-run if the Colab notebook crashes. These blocks install the needed dependencies and set up your environment.</p>
+<p><strong>IF USING COLAB // KAGGLE</strong>:</p>
+<p>Uncomment the lines of code below and run them in order. The top cell only needs to be run once, but the second cell (envStr) needs to be re-run if the Colab // Kaggle notebook crashes. These blocks install the needed dependencies and set up your environment. Notice that third cell content depends on whether you use Colab or Kaggle.</p>
 <p>⏳⏳⏳</p>
-<p>Colab installation (Part 1)</p>
+<p>Colab // Kaggle installation (Part 1)</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1218,9 +1219,9 @@ title="Print to PDF"
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Colab installation (Part 1)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Colab // Kaggle installation (Part 1)</span>
 
-<span class="c1"># ! git clone https://github.com/glibesyck/ComputationThruDynamicsBenchmark</span>
+<span class="c1"># ! git clone https://github.com/neuromatch/ComputationThruDynamicsBenchmark</span>
 <span class="c1"># %cd ComputationThruDynamicsBenchmark</span>
 <span class="c1"># ! pip install -e .</span>
 
@@ -1230,7 +1231,7 @@ title="Print to PDF"
 </div>
 </details>
 </div>
-<p>Colab installation (Part 2)</p>
+<p>Colab // Kaggle installation (Part 2)</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1238,7 +1239,7 @@ title="Print to PDF"
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Colab installation (Part 2)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Colab // Kaggle installation (Part 2)</span>
 
 <span class="c1"># !pip uninstall -y torchaudio torchvision</span>
 </pre></div>
@@ -1246,7 +1247,7 @@ title="Print to PDF"
 </div>
 </details>
 </div>
-<p>Colab installation (Part 3)</p>
+<p>Colab // Kaggle installation (Part 3)</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1254,9 +1255,11 @@ title="Print to PDF"
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Colab installation (Part 3)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Colab // Kaggle installation (Part 3)</span>
 
 <span class="c1">## GET BACK TO THE DIRECTORY AND CONFIGURE .env</span>
+
+<span class="c1">################ COLAB #####################</span>
 
 <span class="c1"># %cd /content/ComputationThruDynamicsBenchmark/</span>
 <span class="c1"># envStr = &quot;&quot;&quot;HOME_DIR=/content/ComputationThruDynamicsBenchmark/</span>
@@ -1265,8 +1268,39 @@ title="Print to PDF"
 <span class="c1"># EVAL_TARGET_FILE=eval_target.h5</span>
 <span class="c1"># &quot;&quot;&quot;</span>
 
+<span class="c1">#############################################</span>
+
+<span class="c1">################ KAGGLE #####################</span>
+
+<span class="c1"># %cd /kaggle/working/ComputationThruDynamicsBenchmark/</span>
+<span class="c1"># envStr = &quot;&quot;&quot;HOME_DIR=/kaggle/working/ComputationThruDynamicsBenchmark/</span>
+<span class="c1"># #Don&#39;t change these</span>
+<span class="c1"># TRAIN_INPUT_FILE=train_input.h5\nEVAL_INPUT_FILE=eval_input.h5</span>
+<span class="c1"># EVAL_TARGET_FILE=eval_target.h5</span>
+<span class="c1"># &quot;&quot;&quot;</span>
+
+<span class="c1">##############################################</span>
+
 <span class="c1"># with open(&#39;.env&#39;,&#39;w&#39;) as f:</span>
 <span class="c1">#   f.write(envStr)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Colab // Kaggle installation (Part 4)</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Colab // Kaggle installation (Part 4)</span>
+
+<span class="c1"># !git clone https://github.com/mitchellostrow/DSA</span>
+<span class="c1"># %cd DSA/</span>
+<span class="c1"># !pip install -e .</span>
 </pre></div>
 </div>
 </div>
@@ -1391,7 +1425,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/fcb38fae3dbc53e52094446d4e6b668a1d8ace4406b81e6651f00b62cd422cf0.png" src="../../_images/fcb38fae3dbc53e52094446d4e6b668a1d8ace4406b81e6651f00b62cd422cf0.png" />
+<img alt="../../_images/a4a1ca5918901bb3f9aae70e22a59c709099a27a9439b5b5f5e54340ebfc3b14.png" src="../../_images/a4a1ca5918901bb3f9aae70e22a59c709099a27a9439b5b5f5e54340ebfc3b14.png" />
 </div>
 </div>
 <p>Above, we are plotting the inputs and outputs of the 3BFF task. One trial is 500 time steps, each with a 1% probability of getting an “up” or “down” pulse on each of its 3 input channels. When the task receives an “up” pulse, the state corresponding to that input channel moves from zero to one (if possible), and if a state at one receives a “down” pulse, it goes to zero. In this way, this system acts as 3 bits of memory, encoding 8 potential system states (2^3 states). We add noise to the inputs of the system so that it better reflects realistic computations that a neural circuit might perform.</p>
@@ -1404,7 +1438,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/549c8497ea181648463c0fa32fdc423071ea5c256d9889b23c5db874ef3c9167.png" src="../../_images/549c8497ea181648463c0fa32fdc423071ea5c256d9889b23c5db874ef3c9167.png" />
+<img alt="../../_images/ef66a59b043a70078a45b442de3c36417df1c98529a189eb15e7018487b6e4d0.png" src="../../_images/ef66a59b043a70078a45b442de3c36417df1c98529a189eb15e7018487b6e4d0.png" />
 </div>
 </div>
 <p>Now that we can see the basic logic of the task, let’s do a basic overview of what task-training is!</p>
@@ -1489,10 +1523,9 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ctd.task_modeling.model.node</span> <span class="kn">import</span> <span class="n">NODE</span>
-
 <span class="n">enable_progress_bar</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">rnn</span> <span class="o">=</span> <span class="n">NODE</span><span class="p">(</span><span class="n">latent_size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">layer_hidden_size</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span> <span class="c1"># Look in ctd/task_modeling/models for alternative choices!</span>
-<span class="n">task_wrapper</span> <span class="o">=</span> <span class="n">TaskTrainedWrapper</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">weight_decay</span> <span class="o">=</span> <span class="mf">1e-8</span><span class="p">)</span>
+<span class="n">task_wrapper</span> <span class="o">=</span> <span class="n">TaskTrainedWrapper</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">weight_decay</span> <span class="o">=</span> <span class="mf">1e-10</span><span class="p">)</span>
 <span class="n">rnn</span><span class="o">.</span><span class="n">init_model</span><span class="p">(</span>
     <span class="n">input_size</span> <span class="o">=</span> <span class="n">task_env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">output_size</span> <span class="o">=</span> <span class="n">task_env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1550,7 +1583,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/af06775191d7eebc64e41e1135df2301dee17300075d1000d4ee05f1abe2cd6a.png" src="../../_images/af06775191d7eebc64e41e1135df2301dee17300075d1000d4ee05f1abe2cd6a.png" />
+<img alt="../../_images/6f3fba0067ab2b4c8a96ed28da1eb4d8f93340b1a7ab38cfd637d701377c826f.png" src="../../_images/6f3fba0067ab2b4c8a96ed28da1eb4d8f93340b1a7ab38cfd637d701377c826f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1566,7 +1599,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8d0f04a1a129c6647f6f12545cf9c5cafb8344d501912b9e9c222340a3873985.png" src="../../_images/8d0f04a1a129c6647f6f12545cf9c5cafb8344d501912b9e9c222340a3873985.png" />
+<img alt="../../_images/d90a1791f16f4f1733f5f7f15becaa58c07bd6d71a145107a713a0a2d0b1dd5f.png" src="../../_images/d90a1791f16f4f1733f5f7f15becaa58c07bd6d71a145107a713a0a2d0b1dd5f.png" />
 </div>
 </div>
 <p>There are also useful data visualization functions, such as visualizing a scree plot of the latent activity.</p>
@@ -1578,11 +1611,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.3288651 , 0.28970428, 0.24558858, 0.02056834, 0.01883003,
-       0.01683728, 0.00705855, 0.00646673, 0.00579903, 0.00542819])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.32487404, 0.30776472, 0.22181555, 0.02270288, 0.02027263,
+       0.01407631, 0.00757966, 0.00713993, 0.00697814, 0.00552081])
 </pre></div>
 </div>
-<img alt="../../_images/8ce25edc0d61cd9d4a8e644fece6675689b4ca653b88257600062a911cc956de.png" src="../../_images/8ce25edc0d61cd9d4a8e644fece6675689b4ca653b88257600062a911cc956de.png" />
+<img alt="../../_images/8341ca5b07ffba61d5854e2670615888426b3bee4d4c2791bfeb46da1b7647af.png" src="../../_images/8341ca5b07ffba61d5854e2670615888426b3bee4d4c2791bfeb46da1b7647af.png" />
 </div>
 </div>
 <p>Importantly, the analysis object also provides functions that give access to the raw latent activity, predicted outputs, etc. of the trained models! All of these functions accept a “phase” variable that designates whether to return the training and/or validation datasets.
@@ -1690,8 +1723,8 @@ Latent shape for target model: (800, 500, 3)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 of linear regression fit: [0.67122663 0.67658289 0.57029962]
-Variance-weighted R2 of linear regression fit: 0.6714345481505058
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 of linear regression fit: [0.55569382 0.72182609 0.51124852]
+Variance-weighted R2 of linear regression fit: 0.6022992723659142
 </pre></div>
 </div>
 </div>
@@ -1714,7 +1747,7 @@ Variance-weighted R2 of linear regression fit: 0.6714345481505058
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8d77b980129d7838c34ba48e8f1239f75c6c2461a95d84977f7b3c3d2eaf60f7.png" src="../../_images/8d77b980129d7838c34ba48e8f1239f75c6c2461a95d84977f7b3c3d2eaf60f7.png" />
+<img alt="../../_images/1c50e1f94d5ebe1c9b7675a656ef23c75bcf29add7268925d93aaf9eb0407f5a.png" src="../../_images/1c50e1f94d5ebe1c9b7675a656ef23c75bcf29add7268925d93aaf9eb0407f5a.png" />
 </div>
 </div>
 </section>
@@ -1755,8 +1788,8 @@ Variance-weighted R2 of linear regression fit: 0.6714345481505058
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2c154ab1f7a549e5c1fad544be8e9857ba03668a4ded84471246257728f0446b.png" src="../../_images/2c154ab1f7a549e5c1fad544be8e9857ba03668a4ded84471246257728f0446b.png" />
-<img alt="../../_images/754d36e0ec26437eb1ff560eb2a28420a1a284dc00e7e011e536c38b33ab0b5e.png" src="../../_images/754d36e0ec26437eb1ff560eb2a28420a1a284dc00e7e011e536c38b33ab0b5e.png" />
+<img alt="../../_images/e3a23dfc57440738c4920e4ea2c8a63b263f4a8ce6c2253a849592b91af47067.png" src="../../_images/e3a23dfc57440738c4920e4ea2c8a63b263f4a8ce6c2253a849592b91af47067.png" />
+<img alt="../../_images/a59f9516bcb03c84441f9f6b68d7c2b3c23b32e628857e9ab1413eeaddaf99ad.png" src="../../_images/a59f9516bcb03c84441f9f6b68d7c2b3c23b32e628857e9ab1413eeaddaf99ad.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1773,7 +1806,7 @@ Variance-weighted R2 of linear regression fit: 0.6714345481505058
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e18f8de2aa7e3db7728f1480c134590d3fb64099b73936f99c2a37d71093a7a3.png" src="../../_images/e18f8de2aa7e3db7728f1480c134590d3fb64099b73936f99c2a37d71093a7a3.png" />
+<img alt="../../_images/f6a0c7264ffc8a595d6f00b02a6ccef48cd5b6dc4a81b82bdc896a171c9adf04.png" src="../../_images/f6a0c7264ffc8a595d6f00b02a6ccef48cd5b6dc4a81b82bdc896a171c9adf04.png" />
 </div>
 </div>
 <p>❓❓❓</p>
@@ -1912,7 +1945,7 @@ Variance-weighted R2 of linear regression fit: 0.6714345481505058
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Microlearning: Credit assignment and local learning rules in artificial and neural systems</p>
+          <p class="prev-next-title">Microlearning</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="../professional_development/README.html" title="next page">
